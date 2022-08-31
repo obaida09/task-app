@@ -1,0 +1,60 @@
+    
+        /* edit search input in table */
+        .search-table {
+            background: none;
+            border: 1px solid #8a8a8a;
+            border-radius: 0.375rem;
+            border-top-left-radius: 0.375rem !important;
+            border-bottom-left-radius: 0.375rem !important;
+            padding: 0.5rem 0.55rem !important;
+            line-height: 1.4 !important;
+          }
+      
+          /* form cheack remove padding */
+          .form-check {
+            padding-left: 0;
+          }
+      
+          .left {
+            float: left;
+            padding-left: 20px
+          }
+      
+      
+          .thr {
+            border-top: 1px solid rgb(243, 243, 243);
+          }
+      
+          .bhr {
+            border-bottom: 1px solid rgb(243, 243, 243);
+          }
+          
+          tbody{
+            border-bottom: 1px solid rgb(235, 235, 235);
+          }
+          
+          tfoot{
+            display: none;
+          }
+          
+          .dataTables_info {
+            float: left;
+            margin-top: 20px;
+            margin-right: 10px;
+            color: #afafaf;
+          }
+          
+          .dataTables_paginate{
+            float: right;
+            margin-top: 25px;
+          }
+          
+          .paginate_button.next {
+            float: right;
+            margin: -2px 10px;
+          }
+          
+          .paginate_button.previous {
+            float: left;
+            margin: -2px 10px;
+          }
