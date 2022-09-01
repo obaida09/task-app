@@ -3,19 +3,25 @@
 namespace App\Http\Controllers;
 
 use App\Models\PathologicalCase;
+use App\Models\Category;
+use App\DataTables\PathologicalCaseDatatable;
 use App\Http\Requests\StorePathologicalCaseRequest;
 use App\Http\Requests\UpdatePathologicalCaseRequest;
 
 class PathologicalCaseController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('isAdmin')->except(['index']); 
+    }
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(PathologicalCaseDatatable $cases)
     {
-        //
+        return $cases->render('pathological_cases.index');
     }
 
     /**
@@ -25,7 +31,8 @@ class PathologicalCaseController extends Controller
      */
     public function create()
     {
-        //
+        $category = ProductCategory::whereNull('parent_id')->get();
+        return view('pathological_cases.create', compact('category'));
     }
 
     /**
@@ -36,7 +43,8 @@ class PathologicalCaseController extends Controller
      */
     public function store(StorePathologicalCaseRequest $request)
     {
-        //
+        PathologicalCase::create($request->validated());
+        return redirect()->route('pathological_case.index');
     }
 
     /**
@@ -58,7 +66,8 @@ class PathologicalCaseController extends Controller
      */
     public function edit(PathologicalCase $pathologicalCase)
     {
-        //
+        $category = ProductCategory::whereNull('parent_id')->get();
+        return view('pathological_cases.edit', compact('category', 'pathologicalCase'));
     }
 
     /**
@@ -70,7 +79,8 @@ class PathologicalCaseController extends Controller
      */
     public function update(UpdatePathologicalCaseRequest $request, PathologicalCase $pathologicalCase)
     {
-        //
+        $pathologicalCase->update($request->validated());
+        return redirect()->route('pathological_case.index');
     }
 
     /**
@@ -81,6 +91,7 @@ class PathologicalCaseController extends Controller
      */
     public function destroy(PathologicalCase $pathologicalCase)
     {
-        //
+        $pathologicalCase->delete();
+        return redirect()->route('session.index');
     }
 }

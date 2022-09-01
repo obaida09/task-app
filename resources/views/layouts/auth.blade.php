@@ -19,7 +19,6 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
     <!-- CSS Files -->
     <link id="pagestyle" href="{{ asset('assets/css/material-dashboard.css?v=3.0.0') }}" rel="stylesheet" />
-
 </head>
 
 <body class="bg-my">
@@ -38,6 +37,10 @@
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
     <link href="{{ asset('assets/js/material-dashboard.min.js?v=3.0.4') }}" rel="stylesheet" />
+
+    <script>
+        document.body.scrollHeight
+    </script>
 </body>
 
 </html>

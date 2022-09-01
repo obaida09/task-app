@@ -7,6 +7,7 @@ use App\Http\Controllers\PatientController;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\SessionDetailsController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\PathologicalCaseController;
 
 
 /*
@@ -31,9 +32,10 @@ Route::middleware(['isActive', 'auth'])->group(function ()
 {
     Route::get('/home', [HomeController::class, 'index'])->name('home');
     
-    Route::resource('healer'          , HealerController::class);
-    Route::resource('patient'         , PatientController::class);
-    Route::resource('session'         , SessionController::class);
-    Route::resource('session_details' , SessionDetailsController::class);
-    Route::resource('category'        , CategoryController::class);
+    Route::resource('healer'              , HealerController::class);
+    Route::resource('patient'             , PatientController::class);
+    Route::resource('session'             , SessionController::class);
+    Route::resource('session_details'     , SessionDetailsController::class);
+    Route::resource('category'            , CategoryController::class);
+    Route::resource('pathological_case'  , PathologicalCaseController::class);
 });

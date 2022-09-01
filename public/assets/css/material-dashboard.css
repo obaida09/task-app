@@ -7290,7 +7290,8 @@ textarea.form-control-lg {
 .bg-white {
   background-color: #fff !important; }
 .bg-my {
-  background-image: linear-gradient(to bottom, #ffffff, #d6d3e2, #afa7c6, #8a7ea9, #67568c);
+  /* background-image: linear-gradient(to bottom, #ffffff, #d6d3e2, #afa7c6, #8a7ea9, #67568c); */
+  background-color: #abd1c6 !important; 
 }
 .bg-body {
   background-color: #fff !important; }

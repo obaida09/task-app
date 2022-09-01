@@ -2,7 +2,7 @@
 
 namespace App\DataTables;
 
-use App\Models\PathologicalCaseDatatable;
+use App\Models\PathologicalCase;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\Html\Editor\Editor;
@@ -21,18 +21,24 @@ class PathologicalCaseDatatable extends DataTable
     {
         return datatables()
             ->eloquent($query)
-            ->addColumn('action', 'pathologicalcasedatatable.action');
+            ->addColumn('action', 'pathological_cases.action.buttons')
+            ->editColumn('created_at', function (PathologicalCase $PathologicalCase) {
+                return $PathologicalCase->created_at->toFormattedDateString();
+            })
+            ->editColumn('updated_at', function (PathologicalCase $PathologicalCase) {
+                return $PathologicalCase->updated_at->toFormattedDateString();
+            });
     }
 
     /**
      * Get query source of dataTable.
      *
-     * @param \App\Models\PathologicalCaseDatatable $model
+     * @param \App\Models\PathologicalCase $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function query(PathologicalCaseDatatable $model)
+    public function query(PathologicalCase $model)
     {
-        return $model->newQuery();
+        return $model->newQuery()->with('category')->select('pathological_cases.*');
     }
 
     /**
@@ -48,13 +54,13 @@ class PathologicalCaseDatatable extends DataTable
                     ->minifiedAjax()
                     ->dom('Bfrtip')
                     ->orderBy(1)
-                    ->buttons(
-                        Button::make('create'),
-                        Button::make('export'),
-                        Button::make('print'),
-                        Button::make('reset'),
-                        Button::make('reload')
-                    );
+                    ->parameters([
+                        'dom' => 'Blfrtip',
+                        'responsive' => true,
+                        'autoWidth' => false,
+                        'lengthMenu' => [[10, 25, -1], [10, 25, 'All Record']],
+                        'buttons' => ['excel', 'csv', 'pdf', 'reset'],
+                    ]);
     }
 
     /**
@@ -65,15 +71,18 @@ class PathologicalCaseDatatable extends DataTable
     protected function getColumns()
     {
         return [
+            Column::make('id'),
+            Column::make('content')
+                ->width(610),
+            Column::computed('Category')
+                ->data('category.name'),
+            Column::make('created_at'),
+            Column::make('updated_at'),
             Column::computed('action')
                   ->exportable(false)
                   ->printable(false)
-                  ->width(60)
+                  ->width(110)
                   ->addClass('text-center'),
-            Column::make('id'),
-            Column::make('add your columns'),
-            Column::make('created_at'),
-            Column::make('updated_at'),
         ];
     }
 
