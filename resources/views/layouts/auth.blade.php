@@ -3,45 +3,41 @@
 
 <head>
 
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <meta name="author" content="">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Login</title>
 
-  <title>Login</title>
-
-  <!-- Custom fonts for this template-->
-  <link href="{{ asset('admin/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
-  <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
-
-  <!-- Custom styles for this template-->
-  <link href="{{ asset('admin/css/sb-admin-2.min.css') }}" rel="stylesheet">
+    <!--     Fonts and icons     -->
+    <link rel="stylesheet" type="text/css"
+        href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700" />
+    <!-- Nucleo Icons -->
+    <link href="{{ asset('assets/css/nucleo-icons.css') }}" rel="stylesheet" />
+    <link href="{{ asset('assets/css/nucleo-svg.css') }}" rel="stylesheet" />
+    <!-- Font Awesome Icons -->
+    <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
+    <!-- Material Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+    <!-- CSS Files -->
+    <link id="pagestyle" href="{{ asset('assets/css/material-dashboard.css?v=3.0.0') }}" rel="stylesheet" />
 
 </head>
 
-<body class="bg-gradient-primary">
-  <div class="container">
-
+<body class="bg-my">
     <!-- Main content -->
-    <div class="row justify-content-center">
-      <div class="col-xl-6 col-lg-12 col-md-12">
-        <div class="card o-hidden border-0 shadow-lg my-5">
-          @yield('auth-content')
+    <div class="container-fluid py-4">
+        <div class="">
+            @yield('auth-content')
         </div>
-      </div>
     </div>
-
-    <!-- Bootstrap core JavaScript-->
-    <script src="{{ asset('admin/vendor/jquery/jquery.min.js') }}"></script>
-    <script src="{{ asset('admin/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-
-    <!-- Core plugin JavaScript-->
-    <script src="{{ asset('admin/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
-
-    <!-- Custom scripts for all pages-->
-    <script src="{{ asset('admin/js/sb-admin-2.min.js') }}"></script>
-
+    <!--   Core JS Files   -->
+    <link href="{{ asset('assets/js/core/popper.min.js') }}" rel="stylesheet" />
+    <link href="{{ asset('assets/js/core/bootstrap.min.js') }}" rel="stylesheet" />
+    <link href="{{ asset('assets/js/plugins/perfect-scrollbar.min.js') }}" rel="stylesheet" />
+    <link href="{{ asset('assets/js/plugins/smooth-scrollbar.min.js') }}" rel="stylesheet" />
+    <!-- Github buttons -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
+    <link href="{{ asset('assets/js/material-dashboard.min.js?v=3.0.4') }}" rel="stylesheet" />
 </body>
 
 </html>

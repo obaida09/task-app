@@ -27,7 +27,7 @@ Route::get('/', function () {
 Auth::routes();
 
 
-Route::group(['middleware' => 'isActive'], function () 
+Route::middleware(['isActive', 'auth'])->group(function () 
 {
     Route::get('/home', [HomeController::class, 'index'])->name('home');
     
