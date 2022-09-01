@@ -6,6 +6,7 @@ use App\Http\Controllers\HealerController;
 use App\Http\Controllers\PatientController;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\SessionDetailsController;
+use App\Http\Controllers\CategoryController;
 
 
 /*
@@ -34,4 +35,5 @@ Route::group(['middleware' => 'isActive'], function ()
     Route::resource('patient'         , PatientController::class);
     Route::resource('session'         , SessionController::class);
     Route::resource('session_details' , SessionDetailsController::class);
+    Route::resource('category'        , CategoryController::class);
 });
