@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\DataTables\CategoryDatatable;
 use App\Http\Requests\StoreCategoryRequest;
 use App\Http\Requests\UpdateCategoryRequest;
 
@@ -13,9 +14,9 @@ class CategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(CategoryDatatable $category)
     {
-        //
+        return $category->render('categories.index');
     }
 
     /**
@@ -37,7 +38,8 @@ class CategoryController extends Controller
      */
     public function store(StoreCategoryRequest $request)
     {
-        //
+        Category::create($request->validated());
+        return redirect()->route('category.index');
     }
 
     /**
@@ -59,7 +61,8 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        //
+        $main_categories = Category::whereNull('parent_id')->get(['id', 'name']);
+        return view('categories.edit', compact('main_categories', 'category'));
     }
 
     /**
@@ -71,7 +74,8 @@ class CategoryController extends Controller
      */
     public function update(UpdateCategoryRequest $request, Category $category)
     {
-        //
+        $category->update($request->validated());
+        return redirect()->route('category.index');
     }
 
     /**
@@ -82,6 +86,7 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        //
+        $category->delete();
+        return redirect()->route('category.index');
     }
 }
