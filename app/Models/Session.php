@@ -16,7 +16,7 @@ class Session extends Model
         if(auth()->user()->is_admin == 1) {
             return Session::first();
         }
-        
+        return auth()->user()->sessions();
     }
     
     public function patient()

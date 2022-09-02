@@ -37,5 +37,7 @@ Route::middleware(['isActive', 'auth'])->group(function ()
     Route::resource('session'             , SessionController::class);
     Route::resource('session_details'     , SessionDetailsController::class);
     Route::resource('category'            , CategoryController::class);
-    Route::resource('pathological_case'  , PathologicalCaseController::class);
+    Route::resource('pathological_case'   , PathologicalCaseController::class);
+    
+    Route::get('sub_category', [CategoryController::class, 'sub_category'])->name('sub_category');
 });

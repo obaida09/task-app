@@ -14,23 +14,28 @@
     <div class="collapse navbar-collapse  w-auto " id="sidenav-collapse-main">
         <ul class="navbar-nav">
             <li class="nav-item">
-                <a class="nav-link text-white {{ request()->path() == 'home' ? 'active':'' }}" href="{{ route('home') }}">
+                <a class="nav-link text-white {{ request()->path() == 'home' ? 'active' : '' }}"
+                    href="{{ route('home') }}">
                     <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                         <i class="material-icons opacity-10">dashboard</i>
                     </div>
                     <span class="nav-link-text ms-1">Dashboard</span>
                 </a>
             </li>
+            @if (auth()->user()->is_admin)
+                <li class="nav-item">
+                    <a class="nav-link text-white {{ request()->path() == 'category' ? 'active' : '' }}"
+                        href="{{ route('category.index') }}">
+                        <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                            <i class="fa-solid fa-circle-info"></i>
+                        </div>
+                        <span class="nav-link-text ms-1">Categories</span>
+                    </a>
+                </li>
+            @endif
             <li class="nav-item">
-                <a class="nav-link text-white {{ request()->path() == 'category' ? 'active':'' }}" href="{{ route('category.index') }}">
-                    <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="fa-solid fa-circle-info"></i>
-                    </div>
-                    <span class="nav-link-text ms-1">Categories</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-white {{ request()->path() == 'pathological_case' ? 'active':'' }}" href="{{ route('pathological_case.index') }}">
+                <a class="nav-link text-white {{ request()->path() == 'pathological_case' ? 'active' : '' }}"
+                    href="{{ route('pathological_case.index') }}">
                     <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                         <i class="fa-solid fa-circle-info"></i>
                     </div>
@@ -38,17 +43,19 @@
                 </a>
             </li>
             @if (auth()->user()->is_admin)
-            <li class="nav-item">
-                <a class="nav-link text-white {{ request()->path() == 'healer' ? 'active':'' }}" href="{{ route('healer.index') }}">
-                    <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="fa-solid fa-file-medical"></i>
-                    </div>
-                    <span class="nav-link-text ms-1">Healer's</span>
-                </a>
-            </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white {{ request()->path() == 'healer' ? 'active' : '' }}"
+                        href="{{ route('healer.index') }}">
+                        <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                            <i class="fa-solid fa-file-medical"></i>
+                        </div>
+                        <span class="nav-link-text ms-1">Healer's</span>
+                    </a>
+                </li>
             @endif
             <li class="nav-item">
-                <a class="nav-link text-white {{ request()->path() == 'patient' ? 'active':'' }}" href="{{ route('patient.index') }}">
+                <a class="nav-link text-white {{ request()->path() == 'patient' ? 'active' : '' }}"
+                    href="{{ route('patient.index') }}">
                     <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                         <i class="fa-solid fa-temperature-arrow-up"></i>
                     </div>
@@ -56,7 +63,8 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-white {{ request()->path() == 'session' ? 'active':'' }}" href="{{ route('session.index') }}">
+                <a class="nav-link text-white {{ request()->path() == 'session' ? 'active' : '' }}"
+                    href="{{ route('session.index') }}">
                     <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                         <i class="material-icons opacity-10">table_view</i>
                     </div>
@@ -64,7 +72,8 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-white {{ request()->path() == 'session_details' ? 'active':'' }}" href="{{ route('session_details.index') }}">
+                <a class="nav-link text-white {{ request()->path() == 'session_details' ? 'active' : '' }}"
+                    href="{{ route('session_details.index') }}">
                     <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                         <i class="fa-solid fa-circle-info"></i>
                     </div>
@@ -73,11 +82,5 @@
             </li>
         </ul>
     </div>
-    <div class="sidenav-footer position-absolute w-100 bottom-0 ">
-        <div class="mx-3">
-            <a class="btn bg-gradient-primary mt-4 w-100"
-                href="https://www.creative-tim.com/product/material-dashboard-pro?ref=sidebarfree"
-                type="button">Upgrade to pro</a>
-        </div>
-    </div>
+
 </aside>

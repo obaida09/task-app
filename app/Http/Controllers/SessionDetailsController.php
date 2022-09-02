@@ -27,7 +27,7 @@ class SessionDetailsController extends Controller
      */
     public function create()
     {
-        $session = Session::all();
+        $session = Session::your_sessions()->get();
         return view('sessions_details.create', compact('session'));
     }
 

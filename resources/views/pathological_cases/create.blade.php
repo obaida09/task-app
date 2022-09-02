@@ -14,7 +14,7 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="input-group input-group-outline my-3">
-                                    <select class="form-control" id="exampleFormControlSelect1">
+                                    <select class="form-control" id="category">
                                         @foreach ($category as $item)
                                             <option value="{{ $item->id }}">{{ $item->name }}</option>
                                         @endforeach
@@ -23,8 +23,8 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="input-group input-group-outline my-3">
-                                    <select class="form-control" name="category_id" id="exampleFormControlSelect1">
-                                        <option value="1">1</option>
+                                    <select class="form-control" name="category_id" id="sub_category">
+                                       
                                     </select>
                                 </div>
                             </div>
@@ -42,7 +42,8 @@
                         </div>
 
                         <div class="form-group pt-4">
-                            <a href="{{ route('pathological_case.index') }}" class="btn btn-secondary">Pathological Case Table</a>
+                            <a href="{{ route('pathological_case.index') }}" class="btn btn-secondary">Pathological Case
+                                Table</a>
                             <button type="submit" class="btn btn-primary">Add Pathological Case</button>
                         </div>
                     </form>
@@ -50,4 +51,47 @@
             </div>
         </div>
     </div>
+    @push('js')
+        <script>
+            // $.ajaxSetup({
+            //     headers: {
+            //         'X-CSRF-Token': $('meta[name=_token]').attr('content')
+            //     }
+            // });
+            // jQuery.ajax({
+            //     url: '/group/create',
+            //     type: 'GET',
+            //     data: {
+            //         name: groupName,
+            //         colour: "red"
+            //     },
+            //     success: function(data) {
+
+            //         console.log(data);
+            //     },
+            //     error: function(xhr, b, c) {
+            //         console.log("xhr=" + xhr + " b=" + b + " c=" + c);
+            //     }
+            // });
+
+            jQuery('#category').on('change', function() {
+                jQuery.ajax({
+                    url: "{{ route('sub_category') }}",
+                    method: 'get',
+                    data: {
+                        category_id: $(this).val(),
+                    },
+                    success: function(data) {
+                        for (var i=0; i < data.length; i++) {  
+                            $("#sub_category").append(
+                                '<option value="' + data[i].id + '">' + data[i].name + '</option>'
+                            ); 
+                            console.log()
+                            console.log()
+                        }
+                    }
+                });
+            });
+        </script>
+    @endpush
 @endsection

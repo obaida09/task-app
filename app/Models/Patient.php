@@ -16,7 +16,8 @@ class Patient extends Model
         if(auth()->user()->is_admin == 1) {
             return Patient::first();
         }
-        return Patient::where('user_id', auth()->user()->id);
+        // return Patient::where('user_id', auth()->user()->id);
+        return auth()->user()->patients();
     }
     
     public function sessions()

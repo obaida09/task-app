@@ -13,7 +13,10 @@
                         <div class="table-responsive p-3">
                             {!! $dataTable->table(['class' => 'table align-items-center mb-0'], true) !!}
                         </div>
-                        <a href="{{ route('pathological_case.create') }}" class="btn btn-secondary mx-3">Add The Pathological Case</a>
+                        @if (auth()->user()->is_admin)
+                            <a href="{{ route('pathological_case.create') }}" class="btn btn-secondary mx-3">Add The
+                                Pathological Case</a>
+                        @endif
                     </div>
                 </div>
             </div>

@@ -38,7 +38,7 @@ class SessionsDetailsDatatable extends DataTable
      */
     public function query(SessionDetails $model)
     {
-        return $model->newQuery()->with('session')->select('session_details.*');
+        return $model->your_sessions_details()->newQuery()->with('session')->select('session_details.*');
     }
 
     /**

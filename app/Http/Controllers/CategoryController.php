@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use Illuminate\Http\Request;
 use App\DataTables\CategoryDatatable;
 use App\Http\Requests\StoreCategoryRequest;
 use App\Http\Requests\UpdateCategoryRequest;
@@ -92,5 +93,11 @@ class CategoryController extends Controller
     {
         $category->delete();
         return redirect()->route('category.index');
+    }
+    
+    public function sub_category(Request $request)
+    {
+        $sub_category = category::where('parent_id', $request->category_id)->get()->toArray();
+        return response()->json($sub_category);
     }
 }

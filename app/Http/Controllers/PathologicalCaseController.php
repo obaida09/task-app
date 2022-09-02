@@ -31,7 +31,7 @@ class PathologicalCaseController extends Controller
      */
     public function create()
     {
-        $category = ProductCategory::whereNull('parent_id')->get();
+        $category = Category::whereNull('parent_id')->get();
         return view('pathological_cases.create', compact('category'));
     }
 
@@ -66,7 +66,7 @@ class PathologicalCaseController extends Controller
      */
     public function edit(PathologicalCase $pathologicalCase)
     {
-        $category = ProductCategory::whereNull('parent_id')->get();
+        $category = Category::whereNull('parent_id')->get();
         return view('pathological_cases.edit', compact('category', 'pathologicalCase'));
     }
 
@@ -92,6 +92,6 @@ class PathologicalCaseController extends Controller
     public function destroy(PathologicalCase $pathologicalCase)
     {
         $pathologicalCase->delete();
-        return redirect()->route('session.index');
+        return redirect()->route('pathological_case.index');
     }
 }

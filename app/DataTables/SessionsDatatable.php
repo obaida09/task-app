@@ -72,8 +72,7 @@ class SessionsDatatable extends DataTable
     {
         return [
             Column::make('id'),
-            Column::make('date'),
-            Column::make('time'),
+            Column::make('date_time'),
             Column::computed('The Patient')
                 ->data('patient.name'),
             Column::make('created_at'),

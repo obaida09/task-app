@@ -6,6 +6,7 @@ use App\Models\User;
 use App\DataTables\HealerDatatable;
 use App\Http\Requests\StoreHealerRequest;
 use App\Http\Requests\UpdateHealerRequest;
+use Illuminate\Support\Facades\Hash;
 
 class HealerController extends Controller
 {
@@ -21,6 +22,7 @@ class HealerController extends Controller
      */
     public function index(HealerDatatable $healer)
     {
+        dd(auth()->user()->sessions()->first()->id);
         return $healer->render('healers.index');
     }
 
@@ -42,7 +44,9 @@ class HealerController extends Controller
      */
     public function store(StoreHealerRequest $request)
     {
-        User::create($request->validated());
+        $data = $request->validated();
+        $data['password'] = Hash::make($request->password);
+        User::create($data);
         return redirect()->route('healer.index');
     }
 
@@ -66,7 +70,7 @@ class HealerController extends Controller
     public function edit(User $healer)
     {  
         if(auth()->user()->is_admin == 1 or auth()->user()->id == $healer->id)
-        {
+        {     
             return view('healers.edit', compact('healer'));
         }
         return redirect('home');
@@ -86,9 +90,9 @@ class HealerController extends Controller
         {
             $data = $request->validated();
             unset($data['password']);
-            
+
             // Add Password to data
-            trim($request->password) != '' ? $data['password'] = bcrypt($request->password):'';
+            trim($request->password) != '' ? $data['password'] = Hash::make($request->password) : '';
             
             $healer->update($data);
             return redirect()->route('healer.index');
