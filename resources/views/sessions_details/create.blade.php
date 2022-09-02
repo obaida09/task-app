@@ -55,7 +55,7 @@
                         <div class="input-group input-group-outline my-3">
                             <select class="form-control" name="session_id" id="exampleFormControlSelect1">
                                 @foreach ($session as $item)
-                                    <option value="{{ $item->id }}">{{ $item->id }}</option>
+                                    <option value="{{ $item->id }}">{{ $item->date_time }} => {{ $item->patient()->first()->name }}</option>
                                 @endforeach
                             </select>
                             @error('session_id')

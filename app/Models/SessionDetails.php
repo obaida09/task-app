@@ -22,6 +22,5 @@ class SessionDetails extends Model
             return SessionDetails::first();
         }
         return SessionDetails::where('session_id', auth()->user()->sessions()->first()->id);
-        return auth()->user()->sessions();
     }
 }

@@ -9,35 +9,53 @@
                     </div>
                 </div>
                 <div class="card-body px-4 pb-2 py-4">
-                    <form action="{{ route('session_details.update', $session->id) }}" method="post">
+                    <form action="{{ route('session_details.update', $session_details->id) }}" method="post">
                         @csrf
                         @method('PATCH')
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="input-group input-group-outline my-3">
-                                    <label class="form-label">Date</label>
-                                    <input type="text" value="{{ old('age', $session->date) }}" name="date"
-                                        class="form-control">
+                                    <label class="form-label">Copmplaint or Offer</label>
+                                    <input type="text" name="offer" value="{{ old('offer', $session_details->offer) }}" class="form-control">
                                 </div>
-                                @error('date')
+                                @error('offer')
                                     <div style="color: rgba(255, 0, 0, 0.692)" class="form-text">{{ $message }}</div>
                                 @enderror
                             </div>
                             <div class="col-md-6">
                                 <div class="input-group input-group-outline my-3">
-                                    <label class="form-label">Time</label>
-                                    <input type="text" value="{{ old('age', $session->time) }}" name="time"
-                                        class="form-control">
+                                    <label class="form-label">Shock Moment</label>
+                                    <input type="text" name="shock_moment" value="{{ old('shock_moment', $session_details->shock_moment) }}" class="form-control">
                                 </div>
-                                @error('time')
+                                @error('shock_moment')
+                                    <div style="color: rgba(255, 0, 0, 0.692)" class="form-text">{{ $message }}</div>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="input-group input-group-outline my-3">
+                                    <label class="form-label">Tretment</label>
+                                    <input type="text" name="tretment" value="{{ old('tretment', $session_details->tretment) }}" class="form-control">
+                                </div>
+                                @error('tretment')
+                                    <div style="color: rgba(255, 0, 0, 0.692)" class="form-text">{{ $message }}</div>
+                                @enderror
+                            </div>
+                            <div class="col-md-6">
+                                <div class="input-group input-group-outline my-3">
+                                    <label class="form-label">Session Notes</label>
+                                    <input type="text" name="session_notes" value="{{ old('session_notes', $session_details->session_notes) }}" class="form-control">
+                                </div>
+                                @error('session_notes')
                                     <div style="color: rgba(255, 0, 0, 0.692)" class="form-text">{{ $message }}</div>
                                 @enderror
                             </div>
                         </div>
                         <div class="input-group input-group-outline my-3">
                             <select class="form-control" name="patient_id" id="exampleFormControlSelect1">
-                                @foreach ($patient as $item)
-                                    <option value="{{ $item->id }}" @if ($item->id == $session->patient_id) selected @endif>
+                                @foreach ($session as $item)
+                                    <option value="{{ $item->id }}" @if ($item->id == $session_details->session_id) selected @endif>
                                         {{ $item->name }}</option>
                                 @endforeach
                             </select>

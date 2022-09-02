@@ -1,3 +1,6 @@
+<a onclick="goToSessionDetail()" class="btn btn-primary btn-table btn-sm">
+    NOTE
+</a>
 <a href="{{ route('session.edit', $id) }}" class="btn btn-primary btn-table btn-sm">
     <i class="fa fa-edit"></i>
 </a>

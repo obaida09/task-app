@@ -60,10 +60,15 @@ class SessionDetailsController extends Controller
      * @param  \App\Models\SessionDetails  $sessionDetails
      * @return \Illuminate\Http\Response
      */
-    public function edit(SessionDetails $sessionDetails)
+    public function edit(SessionDetails $session_details)
     {
-        $session = Session::all();
-        return view('sessions.edit', compact('sessionDetails', 'session'));
+    // dd($session_details->first()->session_id);
+    //     if(auth()->user()->is_admin == 1 or auth()->user()->sessions()->first()->id == $session->patient()->first()->user_id)
+    //     {     
+            $session = Session::your_sessions()->get();
+            return view('sessions_details.edit', compact('session_details', 'session'));
+        // }
+        // return redirect('session');  
     }
 
     /**
@@ -85,9 +90,9 @@ class SessionDetailsController extends Controller
      * @param  \App\Models\SessionDetails  $sessionDetails
      * @return \Illuminate\Http\Response
      */
-    public function destroy(SessionDetails $sessionDetails)
+    public function destroy(SessionDetails $session_details)
     {
-        $sessionDetails->delete();
+        $session_details->delete();
         return redirect()->route('session_details.index');
     }
 }

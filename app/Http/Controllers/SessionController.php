@@ -62,8 +62,12 @@ class SessionController extends Controller
      */
     public function edit(Session $session)
     {
-        $patient = Patient::your_patients()->get();
-        return view('sessions.edit', compact('patient', 'session'));
+        if(auth()->user()->is_admin == 1 or auth()->user()->id == $session->patient()->first()->user_id)
+        {    
+            $patient = Patient::your_patients()->get();
+            return view('sessions.edit', compact('patient', 'session'));
+        }
+        return redirect('session');        
     }
 
     /**
@@ -75,8 +79,12 @@ class SessionController extends Controller
      */
     public function update(UpdateSessionRequest $request, Session $session)
     {
-        $session->update($request->validated());
-        return redirect()->route('session.index');
+        if(auth()->user()->is_admin == 1 or auth()->user()->id == $session->patient()->first()->user_id)
+        {        
+            $session->update($request->validated());
+            return redirect()->route('session.index');
+        }
+        return redirect('session');
     }
 
     /**
@@ -87,7 +95,11 @@ class SessionController extends Controller
      */
     public function destroy(Session $session)
     {
-        $session->delete();
-        return redirect()->route('session.index');
+        if(auth()->user()->is_admin == 1 or auth()->user()->id == $session->patient()->first()->user_id)
+        {        
+            $session->delete();
+            return redirect()->route('session.index');
+        }
+        return redirect('session');                
     }
 }

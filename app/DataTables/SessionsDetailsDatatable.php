@@ -21,7 +21,7 @@ class SessionsDetailsDatatable extends DataTable
     {
         return datatables()
             ->eloquent($query)
-            ->addColumn('action', 'sessions.action.buttons')
+            ->addColumn('action', 'sessions_details.action.buttons')
             ->editColumn('created_at', function (SessionDetails $session_details) {
                 return $session_details->created_at->toFormattedDateString();
             })

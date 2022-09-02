@@ -22,7 +22,6 @@ class HealerController extends Controller
      */
     public function index(HealerDatatable $healer)
     {
-        dd(auth()->user()->sessions()->first()->id);
         return $healer->render('healers.index');
     }
 
@@ -68,12 +67,12 @@ class HealerController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit(User $healer)
-    {  
+    {
         if(auth()->user()->is_admin == 1 or auth()->user()->id == $healer->id)
         {     
             return view('healers.edit', compact('healer'));
         }
-        return redirect('home');
+        return redirect('healer');
     }
 
     /**
@@ -85,7 +84,6 @@ class HealerController extends Controller
      */
     public function update(UpdateHealerRequest $request, User $healer)
     {
-    
         if(auth()->user()->is_admin == 1 or auth()->user()->id == $healer->id)
         {
             $data = $request->validated();
@@ -97,7 +95,7 @@ class HealerController extends Controller
             $healer->update($data);
             return redirect()->route('healer.index');
         }
-        return redirect('home');
+        return redirect('healer');
     }
 
     /**
@@ -108,7 +106,11 @@ class HealerController extends Controller
      */
     public function destroy(User $healer)
     {
-        $healer->delete();
-        return redirect()->route('healer.index');
+        if(auth()->user()->is_admin == 1 or auth()->user()->id == $healer->id)
+        {    
+            $healer->delete();
+            return redirect()->route('healer.index');
+        }
+        return redirect('healer');
     }
 }

@@ -85,7 +85,7 @@ class PatientController extends Controller
             $patient->update($data);
             return redirect()->route('patient.index');
         }
-        return redirect('home');
+        return redirect('patient');
     }
 
     /**
@@ -101,6 +101,6 @@ class PatientController extends Controller
             $patient->delete();
             return redirect()->route('patient.index');
         }
-        return redirect('home');
+        return redirect('patient');
     }
 }

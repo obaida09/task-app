@@ -18,13 +18,20 @@
 <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
 <script src="{{ asset('assets/js/material-dashboard.js') }}"></script>
 
-  <!-- DataTables  & Plugins -->
-  <script src="{{ asset('DataTables/DataTables/js/jquery.dataTables.js') }}"></script>
-  <script src="{{ asset('DataTables/Buttons/js/dataTables.buttons.js') }}"></script>
-  <script src="{{ asset('DataTables/Responsive/js/dataTables.responsive.js') }}"></script>
-  <script src="{{ url('/vendor/datatables/buttons.server-side.js') }}"></script>
-  <script src='https://cdn.datatables.net/buttons/2.0.1/js/buttons.bootstrap5.min.js'></script>
-  
-  <!-- Font Awesome -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/js/all.min.js" integrity="sha512-naukR7I+Nk6gp7p5TMA4ycgfxaZBJ7MO5iC3Fp6ySQyKFHOGfpkSZkYVWV5R7u7cfAicxanwYQ5D1e17EfJcMA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  
+<!-- DataTables  & Plugins -->
+<script src="{{ asset('DataTables/DataTables/js/jquery.dataTables.js') }}"></script>
+<script src="{{ asset('DataTables/Buttons/js/dataTables.buttons.js') }}"></script>
+<script src="{{ asset('DataTables/Responsive/js/dataTables.responsive.js') }}"></script>
+<script src="{{ url('/vendor/datatables/buttons.server-side.js') }}"></script>
+<script src='https://cdn.datatables.net/buttons/2.0.1/js/buttons.bootstrap5.min.js'></script>
+
+<!-- Font Awesome -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/js/all.min.js"
+    integrity="sha512-naukR7I+Nk6gp7p5TMA4ycgfxaZBJ7MO5iC3Fp6ySQyKFHOGfpkSZkYVWV5R7u7cfAicxanwYQ5D1e17EfJcMA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script>
+    goToSessionDetail() {
+        
+    }
+</script>

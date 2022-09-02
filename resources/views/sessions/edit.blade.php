@@ -18,7 +18,7 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="input-group input-group-outline my-3">
-                                    <input type="text" value="{{ old('age', $session->date_time) }} class="form-control"
+                                    <input type="text" value="{{ old('age', $session->date_time) }}" class="form-control"
                                         name="date_time" value="10/24/2022" />
                                 </div>
                                 @error('date_time')
