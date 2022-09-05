@@ -20,7 +20,8 @@ class CreatePatientsTable extends Migration
             $table->string('mobile');
             $table->string('address');
             $table->enum('gendor', ['male', 'famle']);
-            $table->enum('domination', ['left_handed', 'right_handed']);
+            $table->enum('domination', ['left', 'right']);
+            $table->enum('marital_status', ['public', 'private']);
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->timestamps();
         });

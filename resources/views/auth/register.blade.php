@@ -113,7 +113,7 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="input-group input-group-outline my-3">
-                                <select class="form-control" name="patient_id" id="exampleFormControlSelect1">
+                                <select class="form-control" name="gendor" id="exampleFormControlSelect1">
                                     <option value="male">Male</option>
                                     <option value="famle">Famle</option>
                                 </select>

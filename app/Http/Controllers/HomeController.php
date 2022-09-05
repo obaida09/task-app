@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\User;
+use App\Models\Patient;
 
 use Illuminate\Http\Request;
 
@@ -24,5 +26,12 @@ class HomeController extends Controller
     public function index()
     {
         return view('home');
+    }
+    
+    public function communtiy()
+    {
+        $user = 'User';
+        $patient = patient::where('marital_status', 'public')->get();
+        return view('communtiy', compact('patient')) ;
     }
 }

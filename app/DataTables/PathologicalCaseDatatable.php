@@ -71,7 +71,8 @@ class PathologicalCaseDatatable extends DataTable
     protected function getColumns()
     {
         return [
-            Column::make('id'),
+            Column::make('id')
+                ->className('text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 px-3'),
             Column::make('content')
                 ->width(610),
             Column::computed('Category')

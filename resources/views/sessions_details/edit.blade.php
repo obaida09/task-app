@@ -56,7 +56,7 @@
                             <select class="form-control" name="patient_id" id="exampleFormControlSelect1">
                                 @foreach ($session as $item)
                                     <option value="{{ $item->id }}" @if ($item->id == $session_details->session_id) selected @endif>
-                                        {{ $item->name }}</option>
+                                        {{ $item->date_time }} => {{ $item->patient()->first()->name }}</option>
                                 @endforeach
                             </select>
                             @error('patient_id')

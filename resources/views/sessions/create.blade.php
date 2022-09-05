@@ -14,7 +14,7 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="input-group input-group-outline my-3">
-                                    <input type="text" class="form-control" name="date_time" value="10/24/2022" />
+                                    <input type="text" class="form-control" name="date_time" value="2022-10-10" />
                                 </div>
                                 @error('date_time')
                                     <div style="color: rgba(255, 0, 0, 0.692)" class="form-text">{{ $message }}</div>
@@ -57,7 +57,7 @@
                     timePicker: true,
                     singleDatePicker: true,
                     locale: {
-                        format: 'M/DD hh:mm A'
+                        format: 'YYYY-MM-DD hh:mm A'
                     }
                 });
             });

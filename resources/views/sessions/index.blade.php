@@ -13,7 +13,9 @@
                         <div class="table-responsive p-3">
                             {!! $dataTable->table(['class' => 'table align-items-center mb-0'], true) !!}
                         </div>
+                        <a href="{{ route('session.today') }}" class="btn btn-secondary mx-3">Today Session's</a>
                         <a href="{{ route('session.create') }}" class="btn btn-secondary mx-3">Add The Session</a>
+                        {{-- <a href="{{ route('session.today') }}" class="btn btn-secondary mx-3">Today Session's</a> --}}
                     </div>
                 </div>
             </div>

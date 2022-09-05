@@ -72,6 +72,15 @@
                 </a>
             </li>
             <li class="nav-item">
+                <a class="nav-link text-white {{ request()->path() == 'today' ? 'active' : '' }}"
+                    href="{{ route('session.today') }}">
+                    <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                        <i class="material-icons opacity-10">table_view</i>
+                    </div>
+                    <span class="nav-link-text ms-1">Today Session's</span>
+                </a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link text-white {{ request()->path() == 'session_details' ? 'active' : '' }}"
                     href="{{ route('session_details.index') }}">
                     <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">

@@ -4,9 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Models\Session;
 use App\Models\Patient;
+use App\Models\SessionDetails;
+use Illuminate\Http\Request;
 use App\DataTables\SessionsDatatable;
 use App\Http\Requests\StoreSessionRequest;
 use App\Http\Requests\UpdateSessionRequest;
+use Carbon\Carbon;
 
 class SessionController extends Controller
 {
@@ -17,7 +20,8 @@ class SessionController extends Controller
      */
     public function index(SessionsDatatable $session)
     {
-        return $session->render('sessions.index');
+        $date = 'sdgf';
+        return $session->with('date', $date)->render('sessions.index');
     }
 
     /**
@@ -51,7 +55,8 @@ class SessionController extends Controller
      */
     public function show(Session $session)
     {
-        //
+        $sessions_details = SessionDetails::where('session_id', $session->id)->get();
+        return view('sessions.show', compact('session', 'sessions_details'));
     }
 
     /**
@@ -100,6 +105,12 @@ class SessionController extends Controller
             $session->delete();
             return redirect()->route('session.index');
         }
-        return redirect('session');                
+        return redirect('session');   
+    }
+    
+    public function session_today()
+    {        
+        $session_today = Session::whereDate('date_time', Carbon::today())->get();
+        return view('sessions.today', compact('session_today'));
     }
 }

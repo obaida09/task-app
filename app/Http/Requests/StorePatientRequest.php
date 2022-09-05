@@ -24,12 +24,13 @@ class StorePatientRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'       => 'required',
-            'age'        => 'required',
-            'address'    => 'required',
-            'mobile'     => 'required',
-            'gendor'     => 'required|in:male,famle',
-            'domination' => 'required|in:left_handed,right_handed',
+            'name'           => 'required',
+            'age'            => 'required',
+            'address'        => 'required',
+            'mobile'         => 'required',
+            'gendor'         => 'required|in:male,famle',
+            'domination'     => 'required|in:left,right',
+            'marital_status' => 'required|in:public,private',
         ];
     }
 }

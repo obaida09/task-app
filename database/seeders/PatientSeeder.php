@@ -19,9 +19,10 @@ class PatientSeeder extends Seeder
             'age' => '60',
             'gendor' => 'famle',
             'address' => 'Iraq-Diyala Gov',
-            'domination' => 'left_handed',
+            'domination' => 'left',
             'mobile' => '077243892',
             'user_id' => 2,
+            'marital_status' => 'public'
         ]);
         
         Patient::create([
@@ -29,9 +30,10 @@ class PatientSeeder extends Seeder
             'age' => '34',
             'gendor' => 'famle',
             'address' => 'Iraq-Diyala Gov',
-            'domination' => 'left_handed',
+            'domination' => 'left',
             'mobile' => '077243892',
             'user_id' => 2,
+            'marital_status' => 'public'
         ]);
         
         Patient::create([
@@ -39,9 +41,10 @@ class PatientSeeder extends Seeder
             'age' => '38',
             'gendor' => 'famle',
             'address' => 'Iraq-Diyala Gov',
-            'domination' => 'left_handed',
+            'domination' => 'left',
             'mobile' => '077243892',
             'user_id' => 3,
+            'marital_status' => 'private'
         ]);
         
         Patient::create([
@@ -49,9 +52,10 @@ class PatientSeeder extends Seeder
             'age' => '40',
             'gendor' => 'male',
             'address' => 'Iraq-Diyala Gov',
-            'domination' => 'left_handed',
+            'domination' => 'left',
             'mobile' => '077243892',
             'user_id' => 3,
+            'marital_status' => 'public'
         ]);
     }
 }

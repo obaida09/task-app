@@ -40,19 +40,35 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-md-6">
-                                <div class="input-group input-group-outline my-3">
-                                    <label class="form-label">Gendor</label>
-                                    <input type="text" name="gendor" class="form-control">
-                                </div>
+                            <div class="input-group input-group-outline my-3">
+                                <select class="form-control" name="gendor" id="exampleFormControlSelect1">
+                                    <option value="male">Male</option>
+                                    <option value="famle">Famle</option>
+                                </select>
+                                @error('gendor')
+                                    <div style="color: rgba(255, 0, 0, 0.692)" class="form-text">{{ $message }}</div>
+                                @enderror
                             </div>
-                            <div class="col-md-6">
-                                <div class="input-group input-group-outline my-3">
-                                    <label class="form-label">Domination</label>
-                                    <input type="text" name="domination" class="form-control">
-                                </div>
+                            <div class="input-group input-group-outline my-3">
+                                <select class="form-control" name="domination" id="exampleFormControlSelect1">
+                                    <option value="left">Left</option>
+                                    <option value="right">Right</option>
+                                </select>
+                                @error('domination')
+                                    <div style="color: rgba(255, 0, 0, 0.692)" class="form-text">{{ $message }}</div>
+                                @enderror
                             </div>
                         </div>
+                        <div class="input-group input-group-outline my-3">
+                            <select class="form-control" name="marital_status" id="exampleFormControlSelect1">
+                                <option value="private">Private</option>
+                                <option value="public">Public</option>
+                            </select>
+                            @error('marital_status')
+                                <div style="color: rgba(255, 0, 0, 0.692)" class="form-text">{{ $message }}</div>
+                            @enderror
+                        </div>
+                        
                         <div class="form-group pt-4">
                             <a href="{{ route('patient.index') }}" class="btn btn-secondary">Patient Table</a>
                             <button type="submit" class="btn btn-primary">Add Patient</button>

@@ -77,15 +77,15 @@ class PatientDatatable extends DataTable
             Column::computed('healer')
                 ->data('user.name'),
             Column::make('age'),
-            Column::make('address'),
-            Column::make('mobile'),
+            // Column::make('address'),
+            // Column::make('mobile'),
             Column::make('gendor'),
             Column::make('created_at'),
             Column::make('updated_at'),
             Column::computed('action')
                   ->exportable(false)
                   ->printable(false)
-                  ->width(110)
+                  ->width(60)
                   ->addClass('text-center'),
         ];
     }

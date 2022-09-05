@@ -63,7 +63,7 @@
                     timePicker: true,
                     singleDatePicker: true,
                     locale: {
-                        format: 'M/DD hh:mm A'
+                        format: 'YY-MM-DD hh:mm A'
                     }
                 });
             });

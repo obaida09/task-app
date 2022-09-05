@@ -31,6 +31,7 @@ Auth::routes();
 Route::middleware(['isActive', 'auth'])->group(function () 
 {
     Route::get('/home', [HomeController::class, 'index'])->name('home');
+    Route::get('/communtiy', [HomeController::class, 'communtiy'])->name('communtiy');
     
     Route::resource('healer'              , HealerController::class);
     Route::resource('patient'             , PatientController::class);
@@ -39,5 +40,7 @@ Route::middleware(['isActive', 'auth'])->group(function ()
     Route::resource('category'            , CategoryController::class);
     Route::resource('pathological_case'   , PathologicalCaseController::class);
     
+    // Route::get('healer/show/{id}', [HealerController::class, 'show2'])->name('healer2.show');
     Route::get('sub_category', [CategoryController::class, 'sub_category'])->name('sub_category');
+    Route::get('today', [SessionController::class, 'session_today'])->name('session.today');
 });

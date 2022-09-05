@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Patient;
+use App\Models\Session;
 use App\DataTables\PatientDatatable;
 use App\Http\Requests\StorePatientRequest;
 use App\Http\Requests\UpdatePatientRequest;
@@ -51,7 +52,8 @@ class PatientController extends Controller
      */
     public function show(Patient $patient)
     {
-        //
+        $sessions = Session::where('patient_id', $patient->id)->get();
+        return view('patients.show', compact('patient', 'sessions'));
     }
 
     /**

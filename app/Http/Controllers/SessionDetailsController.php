@@ -63,10 +63,11 @@ class SessionDetailsController extends Controller
     public function edit(SessionDetails $session_details)
     {
     // dd($session_details->first()->session_id);
+    $session_details = $session_details->first();
     //     if(auth()->user()->is_admin == 1 or auth()->user()->sessions()->first()->id == $session->patient()->first()->user_id)
     //     {     
             $session = Session::your_sessions()->get();
-            return view('sessions_details.edit', compact('session_details', 'session'));
+            return view('sessions_details.edit', compact('session', 'session_details'));
         // }
         // return redirect('session');  
     }
@@ -90,8 +91,9 @@ class SessionDetailsController extends Controller
      * @param  \App\Models\SessionDetails  $sessionDetails
      * @return \Illuminate\Http\Response
      */
-    public function destroy(SessionDetails $session_details)
+    public function destroy(SessionDetails $session_detailss)
     {
+        dd($session_detailss->first()->offer);
         $session_details->delete();
         return redirect()->route('session_details.index');
     }

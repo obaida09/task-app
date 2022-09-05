@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Patient;
 use App\DataTables\HealerDatatable;
 use App\Http\Requests\StoreHealerRequest;
 use App\Http\Requests\UpdateHealerRequest;
@@ -55,9 +56,10 @@ class HealerController extends Controller
      * @param  \App\Models\Healer  $healer
      * @return \Illuminate\Http\Response
      */
-    public function show(Healer $healer)
+    public function show(User $healer)
     {
-        //
+        $patients = Patient::where('user_id', $healer->id)->get();
+        return view('healers.show', compact('healer', 'patients'));
     }
 
     /**
@@ -93,7 +95,8 @@ class HealerController extends Controller
             trim($request->password) != '' ? $data['password'] = Hash::make($request->password) : '';
             
             $healer->update($data);
-            return redirect()->route('healer.index');
+            // return back()->with('success','Item created successfully!');
+            return redirect()->route('healer.index')->with('success','Item created successfully!');
         }
         return redirect('healer');
     }
