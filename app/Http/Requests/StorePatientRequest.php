@@ -30,7 +30,6 @@ class StorePatientRequest extends FormRequest
             'mobile'         => 'required',
             'gendor'         => 'required|in:male,famle',
             'domination'     => 'required|in:left,right',
-            'marital_status' => 'required|in:public,private',
         ];
     }
 }

@@ -29,4 +29,9 @@ class Patient extends Model
     {
         return $this->belongsTo(User::class);
     }
+    
+    public function sessions_details()
+    {
+        return $this->hasManyThrough(SessionDetails::class, Patient::class, 'patient_id', 'session_id', 'id', 'id');
+    }
 }

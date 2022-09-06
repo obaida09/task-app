@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Patient;
 use App\Models\Session;
+use App\Models\sessionDetails;
 use App\Models\PathologicalCase;
 
 use Illuminate\Http\Request;
@@ -45,8 +46,7 @@ class HomeController extends Controller
     
     public function communtiy()
     {
-        $user = 'User';
-        $patient = patient::where('marital_status', 'public')->get();
-        return view('communtiy', compact('patient')) ;
+        $session_details = sessionDetails::where('marital_status', 'public')->with('session', 'patient.user')->get();
+        return view('communtiy', compact('session_details')) ;
     }
 }

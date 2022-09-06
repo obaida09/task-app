@@ -62,6 +62,16 @@
                                 <div style="color: rgba(255, 0, 0, 0.692)" class="form-text">{{ $message }}</div>
                             @enderror
                         </div>
+                        
+                        <div class="input-group input-group-outline my-3">
+                            <select class="form-control" name="marital_status" id="exampleFormControlSelect1">
+                                <option value="private">Private</option>
+                                <option value="public">Public</option>
+                            </select>
+                            @error('marital_status')
+                                <div style="color: rgba(255, 0, 0, 0.692)" class="form-text">{{ $message }}</div>
+                            @enderror
+                        </div>
 
                         <div class="form-group pt-4">
                             <a href="{{ route('session_details.index') }}" class="btn btn-secondary">Session Details Table</a>

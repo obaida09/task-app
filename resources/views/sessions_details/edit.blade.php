@@ -53,16 +53,27 @@
                             </div>
                         </div>
                         <div class="input-group input-group-outline my-3">
-                            <select class="form-control" name="patient_id" id="exampleFormControlSelect1">
+                            <select class="form-control" name="session_id">
                                 @foreach ($session as $item)
                                     <option value="{{ $item->id }}" @if ($item->id == $session_details->session_id) selected @endif>
                                         {{ $item->date_time }} => {{ $item->patient()->first()->name }}</option>
                                 @endforeach
                             </select>
-                            @error('patient_id')
+                            @error('session_id')
                                 <div style="color: rgba(255, 0, 0, 0.692)" class="form-text">{{ $message }}</div>
                             @enderror
                         </div>
+                        
+                        <div class="input-group input-group-outline my-3">
+                            <select class="form-control" name="marital_status">
+                                <option @if ($session_details->marital_status == 'private') selected @endif value="private">Private</option>
+                                <option @if ($session_details->marital_status == 'public') selected @endif value="public">Public</option>
+                            </select>
+                            @error('marital_status')
+                                <div style="color: rgba(255, 0, 0, 0.692)" class="form-text">{{ $message }}</div>
+                            @enderror
+                        </div>
+                        
                         <div class="form-group pt-4">
                             <button type="submit" class="btn btn-primary">Edit Session Details</button>
                         </div>

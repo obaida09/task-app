@@ -22,7 +22,6 @@ class PatientSeeder extends Seeder
             'domination' => 'left',
             'mobile' => '077243892',
             'user_id' => 2,
-            'marital_status' => 'public'
         ]);
         
         Patient::create([
@@ -33,7 +32,6 @@ class PatientSeeder extends Seeder
             'domination' => 'left',
             'mobile' => '077243892',
             'user_id' => 2,
-            'marital_status' => 'public'
         ]);
         
         Patient::create([
@@ -44,7 +42,6 @@ class PatientSeeder extends Seeder
             'domination' => 'left',
             'mobile' => '077243892',
             'user_id' => 3,
-            'marital_status' => 'private'
         ]);
         
         Patient::create([
@@ -55,7 +52,6 @@ class PatientSeeder extends Seeder
             'domination' => 'left',
             'mobile' => '077243892',
             'user_id' => 3,
-            'marital_status' => 'public'
         ]);
     }
 }

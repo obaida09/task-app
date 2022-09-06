@@ -21,7 +21,6 @@ class CreatePatientsTable extends Migration
             $table->string('address');
             $table->enum('gendor', ['male', 'famle']);
             $table->enum('domination', ['left', 'right']);
-            $table->enum('marital_status', ['public', 'private']);
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
