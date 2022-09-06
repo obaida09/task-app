@@ -9,12 +9,7 @@
             <h6 class="font-weight-bolder mb-0">Dashboard</h6>
         </nav>
         <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
-            <div class="ms-md-auto pe-md-3 d-flex align-items-center">
-                <div class="input-group input-group-outline">
-                    <label class="form-label">Type here...</label>
-                    <input type="text" class="form-control">
-                </div>
-            </div>
+            <div class="ms-md-auto pe-md-3 d-flex align-items-center"></div>
             <ul class="navbar-nav  justify-content-end">
                 <a class="btn btn-primary btn-sm mx-2 mt-3" href="{{ route('healer.edit', auth()->user()->id) }}">Edit Profile</a>
                 <li class="nav-item d-flex align-items-center">

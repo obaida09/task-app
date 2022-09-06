@@ -6,7 +6,7 @@
         <div class="card my-4">
             <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
                 <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
-                    <h6 class="text-white text-capitalize ps-3">Register Page</h6>
+                    <h6 class="text-white text-capitalize ps-3">Meta Health System | Register</h6>
                 </div>
             </div>
             <div class="card-body px-4 pb-2 py-4">
@@ -125,6 +125,7 @@
                     </div>
                     <div class="form-group pt-4">
                         <button type="submit" class="btn btn-primary">Register</button>
+                        <a href="{{ route('login') }}" class="btn btn-light mx-1">Login</a>
                     </div>
                 </form>
             </div>

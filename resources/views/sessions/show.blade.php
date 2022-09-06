@@ -14,7 +14,7 @@
                             <p><span class="text-dark fw-bold">Session Date Time </span> : {{ $session->date_time }}</p>
                             <p><span class="text-dark fw-bold">Session age </span> : {{ $session->age }}</p>
                         </div>
-                        <div class="col-md-6 float-start px-5">
+                        <div class="col-md-6 float-start px-5"> <p><span class="text-dark fw-bold">Patient's Healer </span> : {{ $session->patient()->first()->name }}</p>
                             <p><span class="text-dark fw-bold">Session Created At </span> :
                                 {{ $session->created_at->toFormattedDateString() }}</p>
                         </div>
@@ -22,7 +22,6 @@
                 </div>
             </div>
         </div>
-
         <div class="row">
             <div class="col-12">
                 <div class="card my-4">

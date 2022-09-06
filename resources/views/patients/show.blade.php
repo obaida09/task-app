@@ -19,7 +19,7 @@
                         <div class="col-md-6 float-start px-5">
                             <p><span class="text-dark fw-bold">Patient gendor </span> : {{ $patient->gendor }}</p>
                             <p><span class="text-dark fw-bold">Patient domination </span> : {{ $patient->domination }}</p>
-                            <p><span class="text-dark fw-bold">Patient Healer </span> : {{ $patient->user_id }}</p>
+                            <p><span class="text-dark fw-bold">Patient Healer </span> : {{ $patient->user()->first()->name }}</p>
                             <p><span class="text-dark fw-bold">Patient Created At </span> :
                                 {{ $patient->created_at->toFormattedDateString() }}</p>
                         </div>
