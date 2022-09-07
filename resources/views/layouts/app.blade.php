@@ -32,16 +32,33 @@
             margin-bottom: 5px 
         }
         .card .re .co-num{
-            background-color: rgb(5, 197, 255);
+            background-color:  #315399;
             padding: 1px 5px;
-            border-radius: 7px;
-            margin-top: 2px;
-            height: 22px;
-            font-size: 14px;
+            border-radius: 5px;
+            margin-top: 3px;
+            height: 20px;
+            font-size: 13px;
             color: #fff;
         }
-        .card #show-comments{
+     
+        #arrow{
             cursor: pointer;
+            float: right;
+            background-color: #315399;
+            color: #fff;
+            border-radius: 50%;
+            padding: 1px 4px;
+            font-size: 14px; 
+            margin-top: 3px;
+            margin-bottom: 6px;
+            height: 22px;
+            line-height: 1.5;
+        }
+        
+        .btn-comment{
+            background-color: #000;
+            border: none;
+            color: #fff;
         }
     </style>
 

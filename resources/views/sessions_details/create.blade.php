@@ -9,7 +9,7 @@
                     </div>
                 </div>
                 <div class="card-body px-4 pb-2 py-4">
-                    <form action="{{ route('session_details.store') }}" method="post">
+                    <form action="{{ route('session_details.store') }}" method="post" enctype="multipart/form-data">
                         @csrf
                         <div class="row">
                             <div class="col-md-6">
@@ -62,7 +62,16 @@
                                 <div style="color: rgba(255, 0, 0, 0.692)" class="form-text">{{ $message }}</div>
                             @enderror
                         </div>
-                        
+                        <div class="col-md-6">
+                            <div class="input-group input-group-outline my-3">
+                                <label class="form-label">Tretment</label>
+                                <input type="file" name="files[]" class="form-control" multiple>
+                            </div>
+                            @error('files')
+                                <div style="color: rgba(255, 0, 0, 0.692)" class="form-text">{{ $message }}</div>
+                            @enderror
+                        </div>
+
                         <div class="input-group input-group-outline my-3">
                             <select class="form-control" name="marital_status" id="exampleFormControlSelect1">
                                 <option value="private">Private</option>

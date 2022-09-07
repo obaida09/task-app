@@ -12,16 +12,17 @@
                                             class="font-weight-bold fs-3">{{ $item->patient->user->name }}</span> <small
                                             class="text-primary">{{ $item->patient->name }}</small> </div>
                                 </div>
-                                <div class="d-flex flex-row mt-4 px-3 ellipsis"> <small class="mr-2">20 mins</small></div>
+                                <div class="d-flex flex-row mt-4 px-3 ellipsis"> <small class="mr-2">{{ $item->posted_at }}</small></div>
                             </div>
                             {{-- <p class="text-justify">{{ $item->session }}</p> --}}
                             <p class="text-justify">{{ $item->session_notes }}</p>
                             <div id="comment_view" class="d-flex flex-row muted-color mt-4 text-dark fw-bold">
-                                <span>Comments</span><span class="mx-2 co-num">5</span> </div>
+                                <span>Comments</span><span class="mx-2 co-num">5</span>
+                            </div>
                         </div>
                         <div class="px-5">
-                            <a id="show-comments"><i class="fas fa-chevron-down"></i></a>
-                            <div class="comments hid mt-3">
+                            <div onclick="show_comment({{ $item->id }})" id="arrow"><i class="fas fa-chevron-down"></i></div>
+                            <div class="comments-{{ $item->id }} hid mt-3">
                                 @comments([
                                     'model' => $item,
                                 ])
@@ -32,4 +33,19 @@
             </div>
         </div>
     @endforeach
+    @push('js')
+        <script>
+            function show_comment(id) {
+                $(".comments-" + id).toggleClass("show").toggleClass("hid");
+                
+                if ($(".comments-" + id).hasClass("show")) {
+                    $("#arrow").empty();
+                    $("#arrow").append("<i class='fas fa-chevron-up'></i>");
+                }else {
+                    $("#arrow").empty();
+                    $("#arrow").append("<i class='fas fa-chevron-down'></i>");
+                }
+            };
+        </script>
+    @endpush
 @endsection

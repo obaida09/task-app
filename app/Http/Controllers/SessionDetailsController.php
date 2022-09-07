@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\SessionDetails;
 use App\Models\Session;
+use App\Models\SessionDetailsFiles;
 use App\DataTables\SessionsDetailsDatatable;
 use App\Http\Requests\StoreSessionDetailsRequest;
 use App\Http\Requests\UpdateSessionDetailsRequest;
+use Carbon\Carbon;
 
 class SessionDetailsController extends Controller
 {
@@ -39,7 +41,25 @@ class SessionDetailsController extends Controller
      */
     public function store(StoreSessionDetailsRequest $request)
     {
-        SessionDetails::create($request->validated());
+        $data = $request->validated();
+
+        if($request->hasFile('files')) {
+            foreach ($data['files'] as $file) {
+                $fileName = time() . $file->getClientOriginalName();
+                $file->move('assets/files/session_details/' . auth()->user()->name . '/' , $fileName);
+                
+                // SessionDetailsFiles::create([
+                //     'session_details_id' => $product->id,
+                //     'name' => $newName,
+                // ]);
+            }
+        }
+        dd(rand(125, 2322));
+        if($data['marital_status'] == 'public')
+        {         
+            $data['posted_at'] = Carbon::now();
+        }
+        SessionDetails::create($data);
         return redirect()->route('session_details.index');
     }
 
@@ -81,7 +101,12 @@ class SessionDetailsController extends Controller
      */
     public function update(UpdateSessionDetailsRequest $request, SessionDetails $sessionDetails)
     {
-        $sessionDetails->update($request->validated());
+        $data = $request->validated();
+        if($data['marital_status'] == 'public')
+        {         
+            $data['posted_at'] = Carbon::now();
+        }
+        $sessionDetails->update($data);
         return redirect()->route('session_details.index');
     }
 

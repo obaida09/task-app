@@ -30,6 +30,7 @@ class StoreSessionDetailsRequest extends FormRequest
             'session_notes'  => 'required',
             'session_id'     => 'required',
             'marital_status' => 'required|in:public,private',
+            'files'          => 'nullable|max:20000',
         ];
     }
 }
