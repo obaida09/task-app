@@ -4,10 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Laravelista\Comments\Commentable;
 
 class SessionDetails extends Model
 {
-    use HasFactory;
+    use HasFactory, Commentable;
     use \Znck\Eloquent\Traits\BelongsToThrough;
     
     protected $guarded = [];

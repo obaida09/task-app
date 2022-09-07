@@ -13,6 +13,7 @@
         "laravel/sanctum": "^2.11",
         "laravel/tinker": "^2.5",
         "laravel/ui": "2.*",
+        "laravelista/comments": "^4.5",
         "staudenmeir/belongs-to-through": "^2.5",
         "yajra/laravel-datatables": "1.5",
         "yajra/laravel-datatables-oracle": "9.20"

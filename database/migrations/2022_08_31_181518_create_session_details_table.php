@@ -20,8 +20,10 @@ class CreateSessionDetailsTable extends Migration
             $table->string('tretment');
             $table->string('session_notes');
             $table->enum('marital_status', ['public', 'private'])->default('private');
+            $table->boolean('accept')->default(false);
             $table->foreignId('session_id')->constrained()->cascadeOnDelete();
             $table->timestamps();
+            $table->timestamp('posted_at')->nullable();
         });
     }
 

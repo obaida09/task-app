@@ -24,6 +24,27 @@
     <link id="pagestyle" href="{{ asset('assets/css/material-dashboard.css?v=3.0.0') }}" rel="stylesheet" />
     <!-- Custom Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <style>
+        .card .re{
+            padding: .7% 0;
+            border-radius: 15px;
+            border-bottom: 2px solid rgb(233, 231, 231);
+            margin-bottom: 5px 
+        }
+        .card .re .co-num{
+            background-color: rgb(5, 197, 255);
+            padding: 1px 5px;
+            border-radius: 7px;
+            margin-top: 2px;
+            height: 22px;
+            font-size: 14px;
+            color: #fff;
+        }
+        .card #show-comments{
+            cursor: pointer;
+        }
+    </style>
+
 </head>
 
 <body class="g-sidenav-show  bg-gray-200">

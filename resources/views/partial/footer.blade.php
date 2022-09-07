@@ -31,7 +31,8 @@
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 <script>
-    goToSessionDetail() {
-        
-    }
+    $( "#show-comments" ).click(function() {
+        $( ".comments").toggleClass("show").toggleClass("hid");
+        $(this).toggle('rotated')
+    });
 </script>
