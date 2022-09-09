@@ -42,8 +42,6 @@
                         </div>
 
                         <div class="form-group pt-4">
-                            <a href="{{ route('pathological_case.index') }}" class="btn btn-secondary">Pathological Case
-                                Table</a>
                             <button type="submit" class="btn btn-primary">Add Pathological Case</button>
                         </div>
                     </form>
@@ -53,27 +51,6 @@
     </div>
     @push('js')
         <script>
-            // $.ajaxSetup({
-            //     headers: {
-            //         'X-CSRF-Token': $('meta[name=_token]').attr('content')
-            //     }
-            // });
-            // jQuery.ajax({
-            //     url: '/group/create',
-            //     type: 'GET',
-            //     data: {
-            //         name: groupName,
-            //         colour: "red"
-            //     },
-            //     success: function(data) {
-
-            //         console.log(data);
-            //     },
-            //     error: function(xhr, b, c) {
-            //         console.log("xhr=" + xhr + " b=" + b + " c=" + c);
-            //     }
-            // });
-
             jQuery('#category').on('change', function() {
                 jQuery.ajax({
                     url: "{{ route('sub_category') }}",
@@ -86,8 +63,6 @@
                             $("#sub_category").append(
                                 '<option value="' + data[i].id + '">' + data[i].name + '</option>'
                             ); 
-                            console.log()
-                            console.log()
                         }
                     }
                 });

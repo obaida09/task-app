@@ -83,7 +83,6 @@
                         </div>
 
                         <div class="form-group pt-4">
-                            <a href="{{ route('session_details.index') }}" class="btn btn-secondary">Session Details Table</a>
                             <button type="submit" class="btn btn-primary">Add Session Details</button>
                         </div>
                     </form>

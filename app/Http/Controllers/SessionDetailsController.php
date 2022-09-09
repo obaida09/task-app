@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\SessionDetails;
 use App\Models\Session;
 use App\Models\SessionDetailsFiles;
+use Illuminate\Support\Facades\File;
 use App\DataTables\SessionsDetailsDatatable;
 use App\Http\Requests\StoreSessionDetailsRequest;
 use App\Http\Requests\UpdateSessionDetailsRequest;
@@ -42,25 +43,24 @@ class SessionDetailsController extends Controller
     public function store(StoreSessionDetailsRequest $request)
     {
         $data = $request->validated();
+        $dataFiles = $data['files'];
+        unset($data['files']);
+        $data['marital_status'] == 'public' ? $data['posted_at'] = Carbon::now() : '';
 
+        $id = SessionDetails::create($data);
+        
         if($request->hasFile('files')) {
-            foreach ($data['files'] as $file) {
+            foreach ($dataFiles as $file) {
                 $fileName = time() . $file->getClientOriginalName();
-                $file->move('assets/files/session_details/' . auth()->user()->name . '/' , $fileName);
-                
-                // SessionDetailsFiles::create([
-                //     'session_details_id' => $product->id,
-                //     'name' => $newName,
-                // ]);
+                $file->move('assets/files/session_details/' , $fileName); 
+                SessionDetailsFiles::create([
+                    'name' => $fileName,
+                    'user_id' => auth()->user()->id,
+                    'session_details_id' => $id->id,
+                  ]);
             }
         }
-        dd(rand(125, 2322));
-        if($data['marital_status'] == 'public')
-        {         
-            $data['posted_at'] = Carbon::now();
-        }
-        SessionDetails::create($data);
-        return redirect()->route('session_details.index');
+        return redirect()->route('session_details.index')->with('message','Session Details created successfully');
     }
 
     /**
@@ -82,14 +82,9 @@ class SessionDetailsController extends Controller
      */
     public function edit(SessionDetails $session_details)
     {
-    // dd($session_details->first()->session_id);
-    $session_details = $session_details->first();
-    //     if(auth()->user()->is_admin == 1 or auth()->user()->sessions()->first()->id == $session->patient()->first()->user_id)
-    //     {     
-            $session = Session::your_sessions()->get();
-            return view('sessions_details.edit', compact('session', 'session_details'));
-        // }
-        // return redirect('session');  
+        $session_details = $session_details->with('sessionDetailsFiles')->first();
+        $session = Session::your_sessions()->get();
+        return view('sessions_details.edit', compact('session', 'session_details'));
     }
 
     /**
@@ -102,12 +97,25 @@ class SessionDetailsController extends Controller
     public function update(UpdateSessionDetailsRequest $request, SessionDetails $sessionDetails)
     {
         $data = $request->validated();
-        if($data['marital_status'] == 'public')
-        {         
-            $data['posted_at'] = Carbon::now();
-        }
+        $dataFiles = $data['files'];
+        unset($data['files']);
+        $data['marital_status'] == 'public' ? $data['posted_at'] = Carbon::now() : '';
+        
         $sessionDetails->update($data);
-        return redirect()->route('session_details.index');
+        
+        if($request->hasFile('files')) {
+            foreach ($dataFiles as $file) {
+                $fileName = time() . $file->getClientOriginalName();
+                $file->move('assets/files/session_details/' , $fileName); 
+                SessionDetailsFiles::create([
+                    'name' => $fileName,
+                    'user_id' => auth()->user()->id,
+                    'session_details_id' => $sessionDetails->first()->id,
+                  ]);
+            }
+        }
+        
+        return redirect()->route('session_details.index')->with('message','Session Details updated successfully');
     }
 
     /**
@@ -120,6 +128,16 @@ class SessionDetailsController extends Controller
     {
         dd($session_detailss->first()->offer);
         $session_details->delete();
-        return redirect()->route('session_details.index');
+        return redirect()->route('session_details.index')->with('message','Session Details deleted successfully');
+    }
+    
+    public function remove_file($id)
+    {
+        $item = SessionDetailsFiles::find($id);
+        if (File::exists('assets/files/session_details/'. $item->name)) {
+            unlink('assets/files/session_details/'. $item->name);
+        }
+        $item->delete();
+        return redirect()->back()->with(['message' => 'Deleted file successfully']);
     }
 }

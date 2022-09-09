@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="row">
+    <div class="row mt-3">
         @if (auth()->user()->is_admin)
             <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
                 <div class="card">

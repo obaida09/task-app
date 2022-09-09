@@ -44,7 +44,7 @@ class SessionController extends Controller
     public function store(StoreSessionRequest $request)
     {
         Session::create($request->validated());
-        return redirect()->route('session.index');
+        return redirect()->route('session.index')->with('message','Session created successfully');
     }
 
     /**
@@ -87,7 +87,7 @@ class SessionController extends Controller
         if(auth()->user()->is_admin == 1 or auth()->user()->id == $session->patient()->first()->user_id)
         {        
             $session->update($request->validated());
-            return redirect()->route('session.index');
+            return redirect()->route('session.index')->with('message','Session updated successfully');
         }
         return redirect('session');
     }
@@ -103,7 +103,7 @@ class SessionController extends Controller
         if(auth()->user()->is_admin == 1 or auth()->user()->id == $session->patient()->first()->user_id)
         {        
             $session->delete();
-            return redirect()->route('session.index');
+            return redirect()->route('session.index')->with('message','Session deleted successfully');
         }
         return redirect('session');   
     }

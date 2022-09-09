@@ -19,7 +19,6 @@ class CreateSessionDetailsTable extends Migration
             $table->string('shock_moment');
             $table->string('tretment');
             $table->string('session_notes');
-            $table->json('files');
             $table->enum('marital_status', ['public', 'private'])->default('private');
             $table->boolean('accept')->default(false);
             $table->foreignId('session_id')->constrained()->cascadeOnDelete();

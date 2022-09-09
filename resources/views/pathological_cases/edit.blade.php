@@ -15,7 +15,7 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="input-group input-group-outline my-3">
-                                    <select class="form-control" id="exampleFormControlSelect1">
+                                    <select class="form-control" id="category">
                                         @foreach ($category as $item)
                                             <option value="{{ $item->id }}">{{ $item->name }}</option>
                                         @endforeach
@@ -24,8 +24,8 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="input-group input-group-outline my-3">
-                                    <select class="form-control" name="category_id" id="exampleFormControlSelect1">
-                                        <option value="1">1</option>
+                                    <select class="form-control" name="category_id" id="sub_category">
+                                        <option value="{{ $pathologicalCase->category_id }}">{{ $pathologicalCase->category->name }}</option>
                                     </select>
                                 </div>
                                 @error('category_id')
@@ -53,4 +53,24 @@
             </div>
         </div>
     </div>
+    @push('js')
+    <script>
+        jQuery('#category').on('change', function() {
+            jQuery.ajax({
+                url: "{{ route('sub_category') }}",
+                method: 'get',
+                data: {
+                    category_id: $(this).val(),
+                },
+                success: function(data) {
+                    for (var i=0; i < data.length; i++) {  
+                        $("#sub_category").append(
+                            '<option value="' + data[i].id + '">' + data[i].name + '</option>'
+                        ); 
+                    }
+                }
+            });
+        });
+    </script>
+@endpush
 @endsection

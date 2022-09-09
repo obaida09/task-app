@@ -1,5 +1,20 @@
 @extends('layouts.app')
 @section('content')
+    @if ($message = Session::get('message'))
+        <div class="position-fixed top-2 end-2 z-index-3">
+            <div class="toast fade p-2 bg-white show" role="alert" aria-live="assertive" id="successToast" aria-atomic="true">
+                <div class="toast-header border-0">
+                    <i class="material-icons text-success me-2">check</i>
+                    <i class="fas fa-times translate-middle-y float-end text-md ms-9 cursor-pointer" data-bs-dismiss="toast"
+                        aria-label="Close" aria-hidden="true"></i>
+                </div>
+                <hr class="horizontal dark m-0">
+                <div class="toast-body">
+                    {{ $message }}
+                </div>
+            </div>
+        </div>
+    @endif
     <div class="container-fluid py-4">
         <div class="row">
             <div class="col-12">
@@ -13,9 +28,8 @@
                         <div class="table-responsive p-3">
                             {!! $dataTable->table(['class' => 'table align-items-center mb-0'], true) !!}
                         </div>
-                        <a href="{{ route('session.today') }}" class="btn btn-secondary mx-3">Today Session's</a>
-                        <a href="{{ route('session.create') }}" class="btn btn-secondary mx-3">Add The Session</a>
                         {{-- <a href="{{ route('session.today') }}" class="btn btn-secondary mx-3">Today Session's</a> --}}
+                        <a href="{{ route('session.create') }}" class="btn btn-secondary mx-3">Add The Session</a>
                     </div>
                 </div>
             </div>

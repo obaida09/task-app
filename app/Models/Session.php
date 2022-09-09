@@ -26,6 +26,6 @@ class Session extends Model
     
     public function sessionDetails()
     {
-        return $this->hasMany(sessionDetails::class);
+        return $this->hasMany(SessionDetails::class);
     }
 }

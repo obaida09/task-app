@@ -30,7 +30,7 @@ class UpdateSessionDetailsRequest extends FormRequest
             'session_notes'  => 'required',
             'session_id'     => 'required',
             'marital_status' => 'required|in:public,private',
-            'files'          => 'nullable|mimes:jpg,pdf,doc|max:50',
+            'files'          => 'nullable|max:50',
         ];
     }
 }

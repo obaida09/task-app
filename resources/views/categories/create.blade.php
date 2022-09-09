@@ -38,7 +38,6 @@
                         </div>
 
                         <div class="form-group pt-4">
-                            <a href="{{ route('category.index') }}" class="btn btn-secondary">Category Table</a>
                             <button type="submit" class="btn btn-primary">Add Category</button>
                         </div>
                     </form>

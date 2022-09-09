@@ -23,7 +23,7 @@ use App\Http\Controllers\PathologicalCaseController;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->middleware('auth');
 
 Auth::routes();
 
@@ -32,6 +32,8 @@ Route::middleware(['isActive', 'auth'])->group(function ()
 {
     Route::get('/home', [HomeController::class, 'index'])->name('home');
     Route::get('/communtiy', [HomeController::class, 'communtiy'])->name('communtiy');
+    Route::get('remove-file/{id}' , [SessionDetailsController::class  , 'remove_file'])->name('remove_file');
+    Route::get('remove-post/{id}' , [HomeController::class  , 'remove_from_communtiy'])->name('remove_from_communtiy');
     
     Route::resource('healer'              , HealerController::class);
     Route::resource('patient'             , PatientController::class);

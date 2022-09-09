@@ -30,4 +30,9 @@ class SessionDetails extends Model
     {
         return $this->belongsToThrough(Patient::class, Session::class);
     }
+    
+    public function sessionDetailsFiles()
+    {
+        return $this->hasMany(SessionDetailsFiles::class);
+    }
 }

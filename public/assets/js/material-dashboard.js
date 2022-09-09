@@ -120,77 +120,7 @@ if (document.querySelector('.fixed-plugin')) {
 
 }
 
-//Set Sidebar Color
-function sidebarColor(a) {
-  var parent = document.querySelector(".nav-link.active");
-  var cardHeader = document.querySelector(".card-header .shadow-primary");
-  var wizardBtn = document.querySelector(".wizard-card .moving-tab");
-  var color = a.getAttribute("data-color");
 
-  var mainColor = [parent, cardHeader, wizardBtn]
-
-  for (let i = 0; i < mainColor.length; i++) {
-
-    if (mainColor[i].classList.contains('bg-gradient-primary')) {
-      mainColor[i].classList.remove('bg-gradient-primary');
-    }
-    if (mainColor[i].classList.contains('bg-gradient-dark')) {
-      mainColor[i].classList.remove('bg-gradient-dark');
-    }
-    if (mainColor[i].classList.contains('bg-gradient-info')) {
-      mainColor[i].classList.remove('bg-gradient-info');
-    }
-    if (mainColor[i].classList.contains('bg-gradient-success')) {
-      mainColor[i].classList.remove('bg-gradient-success');
-    }
-    if (mainColor[i].classList.contains('bg-gradient-warning')) {
-      mainColor[i].classList.remove('bg-gradient-warning');
-    }
-    if (mainColor[i].classList.contains('bg-gradient-danger')) {
-      mainColor[i].classList.remove('bg-gradient-danger');
-    }
-
-    window.localStorage.mainColor = 'bg-gradient-' + color
-    mainColor[i].classList.add('bg-gradient-' + color);
-
-  }
-}
-
-if (window.localStorage.mainColor != null) {
-
-  var parent = document.querySelector(".nav-link.active");
-  var cardHeader = document.querySelector(".card-header .shadow-primary");
-
-  var mainColor = [parent, cardHeader]
-
-  for (let i = 0; i < mainColor.length; i++) {
-
-    if (mainColor[i].classList.contains('bg-gradient-primary')) {
-      mainColor[i].classList.remove('bg-gradient-primary');
-    }
-    if (mainColor[i].classList.contains('bg-gradient-dark')) {
-      mainColor[i].classList.remove('bg-gradient-dark');
-    }
-    if (mainColor[i].classList.contains('bg-gradient-info')) {
-      mainColor[i].classList.remove('bg-gradient-info');
-    }
-    if (mainColor[i].classList.contains('bg-gradient-success')) {
-      mainColor[i].classList.remove('bg-gradient-success');
-    }
-    if (mainColor[i].classList.contains('bg-gradient-warning')) {
-      mainColor[i].classList.remove('bg-gradient-warning');
-    }
-    if (mainColor[i].classList.contains('bg-gradient-danger')) {
-      mainColor[i].classList.remove('bg-gradient-danger');
-    }
-    // window.localStorage.mainColor = 'bg-gradient-' + color
-
-      mainColor[i].classList.add(window.localStorage.mainColor);
-
-      console.log(window.localStorage.mainColor)
-
-  }
-}
 
 // Set Sidebar Type
 function sidebarType(a) {

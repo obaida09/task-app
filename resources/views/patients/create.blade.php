@@ -60,7 +60,6 @@
                             </div>
                         </div>     
                         <div class="form-group pt-4">
-                            <a href="{{ route('patient.index') }}" class="btn btn-secondary">Patient Table</a>
                             <button type="submit" class="btn btn-primary">Add Patient</button>
                         </div>
                     </form>

@@ -47,7 +47,7 @@ class HealerController extends Controller
         $data = $request->validated();
         $data['password'] = Hash::make($request->password);
         User::create($data);
-        return redirect()->route('healer.index');
+        return redirect()->route('healer.index')->with('message','Healer created successfully');
     }
 
     /**
@@ -96,7 +96,7 @@ class HealerController extends Controller
             
             $healer->update($data);
             // return back()->with('success','Item created successfully!');
-            return redirect()->route('healer.index')->with('success','Item created successfully!');
+            return redirect()->route('healer.index')->with('message','Healer updated successfully!');
         }
         return redirect('healer');
     }
@@ -112,7 +112,7 @@ class HealerController extends Controller
         if(auth()->user()->is_admin == 1 or auth()->user()->id == $healer->id)
         {    
             $healer->delete();
-            return redirect()->route('healer.index');
+            return redirect()->route('healer.index')->with('message','Healer deleted successfully');
         }
         return redirect('healer');
     }

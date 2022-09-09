@@ -41,7 +41,7 @@ class PatientController extends Controller
         $data = $request->validated();
         $data['user_id'] = auth()->user()->id;
         Patient::create($data);
-        return redirect()->route('patient.index');
+        return redirect()->route('patient.index')->with('message','Patient created successfully');
     }
 
     /**
@@ -85,7 +85,7 @@ class PatientController extends Controller
             $data = $request->validated();
             $data['user_id'] = auth()->user()->id;
             $patient->update($data);
-            return redirect()->route('patient.index');
+            return redirect()->route('patient.index')->with('message','Patient updated successfully');
         }
         return redirect('patient');
     }
@@ -101,7 +101,7 @@ class PatientController extends Controller
         if(auth()->user()->is_admin == 1 or auth()->user()->id == $patient->user_id)
         {
             $patient->delete();
-            return redirect()->route('patient.index');
+            return redirect()->route('patient.index')->with('message','Patient deleted successfully');
         }
         return redirect('patient');
     }

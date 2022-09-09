@@ -46,7 +46,13 @@ class HomeController extends Controller
     
     public function communtiy()
     {
-        $session_details = sessionDetails::where('marital_status', 'public')->with('session', 'patient.user')->get();
+        $session_details = SessionDetails::where('marital_status', 'public')->whereAccept(1)->with('session', 'patient.user')->get();
         return view('communtiy', compact('session_details')) ;
+    }
+    
+    public function remove_from_communtiy($id)
+    {
+        SessionDetails::where('id', $id)->update(array('accept' => false));
+        return redirect()->back()->with(['message' => 'Post delete Successfully']);
     }
 }
