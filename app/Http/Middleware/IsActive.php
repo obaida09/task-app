@@ -17,7 +17,7 @@ class IsActive
     public function handle(Request $request, Closure $next)
     {
         if (auth()->user()->status == 0) {
-            return redirect('/');
+            return redirect('/welcome');
         }
         return $next($request);
     }

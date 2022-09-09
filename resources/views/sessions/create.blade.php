@@ -12,9 +12,26 @@
                     <form action="{{ route('session.store') }}" method="post">
                         @csrf
                         <div class="row">
+                            <div class="col-12">
+                                <span>Session's Number</span>
+                                <select id="session_num" class="px-1 mt-2 mx-1">
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    <option value="7">7</option>
+                                    <option value="8">8</option>
+                                    <option value="9">9</option>
+                                    <option value="10">10</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
                             <div class="col-md-6">
                                 <div class="input-group input-group-outline my-3">
-                                    <input type="text" class="form-control" name="date_time" value="2022-10-10" />
+                                    <input type="text" class="form-control" name="date_time[]" value="2022-10-10" />
                                 </div>
                                 @error('date_time')
                                     <div style="color: rgba(255, 0, 0, 0.692)" class="form-text">{{ $message }}</div>
@@ -33,6 +50,10 @@
                                     @enderror
                                 </div>
                             </div>
+                        </div>
+                        
+                        <div class="input-group input-group-outline my-3">
+                            <input type="text" class="form-control" name="date_time[]" value="2022-10-10" />
                         </div>
 
                         <div class="form-group pt-4">
@@ -58,6 +79,21 @@
                     locale: {
                         format: 'YYYY-MM-DD hh:mm A'
                     }
+                });
+            });
+
+            // jQuery('#session_num').on('change', function() {
+            //     let input_num = $(this).val();
+            //     console.log(input_num)
+            //     for(var i; i < input_num; i++) {
+            //         console.log(i)
+            //     }
+            // });
+
+            $('#session_num').on('change', function() {
+                // $('.rr').empty();
+                $.each(new Array(+this.value), function(i) {
+                    $( ".rr" ).appendTo( "form" );
                 });
             });
         </script>

@@ -21,7 +21,7 @@ use App\Http\Controllers\PathologicalCaseController;
 |
 */
 
-Route::get('/', function () {
+Route::get('/welcome', function () {
     return view('welcome');
 })->middleware('auth');
 
@@ -30,7 +30,7 @@ Auth::routes();
 
 Route::middleware(['isActive', 'auth'])->group(function () 
 {
-    Route::get('/home', [HomeController::class, 'index'])->name('home');
+    Route::get('/', [HomeController::class, 'index'])->name('home');
     Route::get('/communtiy', [HomeController::class, 'communtiy'])->name('communtiy');
     Route::get('remove-file/{id}' , [SessionDetailsController::class  , 'remove_file'])->name('remove_file');
     Route::get('remove-post/{id}' , [HomeController::class  , 'remove_from_communtiy'])->name('remove_from_communtiy');
@@ -42,7 +42,6 @@ Route::middleware(['isActive', 'auth'])->group(function ()
     Route::resource('category'            , CategoryController::class);
     Route::resource('pathological_case'   , PathologicalCaseController::class);
     
-    // Route::get('healer/show/{id}', [HealerController::class, 'show2'])->name('healer2.show');
     Route::get('sub_category', [CategoryController::class, 'sub_category'])->name('sub_category');
     Route::get('today', [SessionController::class, 'session_today'])->name('session.today');
 });
