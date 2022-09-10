@@ -24,8 +24,10 @@ class StoreSessionRequest extends FormRequest
     public function rules()
     {
         return [
-            'date_time'   => 'required',
-            'patient_id'  => 'required',
+            'date_time'      => 'required',
+            'patient_id'     => 'required',
+            'session_status' => 'required',
+            'payment_status' => 'required',
         ];
     }
 }

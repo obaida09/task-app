@@ -6,6 +6,7 @@ use App\Models\Patient;
 use App\Models\Session;
 use App\Models\sessionDetails;
 use App\Models\PathologicalCase;
+use Carbon\Carbon;
 
 use Illuminate\Http\Request;
 
@@ -28,19 +29,27 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $lastWeek = \Carbon\Carbon::today()->subDays(7);
-        $today = \Carbon\Carbon::today();
+        $lastWeek = Carbon::today()->subDays(7);
+        $today = Carbon::today();
 
-        $healer_count      = User::where('is_admin', '0')->count();
-        $healer_lastWeek   = User::where('is_admin', '0')->whereBetween('created_at', [$lastWeek, $today])->count();
-        
-        $patient_count     = Patient::count();
-        $patient_lastWeek  = Patient::whereBetween('created_at', [$lastWeek, $today])->count();
-        
-        $session_count     = Session::count();
-        $session_lastWeek  = Session::whereBetween('created_at', [$lastWeek, $today])->count();
-        
-        $pathological_case_count = PathologicalCase::count();
+        if(auth()->user()->is_admin == 1) 
+        {
+            $healer_count      = User::where('is_admin', '0')->count();
+            $healer_lastWeek   = User::where('is_admin', '0')->whereBetween('created_at', [$lastWeek, $today])->count();
+            $patient_count     = Patient::count();
+            $patient_lastWeek  = Patient::whereBetween('created_at', [$lastWeek, $today])->count();
+            $session_count     = Session::count();
+            $session_lastWeek  = Session::whereBetween('created_at', [$lastWeek, $today])->count();
+            $pathological_case_count = PathologicalCase::count();
+        }
+        else 
+        {
+            $patient_count         = Patient::your_patients()->count();
+            $patient_lastWeek      = Patient::your_patients()->whereBetween('created_at', [$lastWeek, $today])->count();
+            $session_not_attended  = Session::your_sessions()->where('session_status', 'not_attended')->count();
+            $session_attended      = Session::your_sessions()->where('session_status', 'attended')->count();
+            $session_pending       = Session::your_sessions()->where('session_status', 'pending')->count();
+        }
         return view('home', get_defined_vars());
     }
     

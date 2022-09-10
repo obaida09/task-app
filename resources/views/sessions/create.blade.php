@@ -30,8 +30,8 @@
                         </div>
                         <div class="row">
                             <div class="col-md-6">
-                                <div class="input-group input-group-outline my-3">
-                                    <input type="text" class="form-control" name="date_time[]" value="2022-10-10" />
+                                <div class="input-group input-group-outline date my-3" id="copy">
+                                    <input type="text" class="form-control" name="date_time[]" value="20-10-10 12:00 AM" />
                                 </div>
                                 @error('date_time')
                                     <div style="color: rgba(255, 0, 0, 0.692)" class="form-text">{{ $message }}</div>
@@ -40,7 +40,7 @@
 
                             <div class="col-md-6">
                                 <div class="input-group input-group-outline my-3">
-                                    <select class="form-control" name="patient_id" id="exampleFormControlSelect1">
+                                    <select class="form-control" name="patient_id">
                                         @foreach ($patient as $item)
                                             <option value="{{ $item->id }}">{{ $item->name }}</option>
                                         @endforeach
@@ -51,11 +51,35 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="put"></div>
                         
-                        <div class="input-group input-group-outline my-3">
-                            <input type="text" class="form-control" name="date_time[]" value="2022-10-10" />
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="input-group input-group-outline my-3">
+                                    <select class="form-control" name="session_status">
+                                        <option value="pending">Pending</option>
+                                        <option value="attended">Attended</option>
+                                        <option value="not_attended">Not Attended</option>
+                                    </select>
+                                    @error('session_status')
+                                        <div style="color: rgba(255, 0, 0, 0.692)" class="form-text">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-6">
+                                <div class="input-group input-group-outline my-3">
+                                    <select class="form-control" name="payment_status">
+                                        <option value="paid">Paid</option>
+                                        <option value="not_paid">not Paid Yet</option>
+                                    </select>
+                                    @error('payment_status')
+                                        <div style="color: rgba(255, 0, 0, 0.692)" class="form-text">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                            </div>
                         </div>
-
+                        
                         <div class="form-group pt-4">
                             <button type="submit" class="btn btn-primary">Add Session</button>
                         </div>
@@ -73,7 +97,7 @@
 
         <script>
             $(function() {
-                $('input[name="date_time"]').daterangepicker({
+                $('input[name="date_time[]"]').daterangepicker({
                     timePicker: true,
                     singleDatePicker: true,
                     locale: {
@@ -82,19 +106,14 @@
                 });
             });
 
-            // jQuery('#session_num').on('change', function() {
-            //     let input_num = $(this).val();
-            //     console.log(input_num)
-            //     for(var i; i < input_num; i++) {
-            //         console.log(i)
-            //     }
-            // });
-
             $('#session_num').on('change', function() {
-                // $('.rr').empty();
-                $.each(new Array(+this.value), function(i) {
-                    $( ".rr" ).appendTo( "form" );
-                });
+                let input_num = $(this).val();
+                console.log(input_num)
+                $('.put').empty();
+                for (var i=1; i < input_num; i++) {
+                    console.log(i)
+                    $(".date:first").clone().appendTo(".put");
+                }
             });
         </script>
     @endpush

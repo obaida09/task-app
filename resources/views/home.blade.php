@@ -88,13 +88,13 @@
                             <i class="material-icons opacity-10 ml-4"><i class="fa-solid fa-user-doctor"></i></i>
                         </div>
                         <div class="text-end pt-1">
-                            <p class="text-sm mb-0 text-capitalize">Healer's Number</p>
-                            <h4 class="mb-0">{{ $healer_count }}</h4>
+                            <p class="text-sm mb-0 text-capitalize">Patiend's Number</p>
+                            <h4 class="mb-0">{{ $patient_count }}</h4>
                         </div>
                     </div>
                     <hr class="dark horizontal my-0">
                     <div class="card-footer p-3">
-                        <p class="mb-0"><span class="text-success text-sm font-weight-bolder">+55% </span>than last week
+                        <p class="mb-0"><span class="text-success text-sm font-weight-bolder">{{ $patient_lastWeek }}% </span>than last week
                         </p>
                     </div>
                 </div>
@@ -107,8 +107,8 @@
                             <i class="material-icons opacity-10"><i class="fa-solid fa-hospital-user"></i></i>
                         </div>
                         <div class="text-end pt-1">
-                            <p class="text-sm mb-0 text-capitalize">Patient's Number</p>
-                            <h4 class="mb-0">{{ $patient_count }}</h4>
+                            <p class="text-sm mb-0 text-capitalize">Session's not Attended</p>
+                            <h4 class="mb-0">{{ $session_not_attended }}</h4>
                         </div>
                     </div>
                     <hr class="dark horizontal my-0">
@@ -126,8 +126,8 @@
                             <i class="material-icons opacity-10"><i class="fa-solid fa-notes-medical"></i></i>
                         </div>
                         <div class="text-end pt-1">
-                            <p class="text-sm mb-0 text-capitalize">Session's Number</p>
-                            <h4 class="mb-0">{{ $session_count }}</h4>
+                            <p class="text-sm mb-0 text-capitalize">Session's Attended</p>
+                            <h4 class="mb-0">{{ $session_attended }}</h4>
                         </div>
                     </div>
                     <hr class="dark horizontal my-0">
@@ -144,8 +144,8 @@
                             <i class="material-icons opacity-10">weekend</i>
                         </div>
                         <div class="text-end pt-1">
-                            <p class="text-sm mb-0 text-capitalize">Pathological Case Number</p>
-                            <h4 class="mb-0">{{ $pathological_case_count }}</h4>
+                            <p class="text-sm mb-0 text-capitalize">Session's Pending</p>
+                            <h4 class="mb-0">{{ $session_pending }}</h4>
                         </div>
                     </div>
                     <hr class="dark horizontal my-0">

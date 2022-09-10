@@ -22,7 +22,7 @@
 <script src="{{ asset('DataTables/DataTables/js/jquery.dataTables.js') }}"></script>
 <script src="{{ asset('DataTables/Buttons/js/dataTables.buttons.js') }}"></script>
 <script src="{{ asset('DataTables/Responsive/js/dataTables.responsive.js') }}"></script>
-<script src="{{ url('/vendor/datatables/buttons.server-side.js') }}"></script>
+{{-- <script src="{{ url('/vendor/datatables/buttons.server-side.js') }}"></script> --}}
 <script src='https://cdn.datatables.net/buttons/2.0.1/js/buttons.bootstrap5.min.js'></script>
 
 <!-- Font Awesome -->

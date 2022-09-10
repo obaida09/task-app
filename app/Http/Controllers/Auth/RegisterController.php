@@ -50,9 +50,32 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'name'                    => 'nullable',
+            'age'                     => 'nullable',
+            'side_dominance'          => 'nullable',
+            'sex'                     => 'nullable',
+            'email'                   => 'nullable|email|unique:users',
+            'password'                => 'nullable',
+            'mobile'                  => 'nullable|min:8',
+            'treatments'              => 'nullable',
+            'symptom'                 => 'nullable',
+            'function'                => 'nullable',
+            'emotions_plan'           => 'nullable',
+            'connected_beliefs'       => 'nullable',
+            'meta_meaning'            => 'nullable',
+            'udin_moment'             => 'nullable',
+            'vakogs'                  => 'nullable',
+            'symptoms'                => 'nullable',
+            'regeneration_trigger'    => 'nullable',
+            'regeneration_symptoms_a' => 'nullable',
+            'healing_symptoms'        => 'nullable',
+            'regeneration_symptoms_b' => 'nullable',
+            'meta_practice'           => 'nullable',
+            'action'                  => 'nullable',
+            'follow_up'               => 'nullable',
+            'information'             => 'nullable',
+            'associations'            => 'nullable',
+            'status'                  => 'nullable',
         ]);
     }
 
@@ -64,14 +87,20 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'gendor' => $data['gendor'],
-            'mobile' => $data['mobile'],
-            'age' => $data['age'],
-            'academic_achievement' => $data['academic_achievement'],
-            'password' => Hash::make($data['password']),
-        ]);
+        // return User::create([
+        //     'name' => $data['name'],
+        //     'email' => $data['email'],
+        //     'gendor' => $data['gendor'],
+        //     'mobile' => $data['mobile'],
+        //     'age' => $data['age'],
+        //     'academic_achievement' => $data['academic_achievement'],
+        //     'password' => Hash::make($data['password']),
+        // ]);
+        
+        
+        $data['password'] = Hash::make($data['password']);
+        unset($data['password_confirmation']);
+        // dd($data);
+        return User::create($data);
     }
 }

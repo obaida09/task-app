@@ -41,6 +41,33 @@
                                 </div>
                             </div>
                         </div>
+                        
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="input-group input-group-outline my-3">
+                                    <select class="form-control" name="session_status">
+                                        <option @if ($item->session_status == 'pending') selected @endif value="pending">Pending</option>
+                                        <option @if ($item->session_status == 'attended') selected @endif value="attended">Attended</option>
+                                        <option @if ($item->session_status == 'not_attended') selected @endif value="not_attended">Not Attended</option>
+                                    </select>
+                                    @error('session_status')
+                                        <div style="color: rgba(255, 0, 0, 0.692)" class="form-text">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-6">
+                                <div class="input-group input-group-outline my-3">
+                                    <select class="form-control" name="payment_status">
+                                        <option @if ($item->payment_status == 'paid') selected @endif value="paid">Paid</option>
+                                        <option @if ($item->payment_status == 'not_paid') selected @endif value="not_paid">not Paid Yet</option>
+                                    </select>
+                                    @error('payment_status')
+                                        <div style="color: rgba(255, 0, 0, 0.692)" class="form-text">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                            </div>
+                        </div>
 
                         <div class="form-group pt-4">
                             <button type="submit" class="btn btn-primary">Edit Session</button>
