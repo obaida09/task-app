@@ -41,7 +41,7 @@ class HealerController extends Controller
 
     public function show(User $healer)
     {
-        $patients = Patient::where('user_id', $healer->id)->get();
+        $patients = Patient::where('user_id', $healer->id)->paginate(10);
         return view('healers.show', compact('healer', 'patients'));
     }
 

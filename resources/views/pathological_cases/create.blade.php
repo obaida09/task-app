@@ -17,7 +17,8 @@
                                 <div class="input-group input-group-outline mb-3">
                                     <select class="form-control" id="category">
                                         @foreach ($category as $item)
-                                            <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                            <option att-name='{{ $item->name }}' value="{{ $item->id }}">
+                                                {{ $item->name }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -63,6 +64,9 @@
     @push('js')
         <script>
             jQuery('#category').on('change', function() {
+                $("#sub_category").append(
+                    '<option value="' + $(this).val() + '"></option>'
+                );
                 jQuery.ajax({
                     url: "{{ route('sub_category') }}",
                     method: 'get',
@@ -70,10 +74,10 @@
                         category_id: $(this).val(),
                     },
                     success: function(data) {
-                        for (var i=0; i < data.length; i++) {  
+                        for (var i = 0; i < data.length; i++) {
                             $("#sub_category").append(
                                 '<option value="' + data[i].id + '">' + data[i].name + '</option>'
-                            ); 
+                            );
                         }
                     }
                 });

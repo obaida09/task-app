@@ -126,6 +126,9 @@
                             </tbody>
                         </table>
                     </div>
+                    <div class="mx-4 mt-2">
+                        {{ $patients->links() }}
+                    </div>
                 </div>
             </div>
         </div>

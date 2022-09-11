@@ -38,12 +38,6 @@
                                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-3">id
                                     </th>
                                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
-                                        Offer & </th>
-                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
-                                        Shock Moment</th>
-                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
-                                        Tretment</th>
-                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
                                         Session Note</th>
                                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
                                         created_at</th>
@@ -56,24 +50,6 @@
                                     <tr>
                                         <td class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-3">
                                             <h6 class="mb-0 text-xs">{{ $item->id }}</h6>
-                                        </td>
-                                        <td>
-                                            <span class="badge badge-dot me-4">
-                                                <i class="bg-info"></i>
-                                                <span class="text-dark text-xs">{{ $item->offer }}</span>
-                                            </span>
-                                        </td>
-                                        <td>
-                                            <span class="badge badge-dot me-4">
-                                                <i class="bg-info"></i>
-                                                <span class="text-dark text-xs">{{ $item->shock_moment }}</span>
-                                            </span>
-                                        </td>
-                                        <td>
-                                            <span class="badge badge-dot me-4">
-                                                <i class="bg-info"></i>
-                                                <span class="text-dark text-xs">{{ $item->tretment }}</span>
-                                            </span>
                                         </td>
                                         <td>
                                             <span class="badge badge-dot me-4">
@@ -111,6 +87,9 @@
                                 @endforelse
                             </tbody>
                         </table>
+                    </div>
+                    <div class="mx-4 mt-2">
+                        {{ $sessions_details->links() }}
                     </div>
                 </div>
             </div>

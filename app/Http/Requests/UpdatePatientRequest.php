@@ -24,11 +24,11 @@ class UpdatePatientRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'                    => 'required',
-            'age'                     => 'required',
-            'address'                 => 'required',
-            'mobile'                  => 'required|numeric|unique:users,mobile,'.$this->route()->healer->id,
-            'six'                     => 'required|in:male,famle',
+            'name'                    => 'nullable',
+            'age'                     => 'nullable',
+            'address'                 => 'nullable',
+            'mobile'                  => 'nullable|numeric|unique:patients,mobile,'.$this->route()->patient->id,
+            'sex'                     => 'nullable|in:male,famle',
             
             'side_dominance'          => 'nullable|in:left,right',
             'treatments'              => 'nullable',

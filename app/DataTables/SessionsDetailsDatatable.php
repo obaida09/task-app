@@ -73,10 +73,10 @@ class SessionsDetailsDatatable extends DataTable
         return [
             Column::make('id')
                 ->className('text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 px-3'),
-            Column::make('offer'),
-            Column::make('shock_moment'),
-            Column::make('tretment'),
             // Column::make('session_notes'),
+            Column::computed('Session')
+                ->data('session.date_time'),
+            Column::make('marital_status'),
             Column::make('created_at'),
             Column::make('updated_at'),
             Column::computed('action')

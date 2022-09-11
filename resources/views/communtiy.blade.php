@@ -25,16 +25,17 @@
                                 <div class="d-flex flex-row align-items-center">
                                     <div class="d-flex flex-column mt-3"> <span
                                             class="font-weight-bold fs-3">{{ $item->patient->user->name }}</span> <small
-                                            class="text-primary">{{ $item->patient->name }}</small> </div>
+                                            class="text-primary">{{ $item->patient->name }}</small>
+                                    </div>
                                 </div>
-                                <div class="d-flex flex-row mt-4 px-3 ellipsis"> 
-                                <small class="mx-2">{{ $item->posted_at }}</small> 
-                                @if (auth()->user()->is_admin == 1)
-                                    <a href="{{ route('remove_from_communtiy', $item->id) }}" class="mr-2"><i class="fa-solid fa-xmark"></i></a>
-                                @endif
+                                <div class="d-flex flex-row mt-4 px-3 ellipsis">
+                                    <small class="mx-2">{{ $item->posted_at }}</small>
+                                    @if (auth()->user()->is_admin == 1)
+                                        <a href="{{ route('remove_from_communtiy', $item->id) }}" class="mr-2"><i
+                                                class="fa-solid fa-xmark"></i></a>
+                                    @endif
+                                </div>
                             </div>
-                            </div>
-                            {{-- <p class="text-justify">{{ $item->session }}</p> --}}
                             <p class="text-justify">{{ $item->session_notes }}</p>
                             <div id="comment_view" class="d-flex flex-row muted-color mt-4 text-dark fw-bold">
                                 <span>Comments</span><span class="mx-2 co-num">5</span>

@@ -12,9 +12,7 @@
                     <form action="{{ route('session.update', $session->id) }}" method="post">
                         @csrf
                         @method('PATCH')
-
-
-
+                        
                         <div class="row">
                             <div class="col-md-6">
                                 <label>Date & Time</label>
@@ -49,9 +47,9 @@
                                 <label>Session Status</label>
                                 <div class="input-group input-group-outline mb-3">
                                     <select class="form-control" name="session_status">
-                                        <option @if ($item->session_status == 'pending') selected @endif value="pending">Pending</option>
-                                        <option @if ($item->session_status == 'attended') selected @endif value="attended">Attended</option>
-                                        <option @if ($item->session_status == 'not_attended') selected @endif value="not_attended">Not Attended</option>
+                                        <option @if ($session->session_status == 'pending') selected @endif value="pending">Pending</option>
+                                        <option @if ($session->session_status == 'attended') selected @endif value="attended">Attended</option>
+                                        <option @if ($session->session_status == 'not_attended') selected @endif value="not_attended">Not Attended</option>
                                     </select>
                                     @error('session_status')
                                         <div style="color: rgba(255, 0, 0, 0.692)" class="form-text">{{ $message }}</div>
@@ -63,8 +61,8 @@
                                 <label>Payment Status</label>
                                 <div class="input-group input-group-outline mb-3">
                                     <select class="form-control" name="payment_status">
-                                        <option @if ($item->payment_status == 'paid') selected @endif value="paid">Paid</option>
-                                        <option @if ($item->payment_status == 'not_paid') selected @endif value="not_paid">not Paid Yet</option>
+                                        <option @if ($session->payment_status == 'paid') selected @endif value="paid">Paid</option>
+                                        <option @if ($session->payment_status == 'not_paid') selected @endif value="not_paid">not Paid Yet</option>
                                     </select>
                                     @error('payment_status')
                                         <div style="color: rgba(255, 0, 0, 0.692)" class="form-text">{{ $message }}</div>

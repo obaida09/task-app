@@ -15,10 +15,7 @@ class CreateSessionDetailsTable extends Migration
     {
         Schema::create('session_details', function (Blueprint $table) {
             $table->id();
-            $table->string('offer');
-            $table->string('shock_moment');
-            $table->string('tretment');
-            $table->string('session_notes');
+            $table->longText('session_notes');
             $table->enum('marital_status', ['public', 'private'])->default('private');
             $table->boolean('accept')->default(false);
             $table->foreignId('session_id')->constrained()->cascadeOnDelete();

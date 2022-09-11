@@ -26,6 +26,8 @@ class UpdateSessionRequest extends FormRequest
         return [
             'date_time'      => 'required',
             'patient_id'     => 'required',
+            'session_status' => 'required',
+            'payment_status' => 'required',
         ];
     }
 }

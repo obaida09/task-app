@@ -166,90 +166,7 @@
                 </div>
             </div>
         </div>
-        
-    <div class="row mt-5">
-        <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-            <div class="card">
-                <div class="card-header p-3 pt-2">
-                    <div
-                        class="icon icon-lg icon-shape bg-gradient-dark shadow-dark text-center border-radius-xl mt-n4 position-absolute">
-                         <i class="material-icons opacity-10 ml-4"><i class="fa-regular fa-address-card"></i></i>
-                    </div>
-                    <div class="text-end pt-1">
-                        <p class="text-sm mb-0 text-capitalize">Today Session's</p>
-                        <h4 class="mb-0">{{ $session_today }}</h4>
-                    </div>
-                </div>
-                <hr class="dark horizontal my-0">
-                <div class="card-footer p-3">
-                    <p class="mb-0"><span class="text-success text-sm font-weight-bolder">
-                        {{-- </span>than last week --}}
-                    </p>
-                </div>
-            </div>
-        </div>
-        <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-            <div class="card">
-                <div class="card-header p-3 pt-2">
-                    <div
-                        class="icon icon-lg icon-shape bg-gradient-primary shadow-primary text-center border-radius-xl mt-n4 position-absolute">
-                        <i class="material-icons opacity-10 ml-4"><i class="fa-regular fa-address-card"></i></i>
-                    </div>
-                    <div class="text-end pt-1">
-                        <p class="text-sm mb-0 text-capitalize">Next Week session's</p>
-                        <h4 class="mb-0">{{ $session_nextWeek }}</h4>
-                    </div>
-                </div>
-                <hr class="dark horizontal my-0">
-                <div class="card-footer p-3">
-                    <p class="mb-0"><span class="text-success text-sm font-weight-bolder">
-                        {{-- </span>than last week --}}
-                    </p>
-                </div>
-            </div>
-        </div>
-        <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-            <div class="card">
-                <div class="card-header p-3 pt-2">
-                    <div
-                        class="icon icon-lg icon-shape bg-gradient-success shadow-success text-center border-radius-xl mt-n4 position-absolute">
-                         <i class="material-icons opacity-10 ml-4"><i class="fa-regular fa-address-card"></i></i>
-                    </div>
-                    <div class="text-end pt-1">
-                        <p class="text-sm mb-0 text-capitalize">Next 2 Weeks session's</p>
-                        <h4 class="mb-0">{{ $session_nextTowWeek }}</h4>
-                    </div>
-                </div>
-                <hr class="dark horizontal my-0">
-                <div class="card-footer p-3">
-                    <p class="mb-0"><span class="text-success text-sm font-weight-bolder">
-                        {{-- </span>than last week --}}
-                    </p>
-                </div>
-            </div>
-        </div>
-        <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-            <div class="card">
-                <div class="card-header p-3 pt-2">
-                    <div
-                        class="icon icon-lg icon-shape bg-gradient-info shadow-info text-center border-radius-xl mt-n4 position-absolute">
-                         <i class="material-icons opacity-10 ml-4"><i class="fa-regular fa-address-card"></i></i>
-                    </div>
-                    <div class="text-end pt-1">
-                        <p class="text-sm mb-0 text-capitalize">Next Month session's</p>
-                        <h4 class="mb-0">{{ $session_nextMonth }}</h4>
-                    </div>
-                </div>
-                <hr class="dark horizontal my-0">
-                <div class="card-footer p-3">
-                    <p class="mb-0"><span class="text-success text-sm font-weight-bolder">
-                        {{-- </span>than last week --}}
-                    </p>
-                </div>
-            </div>
-        </div>
-    </div>
-    
+
     @else
         <div class="row mt-3">
             <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
@@ -257,7 +174,7 @@
                     <div class="card-header p-3 pt-2">
                         <div
                             class="icon icon-lg icon-shape bg-gradient-dark shadow-dark text-center border-radius-xl mt-n4 position-absolute">
-                            <i class="material-icons opacity-10 ml-4"><i class="fa-solid fa-user-doctor"></i></i>
+                            <i class="material-icons opacity-10"><i class="fa-solid fa-user-doctor"></i></i>
                         </div>
                         <div class="text-end pt-1">
                             <p class="text-sm mb-0 text-capitalize">Patiend's Number</p>
@@ -332,5 +249,87 @@
             </div>
         </div>
     @endif
+    <div class="row mt-5">
+        <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+            <div class="card">
+                <div class="card-header p-3 pt-2">
+                    <div
+                        class="icon icon-lg icon-shape bg-gradient-dark shadow-dark text-center border-radius-xl mt-n4 position-absolute">
+                         <i class="material-icons opacity-10"><i class="fa-regular fa-address-card"></i></i>
+                    </div>
+                    <div class="text-end pt-1">
+                        <p class="text-sm mb-0 text-capitalize">Today Session's</p>
+                        <h4 class="mb-0">{{ isset($session_today) }}</h4>
+                    </div>
+                </div>
+                <hr class="dark horizontal my-0">
+                <div class="card-footer p-3">
+                    <p class="mb-0"><span class="text-success text-sm font-weight-bolder">
+                        {{-- </span>than last week --}}
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+            <div class="card">
+                <div class="card-header p-3 pt-2">
+                    <div
+                        class="icon icon-lg icon-shape bg-gradient-primary shadow-primary text-center border-radius-xl mt-n4 position-absolute">
+                        <i class="material-icons opacity-10"><i class="fa-regular fa-address-card"></i></i>
+                    </div>
+                    <div class="text-end pt-1">
+                        <p class="text-sm mb-0 text-capitalize">Next Week session's</p>
+                        <h4 class="mb-0">{{ isset($session_nextWeek) }}</h4>
+                    </div>
+                </div>
+                <hr class="dark horizontal my-0">
+                <div class="card-footer p-3">
+                    <p class="mb-0"><span class="text-success text-sm font-weight-bolder">
+                        {{-- </span>than last week --}}
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+            <div class="card">
+                <div class="card-header p-3 pt-2">
+                    <div
+                        class="icon icon-lg icon-shape bg-gradient-success shadow-success text-center border-radius-xl mt-n4 position-absolute">
+                         <i class="material-icons opacity-10"><i class="fa-regular fa-address-card"></i></i>
+                    </div>
+                    <div class="text-end pt-1">
+                        <p class="text-sm mb-0 text-capitalize">Next 2 Weeks session's</p>
+                        <h4 class="mb-0">{{ isset($session_nextTowWeek) }}</h4>
+                    </div>
+                </div>
+                <hr class="dark horizontal my-0">
+                <div class="card-footer p-3">
+                    <p class="mb-0"><span class="text-success text-sm font-weight-bolder">
+                        {{-- </span>than last week --}}
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+            <div class="card">
+                <div class="card-header p-3 pt-2">
+                    <div
+                        class="icon icon-lg icon-shape bg-gradient-info shadow-info text-center border-radius-xl mt-n4 position-absolute">
+                         <i class="material-icons opacity-10"><i class="fa-regular fa-address-card"></i></i>
+                    </div>
+                    <div class="text-end pt-1">
+                        <p class="text-sm mb-0 text-capitalize">Next Month session's</p>
+                        <h4 class="mb-0">{{ isset($session_nextMonth) }}</h4>
+                    </div>
+                </div>
+                <hr class="dark horizontal my-0">
+                <div class="card-footer p-3">
+                    <p class="mb-0"><span class="text-success text-sm font-weight-bolder">
+                        {{-- </span>than last week --}}
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
     
 @endsection

@@ -13,33 +13,20 @@ use Carbon\Carbon;
 
 class SessionDetailsController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index(SessionsDetailsDatatable $sessionDetails)
     {
         return $sessionDetails->render('sessions_details.index');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function create()
     {
         $session = Session::your_sessions()->get();
         return view('sessions_details.create', compact('session'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \App\Http\Requests\StoreSessionDetailsRequest  $request
-     * @return \Illuminate\Http\Response
-     */
+
     public function store(StoreSessionDetailsRequest $request)
     {
         $data = $request->validated();
@@ -65,23 +52,13 @@ class SessionDetailsController extends Controller
         return redirect()->route('session_details.index')->with('message','Session Details created successfully');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\SessionDetails  $sessionDetails
-     * @return \Illuminate\Http\Response
-     */
+
     public function show(SessionDetails $sessionDetails)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\SessionDetails  $sessionDetails
-     * @return \Illuminate\Http\Response
-     */
+
     public function edit(SessionDetails $session_details)
     {
         $session_details = $session_details->with('sessionDetailsFiles')->first();
@@ -89,13 +66,7 @@ class SessionDetailsController extends Controller
         return view('sessions_details.edit', compact('session', 'session_details'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \App\Http\Requests\UpdateSessionDetailsRequest  $request
-     * @param  \App\Models\SessionDetails  $sessionDetails
-     * @return \Illuminate\Http\Response
-     */
+
     public function update(UpdateSessionDetailsRequest $request, SessionDetails $sessionDetails)
     {
         $data = $request->validated();
@@ -104,7 +75,7 @@ class SessionDetailsController extends Controller
         }
         unset($data['files']);
         $data['marital_status'] == 'public' ? $data['posted_at'] = Carbon::now() : '';
-        
+        // dd($data);
         $sessionDetails->update($data);
         
         if($request->hasFile('files')) {
@@ -122,15 +93,9 @@ class SessionDetailsController extends Controller
         return redirect()->route('session_details.index')->with('message','Session Details updated successfully');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\SessionDetails  $sessionDetails
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(SessionDetails $session_detailss)
+
+    public function destroy(SessionDetails $session_details)
     {
-        dd($session_detailss->first()->offer);
         $session_details->delete();
         return redirect()->route('session_details.index')->with('message','Session Details deleted successfully');
     }

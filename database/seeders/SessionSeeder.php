@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use App\Models\Session;
 
 class SessionSeeder extends Seeder
 {
@@ -13,6 +14,6 @@ class SessionSeeder extends Seeder
      */
     public function run()
     {
-        //
+        Session::factory()->times(100)->create();
     }
 }

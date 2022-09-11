@@ -40,6 +40,9 @@ class CreatePatientsTable extends Migration
             $table->string('follow_up')                 ->nullable();
             $table->string('information')               ->nullable();
             $table->string('associations')              ->nullable();
+            $table->string('offer')                     ->nullable();
+            $table->string('shock_moment')              ->nullable();
+            $table->string('tretment')                  ->nullable();
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->timestamps();
         });

@@ -51,7 +51,7 @@ class SessionController extends Controller
 
     public function show(Session $session)
     {
-        $sessions_details = SessionDetails::where('session_id', $session->id)->get();
+        $sessions_details = SessionDetails::where('session_id', $session->id)->paginate(10);
         return view('sessions.show', compact('session', 'sessions_details'));
     }
 
@@ -59,7 +59,7 @@ class SessionController extends Controller
     public function edit(Session $session)
     {
         if(auth()->user()->is_admin == 1 or auth()->user()->id == $session->patient()->first()->user_id)
-        {    
+        {  
             $patient = Patient::your_patients()->get();
             return view('sessions.edit', compact('patient', 'session'));
         }

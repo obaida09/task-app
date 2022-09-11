@@ -52,7 +52,7 @@ class PatientController extends Controller
      */
     public function show(Patient $patient)
     {
-        $sessions = Session::where('patient_id', $patient->id)->get();
+        $sessions = Session::where('patient_id', $patient->id)->paginate(10);
         return view('patients.show', compact('patient', 'sessions'));
     }
 

@@ -24,9 +24,6 @@ class StoreSessionDetailsRequest extends FormRequest
     public function rules()
     {
         return [
-            'offer'          => 'required',
-            'shock_moment'   => 'required',
-            'tretment'       => 'required',
             'session_notes'  => 'required',
             'session_id'     => 'required',
             'marital_status' => 'required|in:public,private',

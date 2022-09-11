@@ -77,9 +77,7 @@ class PatientDatatable extends DataTable
             Column::computed('healer')
                 ->data('user.name'),
             Column::make('age'),
-            // Column::make('address'),
-            // Column::make('mobile'),
-            Column::make('gendor'),
+            Column::make('sex'),
             Column::make('created_at'),
             Column::make('updated_at'),
             Column::computed('action')

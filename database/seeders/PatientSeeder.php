@@ -17,9 +17,9 @@ class PatientSeeder extends Seeder
         Patient::create([
             'name' => 'patient-1',
             'age' => '60',
-            'gendor' => 'famle',
+            'sex' => 'famle',
             'address' => 'Iraq-Diyala Gov',
-            'domination' => 'left',
+            'side_dominance' => 'left',
             'mobile' => '077243892',
             'user_id' => 2,
         ]);
@@ -27,9 +27,9 @@ class PatientSeeder extends Seeder
         Patient::create([
             'name' => 'patient-2',
             'age' => '34',
-            'gendor' => 'famle',
+            'sex' => 'famle',
             'address' => 'Iraq-Diyala Gov',
-            'domination' => 'left',
+            'side_dominance' => 'left',
             'mobile' => '077243892',
             'user_id' => 2,
         ]);
@@ -37,9 +37,9 @@ class PatientSeeder extends Seeder
         Patient::create([
             'name' => 'patient-3',
             'age' => '38',
-            'gendor' => 'famle',
+            'sex' => 'famle',
             'address' => 'Iraq-Diyala Gov',
-            'domination' => 'left',
+            'side_dominance' => 'left',
             'mobile' => '077243892',
             'user_id' => 3,
         ]);
@@ -47,9 +47,9 @@ class PatientSeeder extends Seeder
         Patient::create([
             'name' => 'patient-4',
             'age' => '40',
-            'gendor' => 'male',
+            'sex' => 'male',
             'address' => 'Iraq-Diyala Gov',
-            'domination' => 'left',
+            'side_dominance' => 'left',
             'mobile' => '077243892',
             'user_id' => 3,
         ]);

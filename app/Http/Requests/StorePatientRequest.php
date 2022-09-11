@@ -27,8 +27,8 @@ class StorePatientRequest extends FormRequest
             'name'                    => 'required',
             'age'                     => 'required',
             'address'                 => 'required',
-            'mobile'                  => 'required|numeric|unique:users',
-            'six'                     => 'required|in:male,famle',
+            'mobile'                  => 'required|numeric|unique:patients',
+            'sex'                     => 'required|in:male,famle',  
             
             'side_dominance'          => 'nullable|in:left,right',
             'treatments'              => 'nullable',

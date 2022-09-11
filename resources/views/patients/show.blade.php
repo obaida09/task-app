@@ -5,11 +5,18 @@
             <div class="col-12">
                 <div class="card my-4">
                     <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
-                        <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
-                            <h6 class="text-white text-capitalize ps-3"> {{ $patient->name }} ( information ) </h6>
+                        <div class="bg-gradient-primary shadow-primary border-radius-lg px-2 pt-3 pb-0 overflow-hidden">
+                            <h6 class="text-white text-capitalize ps-2 float-start mt-2"> {{ $patient->name }} ( information ) </h6>
+                            <div class="fl-right">
+                                <!-- Button trigger modal -->
+                                <button type="button" class="btn float-end mx-4 text-white" data-toggle="modal"
+                                    data-target="#exampleModalCenter">
+                                    More Info
+                                </button>
+                            </div>
                         </div>
                     </div>
-                    <div class="card-body px-0 pb-2">
+                    <div class="re mt-4 card-body px-0 pb-2">
                         <div class="col-md-6 float-start px-5">
                             <p><span class="text-dark fw-bold">Patient Name </span> : {{ $patient->name }}</p>
                             <p><span class="text-dark fw-bold">Patient age </span> : {{ $patient->age }}</p>
@@ -17,11 +24,126 @@
                             <p><span class="text-dark fw-bold">Patient address </span> : {{ $patient->address }}</p>
                         </div>
                         <div class="col-md-6 float-start px-5">
-                            <p><span class="text-dark fw-bold">Patient gendor </span> : {{ $patient->gendor }}</p>
-                            <p><span class="text-dark fw-bold">Patient domination </span> : {{ $patient->domination }}</p>
-                            <p><span class="text-dark fw-bold">Patient Healer </span> : {{ $patient->user()->first()->name }}</p>
+                            <p><span class="text-dark fw-bold">Patient gendor </span> : {{ $patient->sex }}</p>
+                            <p><span class="text-dark fw-bold">Patient domination </span> : {{ $patient->side_dominance }}
+                            </p>
+                            <p><span class="text-dark fw-bold">Patient patient </span> :
+                                {{ $patient->user()->first()->name }}</p>
                             <p><span class="text-dark fw-bold">Patient Created At </span> :
                                 {{ $patient->created_at->toFormattedDateString() }}</p>
+                        </div>
+                    </div>
+                    <div class="card-body px-0 pt-1 pb-2">
+                        <div class="me-4" onclick="show_info()" id="arrow"><i class="fas fa-chevron-down"></i></div>
+                        <div class="info hid">
+                            <div class="col-md-6 mt-4 pt-1 float-start px-3">
+                                <div class="re mb-4 px-3">
+                                    <h6 class="text-dark fw-bold">Current Medications (Treatements) </h6> 
+                                    <div class="mb-3 fs-6">{{ $patient->treatments }}</div>                                        
+                                </div>
+                                
+                                <div class="re mb-4 px-3">
+                                    <h6 class="text-dark fw-bold">Sumptom </h6>
+                                    <div class="mb-3 fs-6">{{ $patient->symptom }}</div>
+                                </div>
+                                
+                                <div class="re mb-4 px-3">
+                                    <h6 class="text-dark fw-bold">What is the Biological Theme (Function) </h6>
+                                    <div class="mb-3 fs-6">{{ $patient->function }}</div>
+                                        
+                                </div>
+                                
+                                <div class="re mb-4 px-3">
+                                    <h6 class="text-dark fw-bold">What Emotions are connected </h6>
+                                    <div class="mb-3 fs-6">{{ $patient->emotions_plan }}</div>
+                                        
+                                </div>
+                                
+                                <div class="re mb-4 px-3">
+                                    <h6 class="text-dark fw-bold">What are the connected Beliefs </h6>
+                                    <div class="mb-3 fs-6">{{ $patient->connected_beliefs }}</div>
+                                        
+                                </div>
+                                
+                                <div class="re mb-4 px-3">
+                                    <h6 class="text-dark fw-bold">What is the META-Meaning </h6>
+                                    <div class="mb-3 fs-6">{{ $patient->meta_meaning }}</div>
+                                        
+                                </div>
+                                
+                                <div class="re mb-4 px-3">
+                                    <h6 class="text-dark fw-bold">UDIN Moment </h6>
+                                    <div class="mb-3 fs-6">{{ $patient->udin_moment }}</div>
+                                        
+                                </div>
+                                
+                                <div class="re mb-4 px-3">
+                                    <h6 class="text-dark fw-bold">Strss Triggers (VAKOGS) </h6>
+                                    <div class="mb-3 fs-6">{{ $patient->vakogs }}</div>
+                                        
+                                </div>
+                                
+                                <div class="re mb-4 px-3">
+                                    <h6 class="text-dark fw-bold">Stress Phase Symptoms </h6>
+                                    <div class="mb-3 fs-6">{{ $patient->symptoms }}</div>
+                                        
+                                </div>
+                                
+                            </div>
+                            <div class="col-md-6 float-start px-5">
+                                <div class="re mb-4 px-3">
+                                    <h6 class="text-dark fw-bold">Regeneration Trigger </h6> 
+                                    <div class="mb-3 fs-6">{{ $patient->regeneration_trigger }}</div>                                        
+                                </div>
+                                
+                                <div class="re mb-4 px-3">
+                                    <h6 class="text-dark fw-bold">Regeneration Phase A Symptoms </h6>
+                                    <div class="mb-3 fs-6">{{ $patient->regeneration_symptoms_a }}</div>
+                                </div>
+                                
+                                <div class="re mb-4 px-3">
+                                    <h6 class="text-dark fw-bold">Healing Peak/s Symptoms </h6>
+                                    <div class="mb-3 fs-6">{{ $patient->healing_symptoms }}</div>
+                                        
+                                </div>
+                                
+                                <div class="re mb-4 px-3">
+                                    <h6 class="text-dark fw-bold">Regeneration Phase B Symptoms </h6>
+                                    <div class="mb-3 fs-6">{{ $patient->regeneration_symptoms_b }}</div>
+                                        
+                                </div>
+                                
+                                <div class="re mb-4 px-3">
+                                    <h6 class="text-dark fw-bold">META-Health Practice </h6>
+                                    <div class="mb-3 fs-6">{{ $patient->meta_practice }}</div>
+                                        
+                                </div>
+                                
+                                <div class="re mb-4 px-3">
+                                    <h6 class="text-dark fw-bold">Action (Transformation Plan) </h6>
+                                    <div class="mb-3 fs-6">{{ $patient->action }}</div>
+                                        
+                                </div>
+                                
+                                <div class="re mb-4 px-3">
+                                    <h6 class="text-dark fw-bold">Follow-Up </h6>
+                                    <div class="mb-3 fs-6">{{ $patient->follow_up }}</div>
+                                        
+                                </div>
+                                
+                                <div class="re mb-4 px-3">
+                                    <h6 class="text-dark fw-bold">Additional Information </h6>
+                                    <div class="mb-3 fs-6">{{ $patient->information }}</div>
+                                        
+                                </div>
+                                
+                                <div class="re mb-4 px-3">
+                                    <h6 class="text-dark fw-bold">Associations </h6>
+                                    <div class="mb-3 fs-6">{{ $patient->associations }}</div>
+                                        
+                                </div>
+                                
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -70,12 +192,14 @@
                                         <td>
                                             <span class="badge badge-dot me-4">
                                                 <i class="bg-info"></i>
-                                                <span class="text-dark text-xs">{{ $item->updated_at->toFormattedDateString() }}</span>
+                                                <span
+                                                    class="text-dark text-xs">{{ $item->updated_at->toFormattedDateString() }}</span>
                                             </span>
                                         </td>
                                         <td class="align-middle text-center">
                                             <div class="d-flex align-items-center">
-                                                <span class="me-2 text-xs">{{ $item->created_at->toFormattedDateString() }}</span>
+                                                <span
+                                                    class="me-2 text-xs">{{ $item->created_at->toFormattedDateString() }}</span>
                                             </div>
                                         </td>
 
@@ -110,47 +234,37 @@
                             </tbody>
                         </table>
                     </div>
+                    <div class="mx-4 mt-2">
+                        {{ $sessions->links() }}
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-    @push('js')
-        {{-- <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script> --}}
-        <script>
-            $('#session-table').DataTable({
-                "language": {
-                    "url": "https://cdn.datatables.net/plug-ins/1.11.5/i18n/pt-BR.json"
-                },
-
-                "columnDefs": [{
-                        "targets": [5],
-                        "searchable": true
-                    },
-                    {
-                        "bSortable": true,
-                        "aTargets": [0, 5]
-                    }
-                ],
-
-                /* active column position */
-                "order": [
-                    [3, "asc"]
-                ]
-            });
-        </script>
-    @endpush
-@endsection
 
 
-{{-- 
-
- <div class="row">
+    <!-- Add More Information -->
+    <div class="modal fade mb-5" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="{{ route('patient.update', $patient->id) }}" method="post">
+                        @csrf
+                        @method('PATCH')
+                        <div class="row">
                             <div class="col-md-12">
                                 <label class="">Age</label>
                                 <div class="input-group input-group-outline mb-3">
                                     <input id="age" type="text"
                                         class="form-control @error('age') is-invalid @enderror" name="age"
-                                        value="{{ old('age', $healer->age) }}" required autocomplete="name" autofocus>
+                                        value="{{ old('age', $patient->age) }}" autocomplete="name" autofocus>
                                 </div>
                                 @error('age')
                                     <span class="invalid-feedback" role="alert">
@@ -175,7 +289,7 @@
                                 @enderror
                             </div>
                         </div>
-                        
+
                         <div class="row">
                             <div class="col-md-12">
                                 <label class="">Sex (Hormonal Status)</label>
@@ -185,7 +299,8 @@
                                         <option value="famle">Famle</option>
                                     </select>
                                     @error('sex')
-                                        <div style="color: rgba(255, 0, 0, 0.692)" class="form-text">{{ $message }}</div>
+                                        <div style="color: rgba(255, 0, 0, 0.692)" class="form-text">{{ $message }}
+                                        </div>
                                     @enderror
                                 </div>
                             </div>
@@ -196,7 +311,8 @@
                                 <div class="input-group input-group-outline mb-3">
                                     <input id="name" type="text"
                                         class="form-control @error('name') is-invalid @enderror" name="mobile"
-                                        value="{{ old('mobile', $healer->mobile) }}" required autocomplete="name" autofocus>
+                                        value="{{ old('mobile', $patient->mobile) }}" autocomplete="name"
+                                        autofocus>
                                 </div>
                                 @error('mobile')
                                     <span class="invalid-feedback" role="alert">
@@ -211,7 +327,8 @@
                                 <div class="input-group input-group-outline mb-3">
                                     <input id="name" type="text"
                                         class="form-control @error('name') is-invalid @enderror" name="treatments"
-                                        value="{{ old('treatments', $healer->treatments) }}" required autocomplete="name" autofocus>
+                                        value="{{ old('treatments', $patient->treatments) }}"
+                                        autocomplete="name" autofocus>
                                 </div>
                                 @error('treatments')
                                     <span class="invalid-feedback" role="alert">
@@ -226,7 +343,8 @@
                                 <div class="input-group input-group-outline mb-3">
                                     <input id="name" type="text"
                                         class="form-control @error('name') is-invalid @enderror" name="symptom"
-                                        value="{{ old('symptom', $healer->symptom) }}" required autocomplete="name" autofocus>
+                                        value="{{ old('symptom', $patient->symptom) }}" autocomplete="name"
+                                        autofocus>
                                 </div>
                                 @error('symptom')
                                     <span class="invalid-feedback" role="alert">
@@ -241,7 +359,8 @@
                                 <div class="input-group input-group-outline mb-3">
                                     <input id="name" type="text"
                                         class="form-control @error('name') is-invalid @enderror" name="function"
-                                        value="{{ old('function', $healer->function) }}" required autocomplete="name" autofocus>
+                                        value="{{ old('function', $patient->function) }}" autocomplete="name"
+                                        autofocus>
                                 </div>
                                 @error('function')
                                     <span class="invalid-feedback" role="alert">
@@ -256,7 +375,8 @@
                                 <div class="input-group input-group-outline mb-3">
                                     <input id="name" type="text"
                                         class="form-control @error('name') is-invalid @enderror" name="emotions_plan"
-                                        value="{{ old('emotions_plan', $healer->emotions_plan) }}" required autocomplete="name" autofocus>
+                                        value="{{ old('emotions_plan', $patient->emotions_plan) }}"
+                                        autocomplete="name" autofocus>
                                 </div>
                                 @error('emotions_plan')
                                     <span class="invalid-feedback" role="alert">
@@ -271,7 +391,8 @@
                                 <div class="input-group input-group-outline mb-3">
                                     <input id="name" type="text"
                                         class="form-control @error('name') is-invalid @enderror" name="connected_beliefs"
-                                        value="{{ old('connected_beliefs', $healer->connected_beliefs) }}" required autocomplete="name" autofocus>
+                                        value="{{ old('connected_beliefs', $patient->connected_beliefs) }}"
+                                        autocomplete="name" autofocus>
                                 </div>
                                 @error('connected_beliefs')
                                     <span class="invalid-feedback" role="alert">
@@ -286,7 +407,8 @@
                                 <div class="input-group input-group-outline mb-3">
                                     <input id="name" type="text"
                                         class="form-control @error('name') is-invalid @enderror" name="meta_meaning"
-                                        value="{{ old('meta_meaning', $healer->meta_meaning) }}" required autocomplete="name" autofocus>
+                                        value="{{ old('meta_meaning', $patient->meta_meaning) }}"
+                                        autocomplete="name" autofocus>
                                 </div>
                                 @error('meta_meaning')
                                     <span class="invalid-feedback" role="alert">
@@ -301,7 +423,8 @@
                                 <div class="input-group input-group-outline mb-3">
                                     <input id="name" type="text"
                                         class="form-control @error('name') is-invalid @enderror" name="udin_moment"
-                                        value="{{ old('udin_moment', $healer->udin_moment) }}" required autocomplete="name" autofocus>
+                                        value="{{ old('udin_moment', $patient->udin_moment) }}"
+                                        autocomplete="name" autofocus>
                                 </div>
                                 @error('udin_moment')
                                     <span class="invalid-feedback" role="alert">
@@ -316,7 +439,8 @@
                                 <div class="input-group input-group-outline mb-3">
                                     <input id="name" type="text"
                                         class="form-control @error('name') is-invalid @enderror" name="vakogs"
-                                        value="{{ old('vakogs', $healer->vakogs) }}" required autocomplete="name" autofocus>
+                                        value="{{ old('vakogs', $patient->vakogs) }}" autocomplete="name"
+                                        autofocus>
                                 </div>
                                 @error('vakogs')
                                     <span class="invalid-feedback" role="alert">
@@ -331,7 +455,8 @@
                                 <div class="input-group input-group-outline mb-3">
                                     <input id="name" type="text"
                                         class="form-control @error('name') is-invalid @enderror" name="symptoms"
-                                        value="{{ old('symptoms', $healer->symptoms) }}" required autocomplete="name" autofocus>
+                                        value="{{ old('symptoms', $patient->symptoms) }}" autocomplete="name"
+                                        autofocus>
                                 </div>
                                 @error('symptoms')
                                     <span class="invalid-feedback" role="alert">
@@ -345,8 +470,10 @@
                                 <label class=""> Regeneration Trigger</label>
                                 <div class="input-group input-group-outline mb-3">
                                     <input id="name" type="text"
-                                        class="form-control @error('name') is-invalid @enderror" name="regeneration_trigger"
-                                        value="{{ old('regeneration_trigger', $healer->regeneration_trigger) }}" required autocomplete="name" autofocus>
+                                        class="form-control @error('name') is-invalid @enderror"
+                                        name="regeneration_trigger"
+                                        value="{{ old('regeneration_trigger', $patient->regeneration_trigger) }}"
+                                        autocomplete="name" autofocus>
                                 </div>
                                 @error('regeneration_trigger')
                                     <span class="invalid-feedback" role="alert">
@@ -360,8 +487,10 @@
                                 <label class=""> Regeneration Phase A Symptoms</label>
                                 <div class="input-group input-group-outline mb-3">
                                     <input id="name" type="text"
-                                        class="form-control @error('name') is-invalid @enderror" name="regeneration_symptoms_a"
-                                        value="{{ old('regeneration_symptoms_a', $healer->regeneration_symptoms_a) }}" required autocomplete="name" autofocus>
+                                        class="form-control @error('name') is-invalid @enderror"
+                                        name="regeneration_symptoms_a"
+                                        value="{{ old('regeneration_symptoms_a', $patient->regeneration_symptoms_a) }}"
+                                     autocomplete="name" autofocus>
                                 </div>
                                 @error('regeneration_symptoms_a')
                                     <span class="invalid-feedback" role="alert">
@@ -376,7 +505,8 @@
                                 <div class="input-group input-group-outline mb-3">
                                     <input id="name" type="text"
                                         class="form-control @error('name') is-invalid @enderror" name="healing_symptoms"
-                                        value="{{ old('healing_symptoms', $healer->healing_symptoms) }}" required autocomplete="name" autofocus>
+                                        value="{{ old('healing_symptoms', $patient->healing_symptoms) }}"
+                                        autocomplete="name" autofocus>
                                 </div>
                                 @error('healing_symptoms')
                                     <span class="invalid-feedback" role="alert">
@@ -390,8 +520,10 @@
                                 <label class=""> Regeneration Phase B Symptoms</label>
                                 <div class="input-group input-group-outline mb-3">
                                     <input id="name" type="text"
-                                        class="form-control @error('name') is-invalid @enderror" name="regeneration_symptoms_b"
-                                        value="{{ old('regeneration_symptoms_b', $healer->regeneration_symptoms_b) }}" required autocomplete="name" autofocus>
+                                        class="form-control @error('name') is-invalid @enderror"
+                                        name="regeneration_symptoms_b"
+                                        value="{{ old('regeneration_symptoms_b', $patient->regeneration_symptoms_b) }}"
+                                     autocomplete="name" autofocus>
                                 </div>
                                 @error('regeneration_symptoms_b')
                                     <span class="invalid-feedback" role="alert">
@@ -406,7 +538,8 @@
                                 <div class="input-group input-group-outline mb-3">
                                     <input id="name" type="text"
                                         class="form-control @error('name') is-invalid @enderror" name="meta_practice"
-                                        value="{{ old('meta_practice', $healer->meta_practice) }}" required autocomplete="name" autofocus>
+                                        value="{{ old('meta_practice', $patient->meta_practice) }}"
+                                        autocomplete="name" autofocus>
                                 </div>
                                 @error('meta_practice')
                                     <span class="invalid-feedback" role="alert">
@@ -421,7 +554,8 @@
                                 <div class="input-group input-group-outline mb-3">
                                     <input id="name" type="text"
                                         class="form-control @error('name') is-invalid @enderror" name="action"
-                                        value="{{ old('action', $healer->action) }}" required autocomplete="name" autofocus>
+                                        value="{{ old('action', $patient->action) }}" autocomplete="name"
+                                        autofocus>
                                 </div>
                                 @error('action')
                                     <span class="invalid-feedback" role="alert">
@@ -436,7 +570,8 @@
                                 <div class="input-group input-group-outline mb-3">
                                     <input id="name" type="text"
                                         class="form-control @error('name') is-invalid @enderror" name="follow_up"
-                                        value="{{ old('follow_up', $healer->follow_up) }}" required autocomplete="name" autofocus>
+                                        value="{{ old('follow_up', $patient->follow_up) }}" autocomplete="name"
+                                        autofocus>
                                 </div>
                                 @error('follow_up')
                                     <span class="invalid-feedback" role="alert">
@@ -451,7 +586,8 @@
                                 <div class="input-group input-group-outline mb-3">
                                     <input id="name" type="text"
                                         class="form-control @error('name') is-invalid @enderror" name="information"
-                                        value="{{ old('information', $healer->information) }}" required autocomplete="name" autofocus>
+                                        value="{{ old('information', $patient->information) }}"
+                                        autocomplete="name" autofocus>
                                 </div>
                                 @error('information')
                                     <span class="invalid-feedback" role="alert">
@@ -466,7 +602,8 @@
                                 <div class="input-group input-group-outline mb-3">
                                     <input id="name" type="text"
                                         class="form-control @error('name') is-invalid @enderror" name="associations"
-                                        value="{{ old('associations', $healer->associations) }}" required autocomplete="name" autofocus>
+                                        value="{{ old('associations', $patient->associations) }}"
+                                        autocomplete="name" autofocus>
                                 </div>
                                 @error('associations')
                                     <span class="invalid-feedback" role="alert">
@@ -476,5 +613,86 @@
                             </div>
                         </div>
 
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label>Copmplaint or Offer</label>
+                                <div class="input-group input-group-outline mb-3">
+                                    <input type="text" name="offer" value="{{ old('offer', $patient->offer) }}"
+                                        class="form-control">
+                                </div>
+                                @error('offer')
+                                    <div style="color: rgba(255, 0, 0, 0.692)" class="form-text">{{ $message }}</div>
+                                @enderror
+                            </div>
+                            <div class="col-md-12">
+                                <label>Shock Moment</label>
+                                <div class="input-group input-group-outline mb-3">
+                                    <input type="text" name="shock_moment"
+                                        value="{{ old('shock_moment', $patient->shock_moment) }}" class="form-control">
+                                </div>
+                                @error('shock_moment')
+                                    <div style="color: rgba(255, 0, 0, 0.692)" class="form-text">{{ $message }}</div>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label>Tretment</label>
+                                <div class="input-group input-group-outline mb-3">
+                                    <input type="text" name="tretment"
+                                        value="{{ old('tretment', $patient->tretment) }}" class="form-control">
+                                </div>
+                                @error('tretment')
+                                    <div style="color: rgba(255, 0, 0, 0.692)" class="form-text">{{ $message }}</div>
+                                @enderror
+                            </div>
+                        </div>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Update Information's</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 
---}}
+
+
+
+    @push('js')
+        {{-- <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script> --}}
+        <script>
+            $('#session-table').DataTable({
+                "language": {
+                    "url": "https://cdn.datatables.net/plug-ins/1.11.5/i18n/pt-BR.json"
+                },
+
+                "columnDefs": [{
+                        "targets": [5],
+                        "searchable": true
+                    },
+                    {
+                        "bSortable": true,
+                        "aTargets": [0, 5]
+                    }
+                ],
+
+                /* active column position */
+                "order": [
+                    [3, "asc"]
+                ]
+            });
+            
+            function show_info() {
+                $(".info").toggleClass("show").toggleClass("hid");
+    
+                if ($(".info").hasClass("show")) {
+                    $("#arrow").empty();
+                    $("#arrow").append("<i class='fas fa-chevron-up'></i>");
+                } else {
+                    $("#arrow").empty();
+                    $("#arrow").append("<i class='fas fa-chevron-down'></i>");
+                }
+            };
+        </script>
+    @endpush
+@endsection

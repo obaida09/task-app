@@ -43,11 +43,11 @@
                             <div class="col-md-6">
                                 <label class="">Sex</label>
                                 <div class="input-group input-group-outline mb-3">
-                                    <select class="form-control" name="gendor" id="exampleFormControlSelect1">
+                                    <select class="form-control" name="sex" id="exampleFormControlSelect1">
                                         <option value="male">Male</option>
                                         <option value="famle">Famle</option>
                                     </select>
-                                    @error('gendor')
+                                    @error('sex')
                                         <div style="color: rgba(255, 0, 0, 0.692)" class="form-text">{{ $message }}</div>
                                     @enderror
                                 </div>

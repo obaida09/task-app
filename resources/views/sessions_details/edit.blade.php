@@ -28,40 +28,8 @@
                         enctype="multipart/form-data">
                         @csrf
                         @method('PATCH')
+
                         <div class="row">
-                            <div class="col-md-6">
-                                <label>Copmplaint or Offer</label>
-                                <div class="input-group input-group-outline mb-3">
-                                    <input type="text" name="offer" value="{{ old('offer', $session_details->offer) }}"
-                                        class="form-control">
-                                </div>
-                                @error('offer')
-                                    <div style="color: rgba(255, 0, 0, 0.692)" class="form-text">{{ $message }}</div>
-                                @enderror
-                            </div>
-                            <div class="col-md-6">
-                                <label>Shock Moment</label>
-                                <div class="input-group input-group-outline mb-3">
-                                    <input type="text" name="shock_moment"
-                                        value="{{ old('shock_moment', $session_details->shock_moment) }}"
-                                        class="form-control">
-                                </div>
-                                @error('shock_moment')
-                                    <div style="color: rgba(255, 0, 0, 0.692)" class="form-text">{{ $message }}</div>
-                                @enderror
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label>Tretment</label>
-                                <div class="input-group input-group-outline mb-3">
-                                    <input type="text" name="tretment"
-                                        value="{{ old('tretment', $session_details->tretment) }}" class="form-control">
-                                </div>
-                                @error('tretment')
-                                    <div style="color: rgba(255, 0, 0, 0.692)" class="form-text">{{ $message }}</div>
-                                @enderror
-                            </div>
                             <div class="col-md-6">
                                 <label>Select Session</label>
                                 <div class="input-group input-group-outline mb-3">
@@ -77,8 +45,6 @@
                                     @enderror
                                 </div>
                             </div>
-                        </div>
-                        <div class="row">
                             <div class="col-md-6">
                                 <label>Upload Files</label>
                                 <div class="input-group input-group-outline mb-3">
@@ -88,7 +54,9 @@
                                     <div style="color: rgba(255, 0, 0, 0.692)" class="form-text">{{ $message }}</div>
                                 @enderror
                             </div>
-                            <div class="col-md-6">
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
                                 <label>Share With Communtiy</label>
                                 <div class="input-group input-group-outline mb-3">
                                     <select class="form-control" name="marital_status">

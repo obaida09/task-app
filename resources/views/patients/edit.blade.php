@@ -73,26 +73,32 @@
                                 @enderror
                             </div>
                         </div>
+                        
+                        
                         <div class="row">
                             <div class="col-md-6">
-                                <label>Sex</label>
+                                <label class="">Sex</label>
                                 <div class="input-group input-group-outline mb-3">
-                                    <input type="text" value="{{ old('gendor', $patient->gendor) }}" name="gendor"
-                                        class="form-control">
+                                    <select class="form-control" name="sex" id="exampleFormControlSelect1">
+                                        <option @if($patient->sex == 'male') selected @endif value="male">Male</option>
+                                        <option @if($patient->sex == 'famle') selected @endif value="famle">Famle</option>
+                                    </select>
+                                    @error('sex')
+                                        <div style="color: rgba(255, 0, 0, 0.692)" class="form-text">{{ $message }}</div>
+                                    @enderror
                                 </div>
-                                @error('gendor')
-                                    <div style="color: rgba(255, 0, 0, 0.692)" class="form-text">{{ $message }}</div>
-                                @enderror
                             </div>
                             <div class="col-md-6">
-                                <label>Domination</label>
+                                <label class="">Side Dominance</label>
                                 <div class="input-group input-group-outline mb-3">
-                                    <input type="text" value="{{ old('domination', $patient->domination) }}"
-                                        name="domination" class="form-control">
+                                    <select class="form-control" name="side_dominance" id="exampleFormControlSelect1">
+                                        <option @if($patient->side_dominance == 'left')  selected @endif value="left">Left</option>
+                                        <option @if($patient->side_dominance == 'right') selected @endif value="right">Right</option>
+                                    </select>
+                                    @error('side_dominance')
+                                        <div style="color: rgba(255, 0, 0, 0.692)" class="form-text">{{ $message }}</div>
+                                    @enderror
                                 </div>
-                                @error('domination')
-                                    <div style="color: rgba(255, 0, 0, 0.692)" class="form-text">{{ $message }}</div>
-                                @enderror
                             </div>
                         </div>
                         <input type="hidden" id="patient_debts" value="{{ $patient->patient_debts }}" name="patient_debts">
