@@ -9,28 +9,50 @@
                     </div>
                 </div>
                 <div class="card-body px-4 pb-2 py-4">
+                
+                    <div class="row border pb-2 mx-1 pt-2">
+                        <div class="col-4">
+                            <span>Session's Number</span>
+                            <select id="session_num" class="px-1  mx-1">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10">10</option>
+                            </select>
+                        </div>
+                        <div class="col-4 px-5">
+                            <span>Discount</span>
+                            <select id="discount" class=" mx-1">
+                                <option value="0">0%</option>
+                                <option value="10">10%</option>
+                                <option value="20">20%</option>
+                                <option value="30">30%</option>
+                                <option value="40">40%</option>
+                                <option value="50">50%</option>
+                                <option value="60">60%</option>
+                                <option value="70">70%</option>
+                                <option value="80">80%</option>
+                                <option value="90">90%</option>
+                                <option value="100">100%</option>
+                            </select>
+                        </div>
+                        <div class="col-4 px-6">
+                            <div>Price = <span id="price" value-3="{{ auth()->user()->session_price }}"> {{ auth()->user()->session_price }}</span><span class="fs-7 fw-bolder text-blue"> IQD</span></div>
+                        </div>
+                    </div>
+                
                     <form action="{{ route('session.store') }}" method="post">
                         @csrf
-                        <div class="row">
-                            <div class="col-12">
-                                <span>Session's Number</span>
-                                <select id="session_num" class="px-1 mt-2 mx-1">
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5</option>
-                                    <option value="6">6</option>
-                                    <option value="7">7</option>
-                                    <option value="8">8</option>
-                                    <option value="9">9</option>
-                                    <option value="10">10</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="row">
+                        <div class="row mt-4">
                             <div class="col-md-6">
-                                <div class="input-group input-group-outline date my-3" id="copy">
+                                <label>Date & Time</label>
+                                <div class="input-group input-group-outline date mb-3" id="copy">
                                     <input type="text" class="form-control" name="date_time[]" value="20-10-10 12:00 AM" />
                                 </div>
                                 @error('date_time')
@@ -39,7 +61,8 @@
                             </div>
 
                             <div class="col-md-6">
-                                <div class="input-group input-group-outline my-3">
+                                <label>Select Patient</label>
+                                <div class="input-group input-group-outline mb-3">
                                     <select class="form-control" name="patient_id">
                                         @foreach ($patient as $item)
                                             <option value="{{ $item->id }}">{{ $item->name }}</option>
@@ -53,9 +76,10 @@
                         </div>
                         <div class="put"></div>
                         
-                        <div class="row">
+                        <div class="row mt-3">
                             <div class="col-md-6">
-                                <div class="input-group input-group-outline my-3">
+                                <label>Session's Status</label>
+                                <div class="input-group input-group-outline mb-3">
                                     <select class="form-control" name="session_status">
                                         <option value="pending">Pending</option>
                                         <option value="attended">Attended</option>
@@ -68,7 +92,8 @@
                             </div>
                             
                             <div class="col-md-6">
-                                <div class="input-group input-group-outline my-3">
+                                <label>Payment Status</label>
+                                <div class="input-group input-group-outline mb-3">
                                     <select class="form-control" name="payment_status">
                                         <option value="paid">Paid</option>
                                         <option value="not_paid">not Paid Yet</option>
@@ -79,7 +104,7 @@
                                 </div>
                             </div>
                         </div>
-                        
+                        <input type="hidden" id="patient_debts" name='patient_debts' value="{{ auth()->user()->session_price }}">
                         <div class="form-group pt-4">
                             <button type="submit" class="btn btn-primary">Add Session</button>
                         </div>
@@ -107,13 +132,24 @@
             });
 
             $('#session_num').on('change', function() {
-                let input_num = $(this).val();
-                console.log(input_num)
                 $('.put').empty();
-                for (var i=1; i < input_num; i++) {
-                    console.log(i)
+                for (var i=1; i < $(this).val(); i++) {
                     $(".date:first").clone().appendTo(".put");
                 }
+                
+                let price = {{ auth()->user()->session_price }};
+                let pr = i * price;
+                $('#price').html(pr);
+                $('#price').attr("value-3", pr)
+                $('#patient_debts').val(pr)
+                $('#discount option:first').prop('selected',true);
+            });
+            
+            $('#discount').on('change', function() {   
+                let price = $('#price').attr("value-3")
+                let price_after = price - (price * $(this).val()/100)
+                $('#price').html(price_after);   
+                $('#patient_debts').val(price_after)
             });
         </script>
     @endpush

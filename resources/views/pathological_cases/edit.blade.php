@@ -14,7 +14,8 @@
                         @method('PATCH')
                         <div class="row">
                             <div class="col-md-6">
-                                <div class="input-group input-group-outline my-3">
+                                <label>Category</label>
+                                <div class="input-group input-group-outline mb-3">
                                     <select class="form-control" id="category">
                                         @foreach ($category as $item)
                                             <option value="{{ $item->id }}">{{ $item->name }}</option>
@@ -23,7 +24,8 @@
                                 </div>
                             </div>
                             <div class="col-md-6">
-                                <div class="input-group input-group-outline my-3">
+                                <label>Sub Category</label>
+                                <div class="input-group input-group-outline mb-3">
                                     <select class="form-control" name="category_id" id="sub_category">
                                         <option value="{{ $pathologicalCase->category_id }}">{{ $pathologicalCase->category->name }}</option>
                                     </select>
@@ -35,11 +37,22 @@
                         </div>
                         <div class="row">
                             <div class="col-md-12">
-                                <div class="input-group input-group-outline my-3">
-                                    <label class="form-label">Pathological Case</label>
-                                    <textarea name="content" class="form-control">{{ old('age', $pathologicalCase->content) }}</textarea>
+                                <label class="">Pathological Case</label>
+                                <div class="input-group input-group-outline mb-3">
+                                    <textarea name="content" class="form-control">{{ old('content', $pathologicalCase->content) }}</textarea>
                                 </div>
                                 @error('content')
+                                    <div style="color: rgba(255, 0, 0, 0.692)" class="form-text">{{ $message }}</div>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label class="">Key Words</label>
+                                <div class="input-group input-group-outline mb-3">
+                                    <textarea name="key_word" rows="4" class="form-control">{{ old('key_word', $pathologicalCase->key_word) }}</textarea>
+                                </div>
+                                @error('key_word')
                                     <div style="color: rgba(255, 0, 0, 0.692)" class="form-text">{{ $message }}</div>
                                 @enderror
                             </div>

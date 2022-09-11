@@ -30,7 +30,7 @@
                                 <div class="d-flex flex-row mt-4 px-3 ellipsis"> 
                                 <small class="mx-2">{{ $item->posted_at }}</small> 
                                 @if (auth()->user()->is_admin == 1)
-                                    <a href="{{ route('remove_from_communtiy', $item->id) }}" class="mr-2"><i class="fa-solid fa-xmark"></i></a>
+                                    <a href="{{ route('accept_post_communtiy', $item->id) }}" class="pr-2"><i class="fa-solid fa-check"></i></a>
                                 @endif
                             </div>
                             </div>
@@ -43,18 +43,18 @@
                         <div class="px-5">
                             <div onclick="show_comment({{ $item->id }})" id="arrow"><i
                                     class="fas fa-chevron-down"></i></div>
-                            <div class="comments-{{ $item->id }} hid mt-3">
+                            {{-- <div class="comments-{{ $item->id }} hid mt-3">
                                 @comments([
                                     'model' => $item,
                                 ])
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     @endforeach
-    @push('js')
+    {{-- @push('js')
         <script>
             function show_comment(id) {
                 $(".comments-" + id).toggleClass("show").toggleClass("hid");
@@ -68,5 +68,5 @@
                 }
             };
         </script>
-    @endpush
+    @endpush --}}
 @endsection

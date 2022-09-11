@@ -16,6 +16,7 @@ class CreatePathologicalCasesTable extends Migration
         Schema::create('pathological_cases', function (Blueprint $table) {
             $table->id();
             $table->longText('content');
+            $table->longText('key_word');
             $table->foreignId('category_id')->constrained()->cascadeOnDelete();
             $table->timestamps();
         });

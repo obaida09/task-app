@@ -14,7 +14,7 @@
     <div class="collapse navbar-collapse  w-auto " id="sidenav-collapse-main">
         <ul class="navbar-nav">
             <li class="nav-item">
-                <a class="nav-link text-white {{ request()->path() == 'home' ? 'active' : '' }}"
+                <a class="nav-link text-white {{ request()->path() == '/' ? 'active' : '' }}"
                     href="{{ route('home') }}">
                     <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                         <i class="material-icons opacity-10">dashboard</i>
@@ -32,6 +32,15 @@
                 </a>
             </li>
             @if (auth()->user()->is_admin)
+                <li class="nav-item">
+                    <a class="nav-link text-white {{ request()->path() == 'communtiy/inActive' ? 'active' : '' }}"
+                        href="{{ route('inActive') }}">
+                        <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                            <i class="fa-solid fa-comments"></i>
+                        </div>
+                        <span class="nav-link-text ms-1">In Active Post</span>
+                    </a>
+                </li>
                 <li class="nav-item">
                     <a class="nav-link text-white {{ request()->path() == 'category' ? 'active' : '' }}"
                         href="{{ route('category.index') }}">
@@ -78,15 +87,6 @@
                         <i class="material-icons opacity-10">table_view</i>
                     </div>
                     <span class="nav-link-text ms-1">The Session's</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-white {{ request()->path() == 'today' ? 'active' : '' }}"
-                    href="{{ route('session.today') }}">
-                    <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="material-icons opacity-10">table_view</i>
-                    </div>
-                    <span class="nav-link-text ms-1">Today Session's</span>
                 </a>
             </li>
             <li class="nav-item">

@@ -14,81 +14,55 @@ class CategoryController extends Controller
     {
         $this->middleware('isAdmin'); 
     }
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index(CategoryDatatable $category)
     {
         return $category->render('categories.index');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function create()
     {
         $main_categories = Category::whereNull('parent_id')->get(['id', 'name']);
         return view('categories.create', compact('main_categories'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \App\Http\Requests\StoreCategoryRequest  $request
-     * @return \Illuminate\Http\Response
-     */
+
     public function store(StoreCategoryRequest $request)
     {
-        Category::create($request->validated());
+        $data = $request->validated();
+        if($data['parent_id'] == 0) {
+            unset($data['parent_id']);
+        }
+        Category::create($data);
         return redirect()->route('category.index')->with('message','Category Created successfully');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Category  $category
-     * @return \Illuminate\Http\Response
-     */
+
     public function show(Category $category)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Category  $category
-     * @return \Illuminate\Http\Response
-     */
+
     public function edit(Category $category)
     {
         $main_categories = Category::whereNull('parent_id')->get(['id', 'name']);
         return view('categories.edit', compact('main_categories', 'category'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \App\Http\Requests\UpdateCategoryRequest  $request
-     * @param  \App\Models\Category  $category
-     * @return \Illuminate\Http\Response
-     */
+
     public function update(UpdateCategoryRequest $request, Category $category)
     {
-        $category->update($request->validated());
+        $data = $request->validated();
+        if($data['parent_id'] == 0) {
+            unset($data['parent_id']);
+        }
+        $category->update($data);
         return redirect()->route('category.index')->with('message','Category Updated successfully');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Category  $category
-     * @return \Illuminate\Http\Response
-     */
+
     public function destroy(Category $category)
     {
         $category->delete();

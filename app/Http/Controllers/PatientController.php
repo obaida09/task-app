@@ -84,6 +84,7 @@ class PatientController extends Controller
         {
             $data = $request->validated();
             $data['user_id'] = auth()->user()->id;
+            dd($data);
             $patient->update($data);
             return redirect()->route('patient.index')->with('message','Patient updated successfully');
         }

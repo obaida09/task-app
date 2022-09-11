@@ -30,4 +30,8 @@
     integrity="sha512-naukR7I+Nk6gp7p5TMA4ycgfxaZBJ7MO5iC3Fp6ySQyKFHOGfpkSZkYVWV5R7u7cfAicxanwYQ5D1e17EfJcMA=="
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-
+<script>
+    if ($('.form-control').val()) {
+        $('.input-group').addClass( 'focused').addClass('is-focused');
+    }
+</script>

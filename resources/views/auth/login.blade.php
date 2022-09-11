@@ -14,8 +14,8 @@
                         @csrf
                         <div class="row">
                             <div class="col-md-12">
-                                <div class="input-group input-group-outline my-3">
-                                    <label class="form-label">Email</label>
+                                <label class="">Email</label>
+                                <div class="input-group input-group-outline mb-3">
                                     <input id="email" type="email"
                                         class="form-control @error('email') is-invalid @enderror" name="email"
                                         value="{{ old('email') }}" required autocomplete="email" autofocus>
@@ -29,8 +29,8 @@
                         </div>
                         <div class="row">
                             <div class="col-md-12">
-                                <div class="input-group input-group-outline my-3">
-                                    <label class="form-label">Passowrd</label>
+                                <label class="">Passowrd</label>
+                                <div class="input-group input-group-outline mb-3">
                                     <input id="password" type="password"
                                         class="form-control @error('password') is-invalid @enderror" name="password"
                                         required autocomplete="current-password">

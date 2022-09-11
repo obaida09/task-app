@@ -42,7 +42,8 @@ class SessionController extends Controller
                 'session_status' => $request->session_status,
                 'payment_status' => $request->payment_status,
             ];
-            Session::create($data);
+            $id = Session::create($data);
+            Patient::where('id' , $id->patient_id)->update(['patient_debts' => $request->patient_debts]);
         }
         return redirect()->route('session.index')->with('message','Session created successfully');
     }

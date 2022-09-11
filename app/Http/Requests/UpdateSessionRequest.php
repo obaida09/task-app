@@ -24,8 +24,8 @@ class UpdateSessionRequest extends FormRequest
     public function rules()
     {
         return [
-            'date_time'     => 'required',
-            'patient_id'    => 'required',
+            'date_time'      => 'required',
+            'patient_id'     => 'required',
         ];
     }
 }

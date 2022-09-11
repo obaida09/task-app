@@ -23,17 +23,21 @@ use App\Http\Controllers\PathologicalCaseController;
 
 Route::get('/welcome', function () {
     return view('welcome');
-})->middleware('auth');
+})->middleware('auth')->name('welcome');
 
 Auth::routes();
 
 
-Route::middleware(['isActive', 'auth'])->group(function () 
+Route::middleware(['isActive', 'auth'])->group(function ()
 {
     Route::get('/', [HomeController::class, 'index'])->name('home');
-    Route::get('/communtiy', [HomeController::class, 'communtiy'])->name('communtiy');
-    Route::get('remove-file/{id}' , [SessionDetailsController::class  , 'remove_file'])->name('remove_file');
-    Route::get('remove-post/{id}' , [HomeController::class  , 'remove_from_communtiy'])->name('remove_from_communtiy');
+    Route::get('/home', [HomeController::class, 'index']);
+    Route::get('/communtiy'          , [HomeController::class            , 'communtiy'])->name('communtiy');
+    Route::get('/communtiy/inActive' , [HomeController::class            , 'inActive'])->name('inActive');
+    Route::get('remove-file/{id}'    , [SessionDetailsController::class  , 'remove_file'])->name('remove_file');
+    Route::get('remove-post/{id}'    , [HomeController::class            , 'remove_from_communtiy'])->name('remove_from_communtiy');
+    Route::get('accept-post/{id}'    , [HomeController::class            , 'accept_post_communtiy'])->name('accept_post_communtiy');
+    Route::get('sub_category'        , [CategoryController::class        , 'sub_category'])->name('sub_category');
     
     Route::resource('healer'              , HealerController::class);
     Route::resource('patient'             , PatientController::class);
@@ -42,6 +46,4 @@ Route::middleware(['isActive', 'auth'])->group(function ()
     Route::resource('category'            , CategoryController::class);
     Route::resource('pathological_case'   , PathologicalCaseController::class);
     
-    Route::get('sub_category', [CategoryController::class, 'sub_category'])->name('sub_category');
-    Route::get('today', [SessionController::class, 'session_today'])->name('session.today');
 });

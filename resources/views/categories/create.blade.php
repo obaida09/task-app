@@ -25,7 +25,7 @@
                             <div class="col-md-6">
                                 <div class="input-group input-group-outline my-3">
                                     <select class="form-control" name="parent_id" id="exampleFormControlSelect1">
-                                        <option>Select Category ... </option>
+                                        <option value="0">Select Category ... </option>
                                         @foreach ($main_categories as $main_category)
                                         <option value="{{ $main_category->id }}" {{ old('parent_id') == $main_category->id ? 'selected' : null }}>{{ $main_category->name }}</option>
                                         @endforeach

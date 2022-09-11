@@ -19,6 +19,7 @@ class CreatePatientsTable extends Migration
             $table->string('age');
             $table->string('mobile');
             $table->string('address');
+            $table->string('patient_debts');
             $table->enum('gendor', ['male', 'famle']);
             $table->enum('domination', ['left', 'right']);
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();

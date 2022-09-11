@@ -29,7 +29,10 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    // protected $redirectTo = RouteServiceProvider::HOME;
+    public function redirectTo(){
+        return route('home');
+    }
 
     /**
      * Create a new controller instance.
@@ -87,20 +90,9 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        // return User::create([
-        //     'name' => $data['name'],
-        //     'email' => $data['email'],
-        //     'gendor' => $data['gendor'],
-        //     'mobile' => $data['mobile'],
-        //     'age' => $data['age'],
-        //     'academic_achievement' => $data['academic_achievement'],
-        //     'password' => Hash::make($data['password']),
-        // ]);
-        
-        
         $data['password'] = Hash::make($data['password']);
         unset($data['password_confirmation']);
-        // dd($data);
+
         return User::create($data);
     }
 }

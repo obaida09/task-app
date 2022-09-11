@@ -26,6 +26,7 @@ class UpdatePathologicalCaseRequest extends FormRequest
         return [
             'content'     => 'required',
             'category_id' => 'required',
+            'key_word'    => 'required',
         ];
     }
 }

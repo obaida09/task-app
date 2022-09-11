@@ -14,8 +14,8 @@
                     @csrf
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="input-group input-group-outline my-3">
-                                <label class="form-label">Name</label>
+                            <label class="">Name</label>
+                            <div class="input-group input-group-outline mb-3">
                                 <input id="name" type="text"
                                     class="form-control @error('name') is-invalid @enderror" name="name"
                                     value="{{ old('name') }}" required autocomplete="name" autofocus>
@@ -29,8 +29,8 @@
                     </div>
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="input-group input-group-outline my-3">
-                                <label class="form-label">Email</label>
+                            <label class="">Email</label>
+                            <div class="input-group input-group-outline mb-3">
                                 <input id="email" type="email"
                                     class="form-control @error('email') is-invalid @enderror" name="email"
                                     value="{{ old('email') }}" required autocomplete="email" autofocus>
@@ -44,8 +44,8 @@
                     </div>
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="input-group input-group-outline my-3">
-                                <label class="form-label">Passowrd</label>
+                            <label class="">Passowrd</label>
+                            <div class="input-group input-group-outline mb-3">
                                 <input id="password" type="password"
                                     class="form-control @error('password') is-invalid @enderror" name="password"
                                     required autocomplete="current-password">
@@ -59,8 +59,8 @@
                     </div>
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="input-group input-group-outline my-3">
-                                <label class="form-label">Confirm Passowrd</label>
+                            <label class="">Confirm Passowrd</label>
+                            <div class="input-group input-group-outline mb-3">
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
                             </div>
                         </div>
@@ -68,8 +68,8 @@
     
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="input-group input-group-outline my-3">
-                                <label class="form-label">Age</label>
+                            <label class="">Age</label>
+                            <div class="input-group input-group-outline mb-3">
                                 <input id="age" type="text"
                                     class="form-control @error('age') is-invalid @enderror" name="age"
                                     value="{{ old('age') }}" required autocomplete="name" autofocus>
@@ -83,11 +83,12 @@
                     </div>
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="input-group input-group-outline my-3">
-                                <label class="form-label">Side Dominance</label>
-                                <input id="name" type="text"
-                                    class="form-control @error('name') is-invalid @enderror" name="side_dominance"
-                                    value="{{ old('side_dominance') }}" required autocomplete="name" autofocus>
+                            <label class="">Side Dominance</label>
+                            <div class="input-group input-group-outline mb-3">
+                                <select class="form-control" name="side_dominance" id="exampleFormControlSelect1">
+                                    <option value="right">Right</option>
+                                    <option value="left">Left</option>
+                                </select>
                             </div>
                             @error('side_dominance')
                                 <span class="invalid-feedback" role="alert">
@@ -99,8 +100,8 @@
                     
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="input-group input-group-outline my-3">
-                                <label class="form-label">Sex (Hormonal Status)</label>
+                            <label class="">Sex (Hormonal Status)</label>
+                            <div class="input-group input-group-outline mb-3">
                                 <select class="form-control" name="sex" id="exampleFormControlSelect1">
                                     <option value="male">Male</option>
                                     <option value="famle">Famle</option>
@@ -113,8 +114,8 @@
                     </div>
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="input-group input-group-outline my-3">
-                                <label class="form-label">Mobile</label>
+                            <label class="">Mobile</label>
+                            <div class="input-group input-group-outline mb-3">
                                 <input id="name" type="text"
                                     class="form-control @error('name') is-invalid @enderror" name="mobile"
                                     value="{{ old('name') }}" required autocomplete="name" autofocus>
@@ -128,8 +129,8 @@
                     </div>
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="input-group input-group-outline my-3">
-                                <label class="form-label">Current Medications (Treatements)</label>
+                            <label class="">Current Medications (Treatements)</label>
+                            <div class="input-group input-group-outline mb-3">
                                 <input id="name" type="text"
                                     class="form-control @error('name') is-invalid @enderror" name="treatments"
                                     value="{{ old('treatments') }}" required autocomplete="name" autofocus>
@@ -143,8 +144,8 @@
                     </div>
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="input-group input-group-outline my-3">
-                                <label class="form-label">Sumptom</label>
+                            <label class="">Sumptom</label>
+                            <div class="input-group input-group-outline mb-3">
                                 <input id="name" type="text"
                                     class="form-control @error('name') is-invalid @enderror" name="symptom"
                                     value="{{ old('symptom') }}" required autocomplete="name" autofocus>
@@ -158,8 +159,8 @@
                     </div>
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="input-group input-group-outline my-3">
-                                <label class="form-label"> What is the Biological Theme (Function)</label>
+                            <label class=""> What is the Biological Theme (Function)</label>
+                            <div class="input-group input-group-outline mb-3">
                                 <input id="name" type="text"
                                     class="form-control @error('name') is-invalid @enderror" name="function"
                                     value="{{ old('function') }}" required autocomplete="name" autofocus>
@@ -173,8 +174,8 @@
                     </div>
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="input-group input-group-outline my-3">
-                                <label class="form-label">What Emotions are connected</label>
+                            <label class="">What Emotions are connected</label>
+                            <div class="input-group input-group-outline mb-3">
                                 <input id="name" type="text"
                                     class="form-control @error('name') is-invalid @enderror" name="emotions_plan"
                                     value="{{ old('emotions_plan') }}" required autocomplete="name" autofocus>
@@ -188,8 +189,8 @@
                     </div>
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="input-group input-group-outline my-3">
-                                <label class="form-label"> What are the connected Beliefs</label>
+                            <label class=""> What are the connected Beliefs</label>
+                            <div class="input-group input-group-outline mb-3">
                                 <input id="name" type="text"
                                     class="form-control @error('name') is-invalid @enderror" name="connected_beliefs"
                                     value="{{ old('connected_beliefs') }}" required autocomplete="name" autofocus>
@@ -203,8 +204,8 @@
                     </div>
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="input-group input-group-outline my-3">
-                                <label class="form-label">What is the META-Meaning</label>
+                            <label class="">What is the META-Meaning</label>
+                            <div class="input-group input-group-outline mb-3">
                                 <input id="name" type="text"
                                     class="form-control @error('name') is-invalid @enderror" name="meta_meaning"
                                     value="{{ old('meta_meaning') }}" required autocomplete="name" autofocus>
@@ -218,8 +219,8 @@
                     </div>
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="input-group input-group-outline my-3">
-                                <label class="form-label">UDIN Moment</label>
+                            <label class="">UDIN Moment</label>
+                            <div class="input-group input-group-outline mb-3">
                                 <input id="name" type="text"
                                     class="form-control @error('name') is-invalid @enderror" name="udin_moment"
                                     value="{{ old('udin_moment') }}" required autocomplete="name" autofocus>
@@ -233,8 +234,8 @@
                     </div>
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="input-group input-group-outline my-3">
-                                <label class="form-label">Strss Triggers (VAKOGS)</label>
+                            <label class="">Strss Triggers (VAKOGS)</label>
+                            <div class="input-group input-group-outline mb-3">
                                 <input id="name" type="text"
                                     class="form-control @error('name') is-invalid @enderror" name="vakogs"
                                     value="{{ old('vakogs') }}" required autocomplete="name" autofocus>
@@ -248,8 +249,8 @@
                     </div>
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="input-group input-group-outline my-3">
-                                <label class="form-label"> Stress Phase Symptoms</label>
+                            <label class=""> Stress Phase Symptoms</label>
+                            <div class="input-group input-group-outline mb-3">
                                 <input id="name" type="text"
                                     class="form-control @error('name') is-invalid @enderror" name="symptoms"
                                     value="{{ old('symptoms') }}" required autocomplete="name" autofocus>
@@ -263,8 +264,8 @@
                     </div>
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="input-group input-group-outline my-3">
-                                <label class="form-label"> Regeneration Trigger</label>
+                            <label class=""> Regeneration Trigger</label>
+                            <div class="input-group input-group-outline mb-3">
                                 <input id="name" type="text"
                                     class="form-control @error('name') is-invalid @enderror" name="regeneration_trigger"
                                     value="{{ old('regeneration_trigger') }}" required autocomplete="name" autofocus>
@@ -278,8 +279,8 @@
                     </div>
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="input-group input-group-outline my-3">
-                                <label class="form-label"> Regeneration Phase A Symptoms</label>
+                            <label class=""> Regeneration Phase A Symptoms</label>
+                            <div class="input-group input-group-outline mb-3">
                                 <input id="name" type="text"
                                     class="form-control @error('name') is-invalid @enderror" name="regeneration_symptoms_a"
                                     value="{{ old('regeneration_symptoms_a') }}" required autocomplete="name" autofocus>
@@ -293,8 +294,8 @@
                     </div>
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="input-group input-group-outline my-3">
-                                <label class="form-label"> Healing Peak/s Symptoms</label>
+                            <label class=""> Healing Peak/s Symptoms</label>
+                            <div class="input-group input-group-outline mb-3">
                                 <input id="name" type="text"
                                     class="form-control @error('name') is-invalid @enderror" name="healing_symptoms"
                                     value="{{ old('healing_symptoms') }}" required autocomplete="name" autofocus>
@@ -308,8 +309,8 @@
                     </div>
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="input-group input-group-outline my-3">
-                                <label class="form-label"> Regeneration Phase B Symptoms</label>
+                            <label class=""> Regeneration Phase B Symptoms</label>
+                            <div class="input-group input-group-outline mb-3">
                                 <input id="name" type="text"
                                     class="form-control @error('name') is-invalid @enderror" name="regeneration_symptoms_b"
                                     value="{{ old('regeneration_symptoms_b') }}" required autocomplete="name" autofocus>
@@ -323,8 +324,8 @@
                     </div>
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="input-group input-group-outline my-3">
-                                <label class="form-label">META-Health Practice</label>
+                            <label class="">META-Health Practice</label>
+                            <div class="input-group input-group-outline mb-3">
                                 <input id="name" type="text"
                                     class="form-control @error('name') is-invalid @enderror" name="meta_practice"
                                     value="{{ old('meta_practice') }}" required autocomplete="name" autofocus>
@@ -338,8 +339,8 @@
                     </div>
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="input-group input-group-outline my-3">
-                                <label class="form-label">Action (Transformation Plan)</label>
+                            <label class="">Action (Transformation Plan)</label>
+                            <div class="input-group input-group-outline mb-3">
                                 <input id="name" type="text"
                                     class="form-control @error('name') is-invalid @enderror" name="action"
                                     value="{{ old('action') }}" required autocomplete="name" autofocus>
@@ -353,8 +354,8 @@
                     </div>
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="input-group input-group-outline my-3">
-                                <label class="form-label"> Follow-Up</label>
+                            <label class=""> Follow-Up</label>
+                            <div class="input-group input-group-outline mb-3">
                                 <input id="name" type="text"
                                     class="form-control @error('name') is-invalid @enderror" name="follow_up"
                                     value="{{ old('follow_up') }}" required autocomplete="name" autofocus>
@@ -368,8 +369,8 @@
                     </div>
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="input-group input-group-outline my-3">
-                                <label class="form-label"> Additional Information</label>
+                            <label class=""> Additional Information</label>
+                            <div class="input-group input-group-outline mb-3">
                                 <input id="name" type="text"
                                     class="form-control @error('name') is-invalid @enderror" name="information"
                                     value="{{ old('information') }}" required autocomplete="name" autofocus>
@@ -383,8 +384,8 @@
                     </div>
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="input-group input-group-outline my-3">
-                                <label class="form-label">Associations</label>
+                            <label class="">Associations</label>
+                            <div class="input-group input-group-outline mb-3">
                                 <input id="name" type="text"
                                     class="form-control @error('name') is-invalid @enderror" name="associations"
                                     value="{{ old('associations') }}" required autocomplete="name" autofocus>
