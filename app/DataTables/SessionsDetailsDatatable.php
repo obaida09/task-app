@@ -76,7 +76,7 @@ class SessionsDetailsDatatable extends DataTable
             Column::make('offer'),
             Column::make('shock_moment'),
             Column::make('tretment'),
-            Column::make('session_notes'),
+            // Column::make('session_notes'),
             Column::make('created_at'),
             Column::make('updated_at'),
             Column::computed('action')

@@ -15,13 +15,13 @@
                                 class="fs-7 fw-bolder text-blue"> IQD</span>
                         </div>
                         <div class="col-2">
-                            <div class="input-group input-group-outline my-0 focused is-focused">
+                            <div class="input-group input-group-outline my-0">
                                 <label class="form-label">Been Paid</label>
                                 <input type="text" value="" id="Paid" class="form-control">
                             </div>
                         </div>
                         <div class="col-4 mt-2">
-                            <div>Remaining amount = <span class="amount">0</span><span class="fs-7 fw-bolder text-blue">
+                            <div>Remaining amount = <span class="amount">{{ $patient->patient_debts }}</span><span class="fs-7 fw-bolder text-blue">
                                     IQD</span></div>
                         </div>
                     </div>
@@ -31,8 +31,8 @@
 
                         <div class="row mt-4">
                             <div class="col-md-6">
-                                <div class="input-group input-group-outline my-3">
-                                    <label class="form-label">Name</label>
+                                <label clasbel">Name</label>
+                                <div class="input-group input-group-outline mb-3">
                                     <input type="text" value="{{ old('name', $patient->name) }}" name="name"
                                         class="form-control">
                                 </div>
@@ -41,8 +41,8 @@
                                 @enderror
                             </div>
                             <div class="col-md-6">
-                                <div class="input-group input-group-outline my-3">
-                                    <label class="form-label">Age</label>
+                                <label>Age</label>
+                                <div class="input-group input-group-outline mb-3">
                                     <input type="text" value="{{ old('age', $patient->age) }}" name="age"
                                         class="form-control">
                                 </div>
@@ -53,8 +53,8 @@
                         </div>
                         <div class="row">
                             <div class="col-md-6">
-                                <div class="input-group input-group-outline my-3">
-                                    <label class="form-label">Address</label>
+                                <label>Address</label>
+                                <div class="input-group input-group-outline mb-3">
                                     <input type="text" value="{{ old('address', $patient->address) }}" name="address"
                                         class="form-control">
                                 </div>
@@ -63,8 +63,8 @@
                                 @enderror
                             </div>
                             <div class="col-md-6">
-                                <div class="input-group input-group-outline my-3">
-                                    <label class="form-label">Mobile</label>
+                                <label>Mobile</label>
+                                <div class="input-group input-group-outline mb-3">
                                     <input type="text" value="{{ old('mobile', $patient->mobile) }}" name="mobile"
                                         class="form-control">
                                 </div>
@@ -75,8 +75,8 @@
                         </div>
                         <div class="row">
                             <div class="col-md-6">
-                                <div class="input-group input-group-outline my-3">
-                                    <label class="form-label">Gendor</label>
+                                <label>Sex</label>
+                                <div class="input-group input-group-outline mb-3">
                                     <input type="text" value="{{ old('gendor', $patient->gendor) }}" name="gendor"
                                         class="form-control">
                                 </div>
@@ -85,8 +85,8 @@
                                 @enderror
                             </div>
                             <div class="col-md-6">
-                                <div class="input-group input-group-outline my-3">
-                                    <label class="form-label">Domination</label>
+                                <label>Domination</label>
+                                <div class="input-group input-group-outline mb-3">
                                     <input type="text" value="{{ old('domination', $patient->domination) }}"
                                         name="domination" class="form-control">
                                 </div>
@@ -95,7 +95,7 @@
                                 @enderror
                             </div>
                         </div>
-                        <input type="hidden" id="patient_debts" name="patient_debts">
+                        <input type="hidden" id="patient_debts" value="{{ $patient->patient_debts }}" name="patient_debts">
                         <div class="form-group pt-4">
                             <button type="submit" class="btn btn-primary">Edit Patient</button>
                         </div>

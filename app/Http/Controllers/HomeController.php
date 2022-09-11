@@ -44,24 +44,28 @@ class HomeController extends Controller
             $patient_lastWeek        = Patient::whereBetween('created_at', [$lastWeek, $today])->count();
             $session_count           = Session::count();
             $session_lastWeek        = Session::whereBetween('created_at', [$lastWeek, $today])->count();
-            $session_today           = Session::your_sessions()->whereDate('created_at', $today)->get();
-            $session_nextWeek        = Session::your_sessions()->whereBetween('created_at', [$today, $nextWeek])->get();
-            $session_nextTowWeek     = Session::your_sessions()->whereBetween('created_at', [$today, $nextTowWeek])->get();
-            $session_nextMonth       = Session::your_sessions()->whereBetween('created_at', [$today, $nextMonth])->get();
+            
+            if(Session::your_sessions()->count() > 0) {
+                $session_today           = Session::your_sessions()->whereDate('created_at', $today)->count();
+                $session_nextWeek        = Session::your_sessions()->whereBetween('created_at', [$today, $nextWeek])->count();
+                $session_nextTowWeek     = Session::your_sessions()->whereBetween('created_at', [$today, $nextTowWeek])->count();
+                $session_nextMonth       = Session::your_sessions()->whereBetween('created_at', [$today, $nextMonth])->count();
+            }
             $pathological_case_count = PathologicalCase::count();
             $post_count              = sessionDetails::where('accept', '1')->count();
             $post_inactive_count     = sessionDetails::where('accept', '0')->count();
         }
         else 
         {
-            $patient_count         = Patient::your_patients()->count();
-            $patient_lastWeek      = Patient::your_patients()->whereBetween('created_at', [$lastWeek, $today])->count();
-            $session_not_attended  = Session::your_sessions()->where('session_status', 'not_attended')->count();
-            $session_attended      = Session::your_sessions()->where('session_status', 'attended')->count();
-            $session_pending       = Session::your_sessions()->where('session_status', 'pending')->count();   
-            // $session_today      = Session::your_sessions()->whereDate('created_at', $today)->get();
-            // $session_nextWeek   = Session::your_sessions()->whereBetween('created_at', [$today, $nextWeek])->get();
-            // $session_nextMonth  = Session::your_sessions()->whereBetween('created_at', [$today, $nextMonth])->get();
+            $patient_count        = Patient::your_patients()->count();
+            $patient_lastWeek     = Patient::your_patients()->whereBetween('created_at', [$lastWeek, $today])->count();
+            $session_not_attended = Session::your_sessions()->where('session_status', 'not_attended')->count();
+            $session_attended     = Session::your_sessions()->where('session_status', 'attended')->count();
+            $session_pending      = Session::your_sessions()->where('session_status', 'pending')->count();   
+            // $session_today        = Session::your_sessions()->whereDate('created_at', $today)->count();
+            // $session_nextWeek     = Session::your_sessions()->whereBetween('created_at', [$today, $nextWeek])->count();
+            // $session_nextTowWeek  = Session::your_sessions()->whereBetween('created_at', [$today, $nextTowWeek])->count();
+            // $session_nextMonth    = Session::your_sessions()->whereBetween('created_at', [$today, $nextMonth])->count();
         }
         return view('home', get_defined_vars());
     }

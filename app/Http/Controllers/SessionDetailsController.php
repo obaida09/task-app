@@ -43,7 +43,9 @@ class SessionDetailsController extends Controller
     public function store(StoreSessionDetailsRequest $request)
     {
         $data = $request->validated();
-        $dataFiles = $data['files'];
+        if(isset( $data['files'])){
+            $dataFiles = $data['files'];
+        }
         unset($data['files']);
         $data['marital_status'] == 'public' ? $data['posted_at'] = Carbon::now() : '';
 
@@ -97,7 +99,9 @@ class SessionDetailsController extends Controller
     public function update(UpdateSessionDetailsRequest $request, SessionDetails $sessionDetails)
     {
         $data = $request->validated();
-        $dataFiles = $data['files'];
+        if(isset( $data['files'])){
+            $dataFiles = $data['files'];
+        }
         unset($data['files']);
         $data['marital_status'] == 'public' ? $data['posted_at'] = Carbon::now() : '';
         

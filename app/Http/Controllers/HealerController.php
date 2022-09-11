@@ -31,8 +31,8 @@ class HealerController extends Controller
 
     public function store(StoreHealerRequest $request)
     {
-        dd($validator->fails());
         $data = $request->validated();
+        // Add Hash Password
         $data['password'] = Hash::make($request->password);
         User::create($data);
         return redirect()->route('healer.index')->with('message','Healer created successfully');
@@ -62,13 +62,11 @@ class HealerController extends Controller
         {
             $data = $request->validated();
             unset($data['password']);
-
             // Add Password to data
             trim($request->password) != '' ? $data['password'] = Hash::make($request->password) : '';
             
             $healer->update($data);
-            // return back()->with('success','Item created successfully!');
-            return redirect()->route('healer.index')->with('message','Healer updated successfully!');
+            return redirect()->route('healer.index')->with('success','Healer updated successfully!');
         }
         return redirect('healer');
     }

@@ -13,8 +13,8 @@
                         @csrf
                         <div class="row">
                             <div class="col-md-6">
-                                <div class="input-group input-group-outline my-3">
-                                    <label class="form-label">Copmplaint or Offer</label>
+                                <label>Copmplaint or Offer</label>
+                                <div class="input-group input-group-outline mb-3">
                                     <input type="text" name="offer" class="form-control">
                                 </div>
                                 @error('offer')
@@ -22,8 +22,8 @@
                                 @enderror
                             </div>
                             <div class="col-md-6">
-                                <div class="input-group input-group-outline my-3">
-                                    <label class="form-label">Shock Moment</label>
+                                <label>Shock Moment</label>
+                                <div class="input-group input-group-outline mb-3">
                                     <input type="text" name="shock_moment" class="form-control">
                                 </div>
                                 @error('shock_moment')
@@ -31,10 +31,11 @@
                                 @enderror
                             </div>
                         </div>
+                        
                         <div class="row">
                             <div class="col-md-6">
-                                <div class="input-group input-group-outline my-3">
-                                    <label class="form-label">Tretment</label>
+                                <label>Tretment</label>
+                                <div class="input-group input-group-outline mb-3">
                                     <input type="text" name="tretment" class="form-control">
                                 </div>
                                 @error('tretment')
@@ -42,44 +43,54 @@
                                 @enderror
                             </div>
                             <div class="col-md-6">
-                                <div class="input-group input-group-outline my-3">
-                                    <label class="form-label">Session Notes</label>
-                                    <input type="text" name="session_notes" class="form-control">
+                                <label>Select Session</label>
+                                <div class="input-group input-group-outline mb-3">
+                                    <select class="form-control" name="session_id" id="exampleFormControlSelect1">
+                                        @foreach ($session as $item)
+                                            <option value="{{ $item->id }}">{{ $item->date_time }} => {{ $item->patient()->first()->name }}</option>
+                                        @endforeach
+                                    </select>
+                                    @error('session_id')
+                                        <div style="color: rgba(255, 0, 0, 0.692)" class="form-text">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Upload Files</label>
+                                <div class="input-group input-group-outline mb-3">
+                                    <input type="file" name="files[]" class="form-control" multiple>
+                                </div>
+                                @error('files')
+                                    <div style="color: rgba(255, 0, 0, 0.692)" class="form-text">{{ $message }}</div>
+                                @enderror
+                            </div>
+                            <div class="col-md-6">
+                                <label>Sahre With Communetiy</label>
+                                <div class="input-group input-group-outline mb-3">
+                                    <select class="form-control" name="marital_status" id="exampleFormControlSelect1">
+                                        <option value="private">Private</option>
+                                        <option value="public">Public</option>
+                                    </select>
+                                    @error('marital_status')
+                                        <div style="color: rgba(255, 0, 0, 0.692)" class="form-text">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label>Session Notes</label>
+                                <div class="input-group input-group-outline mb-3">
+                                    <textarea class="form-control" name="session_notes" id="" cols="30" rows="4"></textarea>
                                 </div>
                                 @error('session_notes')
                                     <div style="color: rgba(255, 0, 0, 0.692)" class="form-text">{{ $message }}</div>
                                 @enderror
                             </div>
-                        </div>
-                        
-                        <div class="input-group input-group-outline my-3">
-                            <select class="form-control" name="session_id" id="exampleFormControlSelect1">
-                                @foreach ($session as $item)
-                                    <option value="{{ $item->id }}">{{ $item->date_time }} => {{ $item->patient()->first()->name }}</option>
-                                @endforeach
-                            </select>
-                            @error('session_id')
-                                <div style="color: rgba(255, 0, 0, 0.692)" class="form-text">{{ $message }}</div>
-                            @enderror
-                        </div>
-                        <div class="col-md-6">
-                            <div class="input-group input-group-outline my-3">
-                                <label class="form-label">Tretment</label>
-                                <input type="file" name="files[]" class="form-control" multiple>
-                            </div>
-                            @error('files')
-                                <div style="color: rgba(255, 0, 0, 0.692)" class="form-text">{{ $message }}</div>
-                            @enderror
-                        </div>
-
-                        <div class="input-group input-group-outline my-3">
-                            <select class="form-control" name="marital_status" id="exampleFormControlSelect1">
-                                <option value="private">Private</option>
-                                <option value="public">Public</option>
-                            </select>
-                            @error('marital_status')
-                                <div style="color: rgba(255, 0, 0, 0.692)" class="form-text">{{ $message }}</div>
-                            @enderror
                         </div>
 
                         <div class="form-group pt-4">

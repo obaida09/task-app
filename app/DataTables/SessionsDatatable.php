@@ -76,6 +76,8 @@ class SessionsDatatable extends DataTable
             Column::make('date_time'),
             Column::computed('The Patient')
                 ->data('patient.name'),
+            Column::make('session_status'),
+            Column::make('payment_status'),
             Column::make('created_at'),
             Column::make('updated_at'),
             Column::computed('action')

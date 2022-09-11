@@ -78,10 +78,7 @@ class HealerDatatable extends DataTable
                 ->className('text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 px-3'),
             Column::make('name'),
             Column::make('email'),
-            // Column::make('mobile'),
             Column::make('status'),
-            Column::make('gendor'),
-            // Column::make('academic_achievement'),
             Column::make('created_at'),
             Column::make('updated_at'),
             Column::computed('action')

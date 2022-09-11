@@ -24,14 +24,31 @@ class UpdatePatientRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'           => 'required',
-            'age'            => 'required',
-            'address'        => 'required',
-            'mobile'         => 'required',
-            'gendor'         => 'required|in:male,famle',
-            'domination'     => 'required|in:left,right',
-            'marital_status' => 'required|in:public,private',
-            'patient_debts'  => 'required',
+            'name'                    => 'required',
+            'age'                     => 'required',
+            'address'                 => 'required',
+            'mobile'                  => 'required|numeric|unique:users,mobile,'.$this->route()->healer->id,
+            'six'                     => 'required|in:male,famle',
+            
+            'side_dominance'          => 'nullable|in:left,right',
+            'treatments'              => 'nullable',
+            'symptom'                 => 'nullable',
+            'function'                => 'nullable',
+            'emotions_plan'           => 'nullable',
+            'connected_beliefs'       => 'nullable',
+            'meta_meaning'            => 'nullable',
+            'udin_moment'             => 'nullable',
+            'vakogs'                  => 'nullable',
+            'symptoms'                => 'nullable',
+            'regeneration_trigger'    => 'nullable',
+            'regeneration_symptoms_a' => 'nullable',
+            'healing_symptoms'        => 'nullable',
+            'regeneration_symptoms_b' => 'nullable',
+            'meta_practice'           => 'nullable',
+            'action'                  => 'nullable',
+            'follow_up'               => 'nullable',
+            'information'             => 'nullable',
+            'associations'            => 'nullable',
         ];
     }
 }

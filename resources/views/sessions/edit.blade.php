@@ -17,7 +17,8 @@
 
                         <div class="row">
                             <div class="col-md-6">
-                                <div class="input-group input-group-outline my-3">
+                                <label>Date & Time</label>
+                                <div class="input-group input-group-outline mb-3">
                                     <input type="text" value="{{ old('age', $session->date_time) }}" class="form-control"
                                         name="date_time" value="10/24/2022" />
                                 </div>
@@ -27,7 +28,8 @@
                             </div>
 
                             <div class="col-md-6">
-                                <div class="input-group input-group-outline my-3">
+                                <label>Patient Name</label>
+                                <div class="input-group input-group-outline mb-3">
                                     <select class="form-control" name="patient_id" id="exampleFormControlSelect1">
                                         @foreach ($patient as $item)
                                             <option value="{{ $item->id }}"
@@ -44,7 +46,8 @@
                         
                         <div class="row">
                             <div class="col-md-6">
-                                <div class="input-group input-group-outline my-3">
+                                <label>Session Status</label>
+                                <div class="input-group input-group-outline mb-3">
                                     <select class="form-control" name="session_status">
                                         <option @if ($item->session_status == 'pending') selected @endif value="pending">Pending</option>
                                         <option @if ($item->session_status == 'attended') selected @endif value="attended">Attended</option>
@@ -57,7 +60,8 @@
                             </div>
                             
                             <div class="col-md-6">
-                                <div class="input-group input-group-outline my-3">
+                                <label>Payment Status</label>
+                                <div class="input-group input-group-outline mb-3">
                                     <select class="form-control" name="payment_status">
                                         <option @if ($item->payment_status == 'paid') selected @endif value="paid">Paid</option>
                                         <option @if ($item->payment_status == 'not_paid') selected @endif value="not_paid">not Paid Yet</option>

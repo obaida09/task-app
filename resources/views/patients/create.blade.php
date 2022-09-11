@@ -13,52 +13,58 @@
                         @csrf
                         <div class="row">
                             <div class="col-md-6">
-                                <div class="input-group input-group-outline my-3">
-                                    <label class="form-label">Name</label>
+                                <label class="">Name</label>
+                                <div class="input-group input-group-outline mb-3">
                                     <input type="text" name="name" class="form-control">
                                 </div>
                             </div>
                             <div class="col-md-6">
-                                <div class="input-group input-group-outline my-3">
-                                    <label class="form-label">Age</label>
+                                <label class="">Age</label>
+                                <div class="input-group input-group-outline mb-3">
                                     <input type="text" name="age" class="form-control">
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-6">
-                                <div class="input-group input-group-outline my-3">
-                                    <label class="form-label">Address</label>
+                                <label class="">Address</label>
+                                <div class="input-group input-group-outline mb-3">
                                     <input type="text" name="address" class="form-control">
                                 </div>
                             </div>
                             <div class="col-md-6">
-                                <div class="input-group input-group-outline my-3">
-                                    <label class="form-label">Mobile</label>
+                                <label class="">Mobile</label>
+                                <div class="input-group input-group-outline mb-3">
                                     <input type="text" name="mobile" class="form-control">
                                 </div>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="input-group input-group-outline my-3">
-                                <select class="form-control" name="gendor" id="exampleFormControlSelect1">
-                                    <option value="male">Male</option>
-                                    <option value="famle">Famle</option>
-                                </select>
-                                @error('gendor')
-                                    <div style="color: rgba(255, 0, 0, 0.692)" class="form-text">{{ $message }}</div>
-                                @enderror
+                            <div class="col-md-6">
+                                <label class="">Sex</label>
+                                <div class="input-group input-group-outline mb-3">
+                                    <select class="form-control" name="gendor" id="exampleFormControlSelect1">
+                                        <option value="male">Male</option>
+                                        <option value="famle">Famle</option>
+                                    </select>
+                                    @error('gendor')
+                                        <div style="color: rgba(255, 0, 0, 0.692)" class="form-text">{{ $message }}</div>
+                                    @enderror
+                                </div>
                             </div>
-                            <div class="input-group input-group-outline my-3">
-                                <select class="form-control" name="domination" id="exampleFormControlSelect1">
-                                    <option value="left">Left</option>
-                                    <option value="right">Right</option>
-                                </select>
-                                @error('domination')
-                                    <div style="color: rgba(255, 0, 0, 0.692)" class="form-text">{{ $message }}</div>
-                                @enderror
+                            <div class="col-md-6">
+                                <label class="">Domination</label>
+                                <div class="input-group input-group-outline mb-3">
+                                    <select class="form-control" name="domination" id="exampleFormControlSelect1">
+                                        <option value="left">Left</option>
+                                        <option value="right">Right</option>
+                                    </select>
+                                    @error('domination')
+                                        <div style="color: rgba(255, 0, 0, 0.692)" class="form-text">{{ $message }}</div>
+                                    @enderror
+                                </div>
                             </div>
-                        </div>     
+                        </div>
                         <div class="form-group pt-4">
                             <button type="submit" class="btn btn-primary">Add Patient</button>
                         </div>
