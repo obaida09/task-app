@@ -43,7 +43,7 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-md-12">
+                            <div class="col-md-6">
                                 <label class="">Passowrd</label>
                                 <div class="input-group input-group-outline mb-3">
                                     <input id="password" type="password"
@@ -56,12 +56,18 @@
                                     </span>
                                 @enderror
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12">
+                            <div class="col-md-6">
                                 <label class="">Confirm Passowrd</label>
                                 <div class="input-group input-group-outline mb-3">
                                     <input id="password-confirm" type="password" class="form-control" name="password_confirmation" autocomplete="new-password">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label class="">Session Price</label>
+                                <div class="input-group input-group-outline mb-3">
+                                    <input type="text" value="{{ old('session_price', $healer->session_price) }}" class="form-control" name="session_price" autocomplete="new-password">
                                 </div>
                             </div>
                         </div>

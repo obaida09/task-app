@@ -16,6 +16,7 @@
                                 <label>Category</label>
                                 <div class="input-group input-group-outline mb-3">
                                     <select class="form-control" id="category">
+                                        <option  value="">Select Category ...</option>
                                         @foreach ($category as $item)
                                             <option att-name='{{ $item->name }}' value="{{ $item->id }}">
                                                 {{ $item->name }}</option>

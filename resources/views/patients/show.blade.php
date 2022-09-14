@@ -27,7 +27,7 @@
                             <p><span class="text-dark fw-bold">Patient gendor </span> : {{ $patient->sex }}</p>
                             <p><span class="text-dark fw-bold">Patient domination </span> : {{ $patient->side_dominance }}
                             </p>
-                            <p><span class="text-dark fw-bold">Patient patient </span> :
+                            <p><span class="text-dark fw-bold">Patient's healer </span> :
                                 {{ $patient->user()->first()->name }}</p>
                             <p><span class="text-dark fw-bold">Patient Created At </span> :
                                 {{ $patient->created_at->toFormattedDateString() }}</p>

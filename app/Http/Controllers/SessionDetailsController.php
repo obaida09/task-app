@@ -66,7 +66,7 @@ class SessionDetailsController extends Controller
 
     public function edit($id)
     {
-        $session_details = SessionDetails::find($id);
+        $session_details = SessionDetails::whereId($id);
         if(auth()->user()->is_admin == 1 or auth()->user()->id == $session_details->patient()->first()->user_id)
         {    
             $session_details = $session_details->with('sessionDetailsFiles')->first();
@@ -88,9 +88,9 @@ class SessionDetailsController extends Controller
             }
             unset($data['files']);
             $data['marital_status'] == 'public' ? $data['posted_at'] = Carbon::now() : '';
-            // dd($data);
-            $sessionDetails->update($data);
-            
+
+            $session_details->update($data);
+
             if($request->hasFile('files')) {
                 foreach ($dataFiles as $file) {
                     $fileName = time() . $file->getClientOriginalName();
@@ -98,7 +98,7 @@ class SessionDetailsController extends Controller
                     SessionDetailsFiles::create([
                         'name' => $fileName,
                         'user_id' => auth()->user()->id,
-                        'session_details_id' => $sessionDetails->first()->id,
+                        'session_details_id' => $session_details->id,
                       ]);
                 }
             }

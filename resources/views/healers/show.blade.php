@@ -16,7 +16,7 @@
                         </div>
                         <div class="col-md-6 float-start px-5">
                             <p><span class="text-dark fw-bold">Healer Session Price </span> : {{ $healer->session_price }}</p>
-                            <p><span class="text-dark fw-bold">Patient Registerd At </span> :
+                            <p><span class="text-dark fw-bold">Healer Registerd At </span> :
                                 {{ $healer->created_at->toFormattedDateString() }}</p>
                         </div>
                     </div>
