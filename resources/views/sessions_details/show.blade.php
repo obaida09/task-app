@@ -33,12 +33,16 @@
                         </div>
                     </div>
                     <div class="card-body px-0 pb-2">
-                        @forelse ($session_details->sessionDetailsFiles as $file)
-                            <p>{{ $file->name }}</p>
-                            
-                        @empty
-                            
-                        @endforelse
+                        <div class="px-4 py-3">
+                            @forelse ($session_details->sessionDetailsFiles as $file)
+                                @if (strpos($file->name, '.pdf') == false)
+                                    <img class="px-1" src="{{ asset('assets/files/session_details/' . $file->name) }}"
+                                        alt="{{ $file->name }}">
+                                @endif
+                            @empty
+                                <div class="p-3">No File in this Session</div>
+                            @endforelse
+                        </div>
                     </div>
                 </div>
             </div>
