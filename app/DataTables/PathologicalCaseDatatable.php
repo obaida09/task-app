@@ -8,6 +8,7 @@ use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\Html\Editor\Editor;
 use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
+use Illuminate\Support\Str;
 
 class PathologicalCaseDatatable extends DataTable
 {
@@ -22,6 +23,9 @@ class PathologicalCaseDatatable extends DataTable
         return datatables()
             ->eloquent($query)
             ->addColumn('action', 'pathological_cases.action.buttons')
+            ->editColumn('content', function (PathologicalCase $data) {
+                return Str::limit($data->content, 65);
+            })
             ->editColumn('created_at', function (PathologicalCase $PathologicalCase) {
                 return $PathologicalCase->created_at->toFormattedDateString();
             })
@@ -75,6 +79,9 @@ class PathologicalCaseDatatable extends DataTable
                 ->className('text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 px-3'),
             Column::make('content')
                 ->width(610),
+            Column::make('key_word')
+                ->width(10)
+                ->className('hid'),
             Column::computed('Category')
                 ->data('category.name'),
             Column::make('created_at'),

@@ -36,9 +36,9 @@
                                     @endif
                                 </div>
                             </div>
-                            <p class="text-justify">{{ $item->session_notes }}</p>
+                            <p class="text-justify">{{ $item->session_notes }}</p> 
                             <div id="comment_view" class="d-flex flex-row muted-color mt-4 text-dark fw-bold">
-                                <span>Comments</span><span class="mx-2 co-num">5</span>
+                                <span>Comments</span><span class="mx-2 co-num">{{ $item->comments()->count() }}</span>
                             </div>
                         </div>
                         <div class="px-5">

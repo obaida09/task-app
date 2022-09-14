@@ -27,6 +27,7 @@ class StoreHealerRequest extends FormRequest
             'name'                    => 'required',
             'email'                   => 'required|email|unique:users',
             'password'                => 'required|min:8',
+            'status'                  => 'required' 
         ];
     }
 }

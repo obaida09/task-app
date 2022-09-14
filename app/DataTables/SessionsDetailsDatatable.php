@@ -8,6 +8,7 @@ use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\Html\Editor\Editor;
 use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
+use Illuminate\Support\Str;
 
 class SessionsDetailsDatatable extends DataTable
 {
@@ -22,6 +23,9 @@ class SessionsDetailsDatatable extends DataTable
         return datatables()
             ->eloquent($query)
             ->addColumn('action', 'sessions_details.action.buttons')
+            ->editColumn('session_notes', function (SessionDetails $data) {
+                return Str::limit($data->session_notes, 35);
+            })
             ->editColumn('created_at', function (SessionDetails $session_details) {
                 return $session_details->created_at->toFormattedDateString();
             })
@@ -73,7 +77,7 @@ class SessionsDetailsDatatable extends DataTable
         return [
             Column::make('id')
                 ->className('text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 px-3'),
-            // Column::make('session_notes'),
+            Column::make('session_notes'),
             Column::computed('Session')
                 ->data('session.date_time'),
             Column::make('marital_status'),

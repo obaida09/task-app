@@ -26,8 +26,8 @@ class UpdateHealerRequest extends FormRequest
         return [
             'name'                    => 'required',
             'email'                   => 'required|email|max:255|unique:users,email,'.$this->route()->healer->id,
-           
             'password'                => 'nullable|min:8',
+            'status'                  => 'nullable' 
         ];
     }
 }

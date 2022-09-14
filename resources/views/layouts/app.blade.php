@@ -61,6 +61,10 @@
             border: none;
             color: #fff;
         }
+        
+        aside .navbar-collapse {
+            height: 1000px;
+        }
     </style>
 
 </head>

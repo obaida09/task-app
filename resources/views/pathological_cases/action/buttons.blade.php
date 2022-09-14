@@ -1,3 +1,6 @@
+<a href="{{ route('pathological_case.show', $id) }}" class="btn btn-primary btn-table btn-sm">
+    <i class="fa-regular fa-eye"></i>
+</a>
 @if (auth()->user()->is_admin)
     <a href="{{ route('pathological_case.edit', $id) }}" class="btn btn-primary btn-table btn-sm">
         <i class="fa fa-edit"></i>

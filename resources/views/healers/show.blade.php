@@ -11,16 +11,12 @@
                     </div>
                     <div class="card-body px-0 pb-2">
                         <div class="col-md-6 float-start px-5">
-                            <p><span class="text-dark fw-bold">Patient Name </span> : {{ $healer->name }}</p>
-                            <p><span class="text-dark fw-bold">Patient age </span> : {{ $healer->age }}</p>
-                            <p><span class="text-dark fw-bold">Patient mobile </span> : {{ $healer->mobile }}</p>
-                            <p><span class="text-dark fw-bold">Patient address </span> : {{ $healer->address }}</p>
+                            <p><span class="text-dark fw-bold">Healer Name </span> : {{ $healer->name }}</p>
+                            <p><span class="text-dark fw-bold">Healer email </span> : {{ $healer->email }}</p>
                         </div>
                         <div class="col-md-6 float-start px-5">
-                            <p><span class="text-dark fw-bold">Patient gendor </span> : {{ $healer->gendor }}</p>
-                            <p><span class="text-dark fw-bold">Patient domination </span> : {{ $healer->domination }}</p>
-                            <p><span class="text-dark fw-bold">Patient Healer </span> : {{ $healer->healer_id }}</p>
-                            <p><span class="text-dark fw-bold">Patient Created At </span> :
+                            <p><span class="text-dark fw-bold">Healer Session Price </span> : {{ $healer->session_price }}</p>
+                            <p><span class="text-dark fw-bold">Patient Registerd At </span> :
                                 {{ $healer->created_at->toFormattedDateString() }}</p>
                         </div>
                     </div>

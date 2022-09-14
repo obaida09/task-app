@@ -2,7 +2,6 @@
     <i class="fa-regular fa-eye"></i>
 </a>
 
-
 <a href="{{ route('session.edit', $id) }}" class="btn btn-primary btn-table btn-sm">
     <i class="fa fa-edit"></i>
 </a>

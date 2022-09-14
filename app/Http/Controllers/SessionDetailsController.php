@@ -53,51 +53,71 @@ class SessionDetailsController extends Controller
     }
 
 
-    public function show(SessionDetails $sessionDetails)
+    public function show($id)
     {
-        //
-    }
-
-
-    public function edit(SessionDetails $session_details)
-    {
-        $session_details = $session_details->with('sessionDetailsFiles')->first();
-        $session = Session::your_sessions()->get();
-        return view('sessions_details.edit', compact('session', 'session_details'));
-    }
-
-
-    public function update(UpdateSessionDetailsRequest $request, SessionDetails $sessionDetails)
-    {
-        $data = $request->validated();
-        if(isset( $data['files'])){
-            $dataFiles = $data['files'];
+        $session_details = SessionDetails::find($id);
+        if(auth()->user()->is_admin == 1 or auth()->user()->id == $session_details->patient()->first()->user_id)
+        {
+            return view('sessions_details.show', compact('session_details'));
         }
-        unset($data['files']);
-        $data['marital_status'] == 'public' ? $data['posted_at'] = Carbon::now() : '';
-        // dd($data);
-        $sessionDetails->update($data);
-        
-        if($request->hasFile('files')) {
-            foreach ($dataFiles as $file) {
-                $fileName = time() . $file->getClientOriginalName();
-                $file->move('assets/files/session_details/' , $fileName); 
-                SessionDetailsFiles::create([
-                    'name' => $fileName,
-                    'user_id' => auth()->user()->id,
-                    'session_details_id' => $sessionDetails->first()->id,
-                  ]);
+        return redirect('session_details');
+    }
+
+
+    public function edit($id)
+    {
+        $session_details = SessionDetails::find($id);
+        if(auth()->user()->is_admin == 1 or auth()->user()->id == $session_details->patient()->first()->user_id)
+        {    
+            $session_details = $session_details->with('sessionDetailsFiles')->first();
+            $session = Session::your_sessions()->get();
+            return view('sessions_details.edit', compact('session', 'session_details'));
+        }
+        return redirect('session_details');
+    }
+
+
+    public function update(UpdateSessionDetailsRequest $request, $id)
+    {
+        $session_details = SessionDetails::find($id);
+        if(auth()->user()->is_admin == 1 or auth()->user()->id == $session_details->patient()->first()->user_id)
+        {   
+            $data = $request->validated();
+            if(isset( $data['files'])){
+                $dataFiles = $data['files'];
             }
+            unset($data['files']);
+            $data['marital_status'] == 'public' ? $data['posted_at'] = Carbon::now() : '';
+            // dd($data);
+            $sessionDetails->update($data);
+            
+            if($request->hasFile('files')) {
+                foreach ($dataFiles as $file) {
+                    $fileName = time() . $file->getClientOriginalName();
+                    $file->move('assets/files/session_details/' , $fileName); 
+                    SessionDetailsFiles::create([
+                        'name' => $fileName,
+                        'user_id' => auth()->user()->id,
+                        'session_details_id' => $sessionDetails->first()->id,
+                      ]);
+                }
+            }
+            
+            return redirect()->route('session_details.index')->with('message','Session Details updated successfully');
         }
-        
-        return redirect()->route('session_details.index')->with('message','Session Details updated successfully');
+        return redirect('session_details');
     }
 
 
-    public function destroy(SessionDetails $session_details)
+    public function destroy($id)
     {
-        $session_details->delete();
-        return redirect()->route('session_details.index')->with('message','Session Details deleted successfully');
+        $session_details = SessionDetails::find($id);
+        if(auth()->user()->is_admin == 1 or auth()->user()->id == $session_details->patient()->first()->user_id)
+        {   
+            $session_details->delete();
+            return redirect()->route('session_details.index')->with('message','Session Details deleted successfully');
+        }
+        return redirect('session_details');
     }
     
     public function remove_file($id)

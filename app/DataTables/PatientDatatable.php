@@ -60,6 +60,17 @@ class PatientDatatable extends DataTable
                         'autoWidth' => false,
                         'lengthMenu' => [[10, 25, -1], [10, 25, 'All Record']],
                         'buttons' => ['excel', 'csv', 'pdf', 'reset'],
+                        'initComplete' => "function () {
+                            this.api().columns().every(function () {
+                                var column = this;
+                                var input = document.createElement(\"input\");
+                                input.setAttribute(\"style\", \"width: 100%\");
+                                $(input).appendTo($(column.footer()).empty())
+                                .on('change', function () {
+                                    column.search($(this).val(), false, false, true).draw();
+                                });
+                            });
+                        }",
                     ]);
     }
 

@@ -52,8 +52,12 @@ class PatientController extends Controller
      */
     public function show(Patient $patient)
     {
-        $sessions = Session::where('patient_id', $patient->id)->paginate(10);
-        return view('patients.show', compact('patient', 'sessions'));
+        if(auth()->user()->is_admin == 1 or auth()->user()->id == $patient->user_id)
+        {
+            $sessions = Session::where('patient_id', $patient->id)->paginate(10);
+            return view('patients.show', compact('patient', 'sessions'));
+        }
+        return redirect('patient');
     }
 
     /**

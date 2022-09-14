@@ -14,15 +14,14 @@ use Carbon\Carbon;
 class SessionController extends Controller
 {
 
+    public function __construct()
+    {
+        // $this->middleware('isOwner:session')->except(['index', 'create', 'store']); 
+    }
+
     public function index(SessionsDatatable $session)
     {
-        $from_date = date('2020-01-01 00:00:00');
-        $to_date = Carbon::now();
-        return $session->with([
-                'from' => $from_date,
-                'to' => $to_date,
-            ])
-            ->render('sessions.index');
+        return $session->render('sessions.index');
     }
 
 
@@ -51,19 +50,25 @@ class SessionController extends Controller
 
     public function show(Session $session)
     {
-        $sessions_details = SessionDetails::where('session_id', $session->id)->paginate(10);
-        return view('sessions.show', compact('session', 'sessions_details'));
+        if(auth()->user()->is_admin == 1 or auth()->user()->id == $session->patient()->first()->user_id)
+        {  
+            $patient = $session->patient()->first();
+            $sessions_details = SessionDetails::where('session_id', $session->id)->paginate(10);
+            return view('sessions.show', compact('patient', 'session', 'sessions_details'));
+        }
+        return redirect('session');
+
     }
 
 
     public function edit(Session $session)
     {
         if(auth()->user()->is_admin == 1 or auth()->user()->id == $session->patient()->first()->user_id)
-        {  
+        { 
             $patient = Patient::your_patients()->get();
             return view('sessions.edit', compact('patient', 'session'));
         }
-        return redirect('session');        
+        return redirect('session');
     }
 
 

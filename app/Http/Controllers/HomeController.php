@@ -7,7 +7,6 @@ use App\Models\Session;
 use App\Models\sessionDetails;
 use App\Models\PathologicalCase;
 use Carbon\Carbon;
-
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -64,10 +63,10 @@ class HomeController extends Controller
             $session_pending      = Session::your_sessions()->where('session_status', 'pending')->count();   
             
             if(Session::your_sessions() != null) {
-                $session_today           = Session::your_sessions()->whereDate('patients.created_at', $today)->count();
-                $session_nextWeek        = Session::your_sessions()->whereBetween('patients.created_at', [$today, $nextWeek])->count();
-                $session_nextTowWeek     = Session::your_sessions()->whereBetween('patients.created_at', [$today, $nextTowWeek])->count();
-                $session_nextMonth       = Session::your_sessions()->whereBetween('patients.created_at', [$today, $nextMonth])->count();
+                $session_today           = Session::your_sessions()->whereDate('date_time', $today)->count();
+                $session_nextWeek        = Session::your_sessions()->whereBetween('date_time', [$today, $nextWeek])->count();
+                $session_nextTowWeek     = Session::your_sessions()->whereBetween('date_time', [$today, $nextTowWeek])->count();
+                $session_nextMonth       = Session::your_sessions()->whereBetween('date_time', [$today, $nextMonth])->count();
             }
         }
         return view('home', get_defined_vars());
@@ -96,4 +95,15 @@ class HomeController extends Controller
         SessionDetails::where('id', $id)->update(array('accept' => true));
         return redirect()->back()->with(['message' => 'Post accept Successfully']);
     }
+    
+    public function session_count($time)
+    {
+        $today = Carbon::today();
+        if($today == $time) {
+            $session_today = Session::your_sessions()->whereDate('date_time', $time)->paginate(10);
+        }
+        $session = Session::your_sessions()->whereBetween('date_time', [$today, $time])->paginate(10);
+        return view('get_session', compact('session', 'today', 'time'));
+    }
+    
 }

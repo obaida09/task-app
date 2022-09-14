@@ -27,7 +27,7 @@ class UpdatePatientRequest extends FormRequest
             'name'                    => 'nullable',
             'age'                     => 'nullable',
             'address'                 => 'nullable',
-            'mobile'                  => 'nullable|numeric|unique:patients,mobile,'.$this->route()->patient->id,
+            'mobile'                  => 'nullable|numeric',
             'sex'                     => 'nullable|in:male,famle',
             
             'side_dominance'          => 'nullable|in:left,right',

@@ -12,7 +12,7 @@ class PathologicalCaseController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('isAdmin')->except(['index']); 
+        $this->middleware('isAdmin')->except(['index', 'show']); 
     }
 
     public function index(PathologicalCaseDatatable $cases)
@@ -37,7 +37,7 @@ class PathologicalCaseController extends Controller
 
     public function show(PathologicalCase $pathologicalCase)
     {
-        //
+        return view('pathological_cases.show', compact('pathologicalCase'));
     }
 
 
