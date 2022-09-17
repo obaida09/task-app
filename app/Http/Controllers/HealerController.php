@@ -8,6 +8,9 @@ use App\DataTables\HealerDatatable;
 use App\Http\Requests\StoreHealerRequest;
 use App\Http\Requests\UpdateHealerRequest;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Notification;
+use App\Notifications\HealerActivatedNotification;
+use App\Notifications\HealerNotfy;
 
 class HealerController extends Controller
 {
@@ -64,8 +67,13 @@ class HealerController extends Controller
             unset($data['password']);
             // Add Password to data
             trim($request->password) != '' ? $data['password'] = Hash::make($request->password) : '';
+            $healerStatus = $healer->status;
             
             $healer->update($data);
+
+            // Send Email To Healer when i Activated his account
+            $data['status'] == 1 and $healerStatus == 0 ? $healer->notify(new HealerActivatedNotification($healer)) : '';
+            $healer->notify(new HealerNotfy($healer));
             return redirect()->route('healer.index')->with('success','Healer updated successfully!');
         }
         return redirect('healer');

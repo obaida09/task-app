@@ -22,8 +22,11 @@ use App\Http\Controllers\PathologicalCaseController;
 */
 
 Route::get('/welcome', function () {
+    if(auth()->user()->status == 1) {
+        return redirect('/');
+    }
     return view('welcome');
-})->middleware('auth')->name('welcome');
+})->name('welcome');
 
 Auth::routes();
 
@@ -35,10 +38,11 @@ Route::middleware(['isActive', 'auth'])->group(function ()
     Route::get('session/count/{time}'  , [HomeController::class            , 'session_count'])->name('session_count');
     Route::get('/communtiy'            , [HomeController::class            , 'communtiy'])->name('communtiy');
     Route::get('/communtiy/inActive'   , [HomeController::class            , 'inActive'])->name('inActive');
-    Route::get('remove-file/{id}'      , [SessionDetailsController::class  , 'remove_file'])->name('remove_file');
     Route::get('remove-post/{id}'      , [HomeController::class            , 'remove_from_communtiy'])->name('remove_from_communtiy');
     Route::get('accept-post/{id}'      , [HomeController::class            , 'accept_post_communtiy'])->name('accept_post_communtiy');
     Route::get('sub_category'          , [CategoryController::class        , 'sub_category'])->name('sub_category');
+    Route::get('session-details/pdf'   , [SessionDetailsController::class  , 'pdf'])->name('session_details_pdf');
+    Route::get('remove-file/{id}'      , [SessionDetailsController::class  , 'remove_file'])->name('remove_file');
     
     Route::resource('healer'            , HealerController::class);
     Route::resource('patient'           , PatientController::class);

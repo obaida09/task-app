@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class HealerNotfy extends Notification
+class HealerNotfy extends Notification implements ShouldQueue
 {
     use Queueable;
 
@@ -16,9 +16,12 @@ class HealerNotfy extends Notification
      *
      * @return void
      */
-    public function __construct()
+     
+    public $user;
+     
+    public function __construct($user)
     {
-        //
+        $this->user = $user;
     }
 
     /**
@@ -29,7 +32,7 @@ class HealerNotfy extends Notification
      */
     public function via($notifiable)
     {
-        return ['database', 'broadcast'];
+        return ['database'];
     }
 
     /**
@@ -41,7 +44,8 @@ class HealerNotfy extends Notification
     public function toDatabase($notifiable)
     {
         return [
-            'customer_id'   =>' $this->user->user_id',
+            'name' => $this->user->name,
+            'email' => $this->user->email,
         ];
     }
 
@@ -51,10 +55,10 @@ class HealerNotfy extends Notification
      * @param  mixed  $notifiable
      * @return array
      */
-    public function toBroadcast($notifiable)
-    {
-        return [
-            'customer_id'   =>' $this->user->user_id',
-        ];
-    }
+    // public function toBroadcast($notifiable)
+    // {
+    //     return [
+    //         'customer_id'   =>' $this->user->user_id',
+    //     ];
+    // }
 }

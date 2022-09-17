@@ -10,6 +10,7 @@ use App\DataTables\SessionsDetailsDatatable;
 use App\Http\Requests\StoreSessionDetailsRequest;
 use App\Http\Requests\UpdateSessionDetailsRequest;
 use Carbon\Carbon;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class SessionDetailsController extends Controller
 {
@@ -66,10 +67,9 @@ class SessionDetailsController extends Controller
 
     public function edit($id)
     {
-        $session_details = SessionDetails::whereId($id);
+        $session_details = SessionDetails::whereId($id)->with('sessionDetailsFiles')->first();
         if(auth()->user()->is_admin == 1 or auth()->user()->id == $session_details->patient()->first()->user_id)
         {    
-            $session_details = $session_details->with('sessionDetailsFiles')->first();
             $session = Session::your_sessions()->get();
             return view('sessions_details.edit', compact('session', 'session_details'));
         }
@@ -118,6 +118,19 @@ class SessionDetailsController extends Controller
             return redirect()->route('session_details.index')->with('message','Session Details deleted successfully');
         }
         return redirect('session_details');
+    }
+    
+    public function pdf()
+    {
+        // $session_details = SessionDetailsFiles::whereId($id)->with('patient', 'session');
+        
+        $data = [
+            'foo' => 'bar'
+          ];
+          $pdf = Pdf::loadView('sessions_details.pdf', $data);
+          return $pdf->download('document.pdf');
+        
+        return view('sessions_details.pdf');
     }
     
     public function remove_file($id)

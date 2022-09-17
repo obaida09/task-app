@@ -43,8 +43,8 @@ class HealerActivatedNotification extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->line('The introduction to the notification.')
-                    ->action('Notification Action', url('/'))
+                    ->line('Your Acount is activated')
+                    ->action('Meta Health', url('/'))
                     ->line('Thank you for using our application!');
     }
 

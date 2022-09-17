@@ -7,7 +7,7 @@
         <a class="navbar-brand m-0" href=" https://demos.creative-tim.com/material-dashboard/pages/dashboard "
             target="_blank">
 
-            <span class="ms-1 font-weight-bold text-white fs-5"> {{ env('APP_NAME') }} </span>
+            <span class="ms-1 font-weight-bold text-white fs-5">  Meta Health System  </span>
         </a>
     </div>
     <hr class="horizontal light mt-0 mb-2">

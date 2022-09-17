@@ -35,15 +35,15 @@ class PathologicalCaseController extends Controller
     }
 
 
-    public function show(PathologicalCase $pathologicalCase)
+    public function show(PathologialCase $pathologicalCase)
     {
         return view('pathological_cases.show', compact('pathologicalCase'));
     }
 
 
-    public function edit(PathologicalCase $pathologicalCase)
+    public function edit($id)
     {
-        $pathologicalCase = $pathologicalCase->with('category')->first();
+        $pathologicalCase = PathologicalCase::whereId($id)->with('category')->first();
         $category = Category::whereNull('parent_id')->get();
         return view('pathological_cases.edit', compact('category', 'pathologicalCase'))->with('message','Pathological Case updated successfully');
     }

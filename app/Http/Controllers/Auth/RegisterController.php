@@ -8,6 +8,8 @@ use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Notification;
+use App\Notifications\HealerNotfy;
 
 class RegisterController extends Controller
 {
@@ -93,6 +95,10 @@ class RegisterController extends Controller
         $data['password'] = Hash::make($data['password']);
         unset($data['password_confirmation']);
 
-        return User::create($data);
+        $user = User::create($data);
+        $admin = User::where('is_admin', 1)->first();
+        // Notification::send($admin, new HealerNotfy($user));
+        $admin->notify(new HealerNotfy($user));
+        return $user;
     }
 }

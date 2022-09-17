@@ -1,5 +1,6 @@
 @extends('layouts.app')
 @section('content')
+    @inject('carbon', 'Carbon\Carbon')
     <div class="row">
         <div class="col-12">
             <div class="card my-4">
@@ -9,7 +10,7 @@
                     </div>
                 </div>
                 <div class="card-body px-4 pb-2 py-4">
-                
+
                     <div class="row border pb-2 mx-1 pt-2">
                         <div class="col-4">
                             <span>Session's Number</span>
@@ -43,20 +44,26 @@
                             </select>
                         </div>
                         <div class="col-4 px-6">
-                            <div>Price = <span id="price" value-3="{{ auth()->user()->session_price }}"> {{ auth()->user()->session_price }}</span><span class="fs-7 fw-bolder text-blue"> IQD</span></div>
+                            <div>Price = <span id="price" value-3="{{ auth()->user()->session_price }}">
+                                    {{ auth()->user()->session_price }}</span><span class="fs-7 fw-bolder text-blue">
+                                    IQD</span></div>
                         </div>
                     </div>
-                
+
                     <form action="{{ route('session.store') }}" method="post">
                         @csrf
                         <div class="row mt-4">
                             <div class="col-md-6">
                                 <label>Date & Time</label>
                                 <div class="input-group input-group-outline date mb-3" id="copy">
-                                    <input type="text" class="form-control" name="date_time[]" value="20-10-10 12:00 AM" />
+                                    <input type="text" class="form-control" name="date_time[]"
+                                        value="{{ $carbon->now() }}" />
                                 </div>
                                 @error('date_time')
-                                    <div style="color: rgba(255, 0, 0, 0.692)" class="form-text">{{ $message }}</div>
+                                    <div style="color:
+                                        rgba(255, 0, 0, 0.692)"
+                                        class="form-text">{{ $message }}
+                                    </div>
                                 @enderror
                             </div>
 
@@ -75,7 +82,7 @@
                             </div>
                         </div>
                         <div class="put"></div>
-                        
+
                         <div class="row mt-3">
                             <div class="col-md-6">
                                 <label>Session's Status</label>
@@ -90,7 +97,7 @@
                                     @enderror
                                 </div>
                             </div>
-                            
+
                             <div class="col-md-6">
                                 <label>Payment Status</label>
                                 <div class="input-group input-group-outline mb-3">
@@ -104,7 +111,8 @@
                                 </div>
                             </div>
                         </div>
-                        <input type="hidden" id="patient_debts" name='patient_debts' value="{{ auth()->user()->session_price }}">
+                        <input type="hidden" id="patient_debts" name='patient_debts'
+                            value="{{ auth()->user()->session_price }}">
                         <div class="form-group pt-4">
                             <button type="submit" class="btn btn-primary">Add Session</button>
                         </div>
@@ -133,22 +141,22 @@
 
             $('#session_num').on('change', function() {
                 $('.put').empty();
-                for (var i=1; i < $(this).val(); i++) {
+                for (var i = 1; i < $(this).val(); i++) {
                     $(".date:first").clone().appendTo(".put");
                 }
-                
+
                 let price = {{ auth()->user()->session_price }};
                 let pr = i * price;
                 $('#price').html(pr);
                 $('#price').attr("value-3", pr)
                 $('#patient_debts').val(pr)
-                $('#discount option:first').prop('selected',true);
+                $('#discount option:first').prop('selected', true);
             });
-            
-            $('#discount').on('change', function() {   
+
+            $('#discount').on('change', function() {
                 let price = $('#price').attr("value-3")
-                let price_after = price - (price * $(this).val()/100)
-                $('#price').html(price_after);   
+                let price_after = price - (price * $(this).val() / 100)
+                $('#price').html(price_after);
                 $('#patient_debts').val(price_after)
             });
         </script>

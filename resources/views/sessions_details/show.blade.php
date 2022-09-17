@@ -24,7 +24,7 @@
             </div>
         </div>
 
-        <div class="row">
+        <div class="row mt-3">
             <div class="col-12">
                 <div class="card my-4">
                     <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
@@ -36,8 +36,12 @@
                         <div class="px-4 py-3">
                             @forelse ($session_details->sessionDetailsFiles as $file)
                                 @if (strpos($file->name, '.pdf') == false)
-                                    <img class="px-1" src="{{ asset('assets/files/session_details/' . $file->name) }}"
-                                        alt="{{ $file->name }}">
+                                    <div class="float-start show_img col-md-3 mb-4">
+                                        <img id="session_img"
+                                            onclick="addImag('{{ asset('assets/files/session_details/' . $file->name) }}')"
+                                            src="{{ asset('assets/files/session_details/' . $file->name) }}"
+                                            alt="{{ $file->name }}">
+                                    </div>
                                 @endif
                             @empty
                                 <div class="p-3">No File in this Session</div>
@@ -48,4 +52,24 @@
             </div>
         </div>
     </div>
+
+    @push('js')
+        <script>
+            function addImag(src) {
+                console.log(src);
+                $(".full_screen").empty();
+                $(".full_screen").append(
+                    '<img class="p-5 w-100" src="' + src + '" alt="">' +
+                    '<div onclick="removeImag()" class="closee"><i class="fa-solid fa-xmark"></i></div>'
+                );
+                $(".full_screen").removeClass('hid');
+            };
+
+            function removeImag() {
+                $(".full_screen").addClass('hid'); 
+                console.log('asdf')
+            };
+
+        </script>
+    @endpush
 @endsection

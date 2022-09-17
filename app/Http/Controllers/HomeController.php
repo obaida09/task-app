@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Patient;
 use App\Models\Session;
-use App\Models\sessionDetails;
+use App\Models\SessionDetails;
 use App\Models\PathologicalCase;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -51,8 +51,8 @@ class HomeController extends Controller
                 $session_nextMonth       = Session::your_sessions()->whereBetween('date_time', [$today, $nextMonth])->count();
             }
             $pathological_case_count = PathologicalCase::count();
-            $post_count              = sessionDetails::where('accept', '1')->where('marital_status', 'public')->count();
-            $post_inactive_count     = sessionDetails::where('accept', '0')->where('marital_status', 'public')->count();
+            $post_count              = SessionDetails::where('accept', '1')->where('marital_status', 'public')->count();
+            $post_inactive_count     = SessionDetails::where('accept', '0')->where('marital_status', 'public')->count();
         }
         else 
         {
