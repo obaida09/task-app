@@ -56,7 +56,7 @@
                             <div class="col-md-6">
                                 <label>Date & Time</label>
                                 <div class="input-group input-group-outline date mb-3" id="copy">
-                                    <input type="text" class="form-control" name="date_time[]"
+                                    <input type="text" class="form-control" id="date_time" name="date_time[]"
                                         value="{{ $carbon->now() }}" />
                                 </div>
                                 @error('date_time')
@@ -114,7 +114,11 @@
                         <input type="hidden" id="patient_debts" name='patient_debts'
                             value="{{ auth()->user()->session_price }}">
                         <div class="form-group pt-4">
-                            <button type="submit" class="btn btn-primary">Add Session</button>
+                            @if (auth()->user()->session_price == 0)
+                                <h5>Please Enter your session's price <a class="text-info" href="{{ route('healer.edit', auth()->user()->id) }}">here</a></h5>
+                            @else
+                                <button type="submit" class="btn btn-primary">Add Session</button>
+                            @endif
                         </div>
                     </form>
                 </div>
@@ -130,7 +134,7 @@
 
         <script>
             $(function() {
-                $('input[name="date_time[]"]').daterangepicker({
+                $('#date_time').daterangepicker({
                     timePicker: true,
                     singleDatePicker: true,
                     locale: {

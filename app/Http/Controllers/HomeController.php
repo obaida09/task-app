@@ -8,6 +8,8 @@ use App\Models\SessionDetails;
 use App\Models\PathologicalCase;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Notification;
+use App\Notifications\HealerNotfy;
 
 class HomeController extends Controller
 {
@@ -72,9 +74,19 @@ class HomeController extends Controller
         return view('home', get_defined_vars());
     }
     
+    public function session_count($time)
+    {
+        $today = Carbon::today();
+        if($today == $time) {
+            $session_today = Session::your_sessions()->whereDate('date_time', $time)->paginate(10);
+        }
+        $session = Session::your_sessions()->whereBetween('date_time', [$today, $time])->paginate(10);
+        return view('get_session', compact('session', 'today', 'time'));
+    }
+    
     public function communtiy()
     {
-        $session_details = SessionDetails::where('marital_status', 'public')->whereAccept(1)->with('session', 'patient.user')->get();
+        $session_details = SessionDetails::where('marital_status', 'public')->whereAccept(1)->with('session', 'patient.user')->paginate(20);
         return view('communtiy', compact('session_details')) ;
     }
     
@@ -86,24 +98,44 @@ class HomeController extends Controller
     
     public function remove_from_communtiy($id)
     {
-        SessionDetails::where('id', $id)->update(array('accept' => false));
+        $sessionDetails = SessionDetails::whereId($id)->first();
+        $sessionDetails->update(array('accept' => false));
+        
+        // Send Notification to Healer
+        $owner_user = $sessionDetails->patient()->first()->user()->first();
+        $owner['id']      = $owner_user->id; 
+        $owner['name']    = $owner_user->name; 
+        $owner['email']   = $owner_user->email;
+        $owner['message'] = 'Your Post has been removed from admin';
+        $owner_user->notify(new HealerNotfy($owner));
+        
         return redirect()->back()->with(['message' => 'Post delete Successfully']);
     }
     
     public function accept_post_communtiy($id)
     {
-        SessionDetails::where('id', $id)->update(array('accept' => true));
+        $sessionDetails = SessionDetails::whereId($id)->first();
+        $sessionDetails->update(array('accept' => true));
+        
+        // Send Notification to Healers           
+        $owner_user = $sessionDetails->patient()->first()->user()->first();
+        $owner['id']      = $owner_user->id; 
+        $owner['name']    = $owner_user->name; 
+        $owner['email']   = $owner_user->email;
+        $owner['message'] = 'new pathological case in communtiy';
+        
+        $healers = User::where('id', '!=', $owner['id'] )->get();
+        Notification::send($healers, new HealerNotfy($owner));
+        
+        $healer = User::whereId($owner['id'])->first();
+        $owner['message'] = 'Your Post is Accepted';
+        $healer->notify(new HealerNotfy($owner));
         return redirect()->back()->with(['message' => 'Post accept Successfully']);
     }
     
-    public function session_count($time)
+    public function get_notifications()
     {
-        $today = Carbon::today();
-        if($today == $time) {
-            $session_today = Session::your_sessions()->whereDate('date_time', $time)->paginate(10);
-        }
-        $session = Session::your_sessions()->whereBetween('date_time', [$today, $time])->paginate(10);
-        return view('get_session', compact('session', 'today', 'time'));
+        return auth()->user()->notifications;
     }
     
 }

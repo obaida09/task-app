@@ -24,8 +24,8 @@ class UpdateHealerRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'                    => 'required',
-            'email'                   => 'required|email|max:255|unique:users,email,'.$this->route()->healer->id,
+            'name'                    => 'nullable',
+            'email'                   => 'nullable|email|max:255|unique:users,email,'.$this->route()->healer->id,
             'password'                => 'nullable|min:8',
             'status'                  => 'nullable',
             'session_price'           => 'nullable',

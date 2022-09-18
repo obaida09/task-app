@@ -32,7 +32,7 @@ class HealerNotfy extends Notification implements ShouldQueue
      */
     public function via($notifiable)
     {
-        return ['database'];
+        return ['database', 'broadcast'];
     }
 
     /**
@@ -43,10 +43,15 @@ class HealerNotfy extends Notification implements ShouldQueue
      */
     public function toDatabase($notifiable)
     {
-        return [
-            'name' => $this->user->name,
-            'email' => $this->user->email,
-        ];
+        $data['id']    = $this->user['id'];
+        $data['name']  = $this->user['name'];
+        $data['email'] = $this->user['email'];
+        
+        if($this->user['message'] != null) {
+            $data['message'] = $this->user['message'];
+        }
+
+        return $data;
     }
 
     /**
@@ -55,10 +60,16 @@ class HealerNotfy extends Notification implements ShouldQueue
      * @param  mixed  $notifiable
      * @return array
      */
-    // public function toBroadcast($notifiable)
-    // {
-    //     return [
-    //         'customer_id'   =>' $this->user->user_id',
-    //     ];
-    // }
+    public function toBroadcast($notifiable)
+    {
+        $data['id']    = $this->user['id'];
+        $data['name']  = $this->user['name'];
+        $data['email'] = $this->user['email'];
+        
+        if($this->user['message'] != null) {
+            $data['message'] = $this->user['message'];
+        }
+
+        return $data;
+    }
 }

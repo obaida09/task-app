@@ -14,11 +14,6 @@ use Carbon\Carbon;
 class SessionController extends Controller
 {
 
-    public function __construct()
-    {
-        // $this->middleware('isOwner:session')->except(['index', 'create', 'store']); 
-    }
-
     public function index(SessionsDatatable $session)
     {
         return $session->render('sessions.index');

@@ -16,7 +16,7 @@
         </div>
     @endif
     @foreach ($session_details as $item)
-        <div class="container mt-4 mb-5">
+        <div class="container mt-5 mb-4">
             <div class="row d-flex align-items-center justify-content-center">
                 <div class="col-md-12">
                     <div class="card">
@@ -47,6 +47,7 @@
                             <div class="comments-{{ $item->id }} hid mt-3">
                                 @comments([
                                     'model' => $item,
+                                    'maxIndentationLevel' => 1
                                 ])
                             </div>
                         </div>
@@ -55,6 +56,11 @@
             </div>
         </div>
     @endforeach
+    
+    <div class="mx-4 mt-0 pb-6 float-end">
+        {{ $session_details->links() }}
+    </div>
+    
     @push('js')
         <script>
             function show_comment(id) {

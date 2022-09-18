@@ -18,7 +18,7 @@ use App\Http\Controllers\PathologicalCaseController;
 | Here is where you can register web routes for your application. These
 | routes are loaded by the RouteServiceProvider within a group which
 | contains the "web" middleware group. Now create something great!
-|
+|        
 */
 
 Route::get('/welcome', function () {
@@ -37,6 +37,7 @@ Route::middleware(['isActive', 'auth'])->group(function ()
     Route::get('/home', [HomeController::class, 'index']);
     Route::get('session/count/{time}'  , [HomeController::class            , 'session_count'])->name('session_count');
     Route::get('/communtiy'            , [HomeController::class            , 'communtiy'])->name('communtiy');
+    Route::get('/get_notifications'    , [HomeController::class            , 'get_notifications'])->name('get_notifications');
     Route::get('/communtiy/inActive'   , [HomeController::class            , 'inActive'])->name('inActive');
     Route::get('remove-post/{id}'      , [HomeController::class            , 'remove_from_communtiy'])->name('remove_from_communtiy');
     Route::get('accept-post/{id}'      , [HomeController::class            , 'accept_post_communtiy'])->name('accept_post_communtiy');

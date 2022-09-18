@@ -39,12 +39,6 @@ class CategoryController extends Controller
     }
 
 
-    public function show(Category $category)
-    {
-        //
-    }
-
-
     public function edit(Category $category)
     {
         $main_categories = Category::whereNull('parent_id')->get(['id', 'name']);

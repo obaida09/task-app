@@ -37,7 +37,10 @@ class HealerController extends Controller
         $data = $request->validated();
         // Add Hash Password
         $data['password'] = Hash::make($request->password);
-        User::create($data);
+        $newHealer = User::create($data);
+        
+        // Send Email To Healer when i Created his account
+        $newHealer->notify(new HealerActivatedNotification($newHealer));
         return redirect()->route('healer.index')->with('message','Healer created successfully');
     }
 
@@ -72,9 +75,10 @@ class HealerController extends Controller
             $healer->update($data);
 
             // Send Email To Healer when i Activated his account
-            $data['status'] == 1 and $healerStatus == 0 ? $healer->notify(new HealerActivatedNotification($healer)) : '';
-            $healer->notify(new HealerNotfy($healer));
-            return redirect()->route('healer.index')->with('success','Healer updated successfully!');
+            if(auth()->user()->is_admin == 1) {
+                $data['status'] == 1 and $healerStatus == 0 ? $healer->notify(new HealerActivatedNotification($healer)) : '';
+            }
+            return redirect()->back()->with('message','Healer updated successfully!');
         }
         return redirect('healer');
     }

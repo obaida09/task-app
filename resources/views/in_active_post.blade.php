@@ -43,30 +43,10 @@
                         <div class="px-5">
                             <div onclick="show_comment({{ $item->id }})" id="arrow"><i
                                     class="fas fa-chevron-down"></i></div>
-                            {{-- <div class="comments-{{ $item->id }} hid mt-3">
-                                @comments([
-                                    'model' => $item,
-                                ])
-                            </div> --}}
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     @endforeach
-    {{-- @push('js')
-        <script>
-            function show_comment(id) {
-                $(".comments-" + id).toggleClass("show").toggleClass("hid");
-
-                if ($(".comments-" + id).hasClass("show")) {
-                    $("#arrow").empty();
-                    $("#arrow").append("<i class='fas fa-chevron-up'></i>");
-                } else {
-                    $("#arrow").empty();
-                    $("#arrow").append("<i class='fas fa-chevron-down'></i>");
-                }
-            };
-        </script>
-    @endpush --}}
 @endsection
