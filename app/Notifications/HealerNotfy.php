@@ -43,13 +43,10 @@ class HealerNotfy extends Notification implements ShouldQueue
      */
     public function toDatabase($notifiable)
     {
-        $data['id']    = $this->user['id'];
-        $data['name']  = $this->user['name'];
-        $data['email'] = $this->user['email'];
-        
-        if($this->user['message'] != null) {
-            $data['message'] = $this->user['message'];
-        }
+        $data['id']      = $this->user['id'];
+        $data['name']    = $this->user['name'];
+        $data['email']   = $this->user['email'];  
+        $data['message'] = $this->user['message'];
 
         return $data;
     }
@@ -62,13 +59,10 @@ class HealerNotfy extends Notification implements ShouldQueue
      */
     public function toBroadcast($notifiable)
     {
-        $data['id']    = $this->user['id'];
-        $data['name']  = $this->user['name'];
-        $data['email'] = $this->user['email'];
-        
-        if($this->user['message'] != null) {
-            $data['message'] = $this->user['message'];
-        }
+        $data['id']      = $this->user['id'];
+        $data['name']    = $this->user['name'];
+        $data['email']   = $this->user['email'];
+        $data['message'] = $this->user['message'];
 
         return $data;
     }

@@ -171,7 +171,7 @@
                                 @enderror
                             </div>
 
-                            <input type="hidden" name="session_id" value="{{ $patient->id }}">
+                            <input type="hidden" name="patient_id" value="{{ $patient->id }}">
                         </div>
                         <div class="put"></div>
                         
@@ -247,15 +247,6 @@
                 $('.put').empty();
                 for (var i=1; i < $(this).val(); i++) {
                     $(".date:first").clone().appendTo(".put");
-                    $(function() {
-                        $('#date:eq(1)').daterangepicker({
-                            timePicker: true,
-                            singleDatePicker: true,
-                            locale: {
-                                format: 'YYYY-MM-DD hh:mm A'
-                            }
-                        });
-                    });
                 }
                 
                 let price = {{ auth()->user()->session_price }};

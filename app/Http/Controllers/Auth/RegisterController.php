@@ -97,10 +97,12 @@ class RegisterController extends Controller
 
         $user = User::create($data);
         $admin = User::where('is_admin', 1)->first();
-        
         // sent Notification to Admin
-        // Notification::send($admin, new HealerNotfy($user));
-        $admin->notify(new HealerNotfy($user));
+        $new['id']      = $user->id; 
+        $new['name']    = $user->name; 
+        $new['email']   = $user->email;
+        $new['message'] = 'New Healer';
+        $admin->notify(new HealerNotfy($new));
         return $user;
     }
 }

@@ -55,13 +55,6 @@
     
     @include('partial.footer')
     @stack('js')
-
-    <script>
-        Echo.private('App.Models.User.'+ {{ auth()->user()->id }})
-            .notification((notification) =>{
-                console.log(notification.message);
-            });
-    </script>
 </body>
 
 </html>

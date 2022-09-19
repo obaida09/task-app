@@ -21,20 +21,16 @@
                     </a>
                     <span class="notify-num">{{ auth()->user()->unreadNotifications->count() }}</span>
 
-                    <ul class="dropdown-menu  dropdown-menu-end  px-2 py-3 me-sm-n4"
+                    <ul id="noty" class="dropdown-menu dropdown-menu-end px-2 py-3 me-sm-n4"
                         aria-labelledby="dropdownMenuButton">
                         @foreach (auth()->user()->notifications()->paginate(8) as $notification)
-                            <li class="mb-2" id="">
-                            
-                                
-                            
+                            <li class="mb-2" id="add-notify">
                                 <a class="dropdown-item border-radius-md"
                                     href="
-                                    @if (!isset($notification->data['message'])) 
-                                        {{ route('healer.show', $notification->data['id']) }}
+                                    @if ($notification->data['message'] == 'New Healer') {{ route('healer.show', $notification->data['id']) }}
                                     @else
-                                    {{ route('communtiy') }}
-                                    @endif">
+                                        {{ route('communtiy') }} @endif
+                                    ">
                                     <div class="d-flex py-1">
                                         <div class="d-flex flex-column justify-content-center">
                                             <h6 class="text-sm font-weight-normal mb-1">
@@ -54,17 +50,18 @@
                             </li>
                         @endforeach
                         <li class="mt-2 notifictation-paginate float-end">
-                            {{auth()->user()->notifications()->paginate(8)->links()}}
+                            {{ auth()->user()->notifications()->paginate(8)->links() }}
                         </li>
                     </ul>
                 </li>
 
-                <li class="nav-item dropdown pe-2 d-flex align-items-center">
-                    <a href="javascript:;" class="nav-link text-body fs-5 p-0" id="dropdownMenuButton"
+                <li id="setting" class="nav-item dropdown pe-2 d-flex align-items-center">
+                    <a href="javascript:;" class="nav-link text-body fs-5 p-0" id="dropdownMenuButton2"
                         data-bs-toggle="dropdown" aria-expanded="false">
                         <i class="fa fa-cog fixed-plugin-button-nav cursor-pointer"></i>
                     </a>
-                    <ul class="dropdown-menu dropdown-menu-end px-2 me-sm-n4" aria-labelledby="dropdownMenuButton">
+                    <ul id="setting_ch" class="dropdown-menu dropdown-menu-end px-2 me-sm-n4"
+                        aria-labelledby="dropdownMenuButton">
                         <li>
                             <a class="btn-sm w-100" href="{{ route('healer.edit', auth()->user()->id) }}">Edit
                                 Profile</a>
@@ -85,33 +82,41 @@
 
 @push('js')
     <script>
-        // setInterval(function(){  
-        //         jQuery.ajax({
-        //             url: "{{ route('get_notifications') }}",
-        //             method: 'get',
-        //             success: function(data) {
-        //                 for (var i=0; i < data.length; i++) {  
-        //                 console.log(data[i].data.name)
-        //                     $("#sub_category").append(
-        //                         '<option value="' + data[i].id + '">' + data[i].name + '</option>'
-        //                     ); 
-        //                 }
-        //             }
-        //         });
-        // }, 20000);
+        $("#setting").click(function() {
+            $("#dropdownMenuButton2").toggleClass('show');
+            $("#setting_ch").toggleClass('show');
+        });
 
         $(".noty").click(function() {
             {{ auth()->user()->unreadNotifications()->update(['read_at' => now()]) }}
             $(".notify-num").text('0')
+            $("#dropdownMenuButton").toggleClass('show');
+            $("#noty").toggleClass('show');
         });
-        
-        // $(".page-item").click(function() {
-        //     document.cookie = "name=open-notify; max-age=" + 50;
-        // });
-        // var user = getCookie("name");
-        // if(user == null){
-        //     console.log(user)
-        // }
 
+        Echo.private('App.Models.User.' + {{ auth()->user()->id }})
+            .notification((notification) => {
+                var notify_num = $(".notify-num").text();
+                $(".notify-num").text(parseInt(notify_num) + 1)
+                $("#noty").prepend(
+                    `<li class="mb-2" id="add-notify">
+                        <a class="dropdown-item border-radius-md" href="#d">
+                            <div class="d-flex py-1">
+                                <div class="d-flex flex-column justify-content-center">
+                                    <h6 class="text-sm font-weight-normal mb-1">
+                                        <span class="font-weight-bold"></span>
+                                        ` + notification.name + ` 
+                                    </h6>
+                                    ` + notification.message + ` 
+                                    <p class="text-xs text-secondary mt-1 mb-0">
+                                        <i class="fa fa-clock me-1"></i>
+                                        Now
+                                    </p>
+                                </div>
+                            </div>
+                        </a>
+                    </li>`
+                );
+            });
     </script>
 @endpush
