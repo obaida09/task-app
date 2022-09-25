@@ -21,7 +21,8 @@
                             </div>
                         </div>
                         <div class="col-4 mt-2">
-                            <div>Remaining amount = <span class="amount">{{ $patient->patient_debts }}</span><span class="fs-7 fw-bolder text-blue">
+                            <div>Remaining amount = <span class="amount">{{ $patient->patient_debts }}</span><span
+                                    class="fs-7 fw-bolder text-blue">
                                     IQD</span></div>
                         </div>
                     </div>
@@ -31,24 +32,24 @@
 
                         <div class="row mt-4">
                             <div class="col-md-6">
-                                <label clasbel">Name</label>
+                                <label>Name</label>
                                 <div class="input-group input-group-outline mb-3">
                                     <input type="text" value="{{ old('name', $patient->name) }}" name="name"
                                         class="form-control">
+                                    @error('name')
+                                        <div style="color: rgba(255, 0, 0, 0.692)" class="form-text">{{ $message }}</div>
+                                    @enderror
                                 </div>
-                                @error('name')
-                                    <div style="color: rgba(255, 0, 0, 0.692)" class="form-text">{{ $message }}</div>
-                                @enderror
                             </div>
                             <div class="col-md-6">
                                 <label>Age</label>
                                 <div class="input-group input-group-outline mb-3">
                                     <input type="text" value="{{ old('age', $patient->age) }}" name="age"
                                         class="form-control">
+                                    @error('age')
+                                        <div style="color: rgba(255, 0, 0, 0.692)" class="form-text">{{ $message }}</div>
+                                    @enderror
                                 </div>
-                                @error('age')
-                                    <div style="color: rgba(255, 0, 0, 0.692)" class="form-text">{{ $message }}</div>
-                                @enderror
                             </div>
                         </div>
                         <div class="row">
@@ -57,31 +58,31 @@
                                 <div class="input-group input-group-outline mb-3">
                                     <input type="text" value="{{ old('address', $patient->address) }}" name="address"
                                         class="form-control">
+                                    @error('address')
+                                        <div style="color: rgba(255, 0, 0, 0.692)" class="form-text">{{ $message }}</div>
+                                    @enderror
                                 </div>
-                                @error('address')
-                                    <div style="color: rgba(255, 0, 0, 0.692)" class="form-text">{{ $message }}</div>
-                                @enderror
                             </div>
                             <div class="col-md-6">
                                 <label>Mobile</label>
                                 <div class="input-group input-group-outline mb-3">
                                     <input type="text" value="{{ old('mobile', $patient->mobile) }}" name="mobile"
                                         class="form-control">
+                                    @error('mobile')
+                                        <div style="color: rgba(255, 0, 0, 0.692)" class="form-text">{{ $message }}</div>
+                                    @enderror
                                 </div>
-                                @error('mobile')
-                                    <div style="color: rgba(255, 0, 0, 0.692)" class="form-text">{{ $message }}</div>
-                                @enderror
                             </div>
                         </div>
-                        
-                        
                         <div class="row">
                             <div class="col-md-6">
                                 <label class="">Sex</label>
                                 <div class="input-group input-group-outline mb-3">
                                     <select class="form-control" name="sex" id="exampleFormControlSelect1">
-                                        <option @if($patient->sex == 'male') selected @endif value="male">Male</option>
-                                        <option @if($patient->sex == 'famle') selected @endif value="famle">Famle</option>
+                                        <option @if ($patient->sex == 'male') selected @endif value="male">Male
+                                        </option>
+                                        <option @if ($patient->sex == 'famle') selected @endif value="famle">Famle
+                                        </option>
                                     </select>
                                     @error('sex')
                                         <div style="color: rgba(255, 0, 0, 0.692)" class="form-text">{{ $message }}</div>
@@ -92,8 +93,10 @@
                                 <label class="">Side Dominance</label>
                                 <div class="input-group input-group-outline mb-3">
                                     <select class="form-control" name="side_dominance" id="exampleFormControlSelect1">
-                                        <option @if($patient->side_dominance == 'left')  selected @endif value="left">Left</option>
-                                        <option @if($patient->side_dominance == 'right') selected @endif value="right">Right</option>
+                                        <option @if ($patient->side_dominance == 'left') selected @endif value="left">Left
+                                        </option>
+                                        <option @if ($patient->side_dominance == 'right') selected @endif value="right">Right
+                                        </option>
                                     </select>
                                     @error('side_dominance')
                                         <div style="color: rgba(255, 0, 0, 0.692)" class="form-text">{{ $message }}</div>
@@ -101,7 +104,8 @@
                                 </div>
                             </div>
                         </div>
-                        <input type="hidden" id="patient_debts" value="{{ $patient->patient_debts }}" name="patient_debts">
+                        <input type="hidden" id="patient_debts" value="{{ $patient->patient_debts }}"
+                            name="patient_debts">
                         <div class="form-group pt-4">
                             <button type="submit" class="btn btn-primary">Edit Patient</button>
                         </div>
@@ -110,7 +114,7 @@
             </div>
         </div>
     </div>
-    
+
     @inject('carbon', 'Carbon\Carbon')
     <div class="row mt-5 mb-6">
         <div class="col-12">
@@ -121,7 +125,6 @@
                     </div>
                 </div>
                 <div class="card-body px-4 pb-2 py-4">
-                
                     <div class="row border pb-2 mx-1 pt-2">
                         <div class="col-4">
                             <span>Session's Number</span>
@@ -155,7 +158,9 @@
                             </select>
                         </div>
                         <div class="col-4 px-6">
-                            <div>Price = <span id="price" value-3="{{ auth()->user()->session_price }}"> {{ auth()->user()->session_price }}</span><span class="fs-7 fw-bolder text-blue"> IQD</span></div>
+                            <div>Price = <span id="price" value-3="{{ auth()->user()->session_price }}">
+                                    {{ auth()->user()->session_price }}</span><span class="fs-7 fw-bolder text-blue">
+                                    IQD</span></div>
                         </div>
                     </div>
                     <form action="{{ route('session.store') }}" method="post">
@@ -164,17 +169,17 @@
                             <div class="col-md-12">
                                 <label>Date & Time</label>
                                 <div class="input-group input-group-outline date mb-3" id="copy">
-                                    <input type="text" id="date" class="form-control" name="date_time[]" value="{{ $carbon->now() }}" />
+                                    <input type="text" id="date" class="form-control" name="date_time[]"
+                                        value="{{ $carbon->now() }}" />
+                                    @error('date_time')
+                                        <div style="color: rgba(255, 0, 0, 0.692)" class="form-text">{{ $message }}
+                                        </div>
+                                    @enderror
                                 </div>
-                                @error('date_time')
-                                    <div style="color: rgba(255, 0, 0, 0.692)" class="form-text">{{ $message }}</div>
-                                @enderror
                             </div>
-
                             <input type="hidden" name="patient_id" value="{{ $patient->id }}">
                         </div>
                         <div class="put"></div>
-                        
                         <div class="row mt-3">
                             <div class="col-md-6">
                                 <label>Session's Status</label>
@@ -185,11 +190,11 @@
                                         <option value="not_attended">Not Attended</option>
                                     </select>
                                     @error('session_status')
-                                        <div style="color: rgba(255, 0, 0, 0.692)" class="form-text">{{ $message }}</div>
+                                        <div style="color: rgba(255, 0, 0, 0.692)" class="form-text">{{ $message }}
+                                        </div>
                                     @enderror
                                 </div>
                             </div>
-                            
                             <div class="col-md-6">
                                 <label>Payment Status</label>
                                 <div class="input-group input-group-outline mb-3">
@@ -198,12 +203,37 @@
                                         <option value="not_paid">not Paid Yet</option>
                                     </select>
                                     @error('payment_status')
-                                        <div style="color: rgba(255, 0, 0, 0.692)" class="form-text">{{ $message }}</div>
+                                        <div style="color: rgba(255, 0, 0, 0.692)" class="form-text">{{ $message }}
+                                        </div>
                                     @enderror
                                 </div>
                             </div>
                         </div>
-                        <input type="hidden" id="patient_debts" name='patient_debts' value="{{ auth()->user()->session_price }}">
+                        
+                        <div class="form-check form-switch mt-3 px-5">
+                            <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" name="is_print">
+                            <label class="form-check-label" for="flexSwitchCheckDefault">Print Invoice</label>
+                        </div>
+                        
+                        <div class="row mt-3">
+                            <div id="append" class="col-md-12 hid">
+                                <label>Invoice Notes</label>
+                                <div class="input-group input-group-outline mb-3">
+                                    <textarea name="notes" rows="4" class="form-control">{{ old('content') }}</textarea>
+                                </div>
+                            </div>
+                        </div>
+
+                        <input type="hidden" id="patient_debts" name='patient_debts'
+                            value="{{ auth()->user()->session_price }}">
+
+                        <input type="hidden" id="sessions_num" name="sessions_num" value="1">
+                        <input type="hidden" id="priceBefore" name="priceBefore"
+                            value="{{ auth()->user()->session_price }}">
+                        <input type="hidden" id="dis_count" name="discount" value="0">
+                        <input type="hidden" id="priceAfter" name="priceAfter"
+                            value="{{ auth()->user()->session_price }}">
+                        
                         <div class="form-group pt-4">
                             <button type="submit" class="btn btn-primary">Add Session</button>
                         </div>
@@ -212,9 +242,7 @@
             </div>
         </div>
     </div>
-    
-    
-    
+
     @push('js')
         <script>
             $("#Paid").on("keyup change", function(e) {
@@ -225,7 +253,7 @@
                 }
             })
         </script>
-        
+
         {{-- for Create session --}}
         <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
         <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
@@ -245,25 +273,35 @@
 
             $('#session_num').on('change', function() {
                 $('.put').empty();
-                for (var i=1; i < $(this).val(); i++) {
+                for (var i = 1; i < $(this).val(); i++) {
                     $(".date:first").clone().appendTo(".put");
                 }
-                
+
                 let price = {{ auth()->user()->session_price }};
-                let pr = i * price;
-                $('#price').html(pr);
-                $('#price').attr("value-3", pr)
-                $('#patient_debts').val(pr)
-                $('#discount option:first').prop('selected',true);
+                let final_price = i * price;
+                $('#price').html(final_price);
+                $('#price').attr("value-3", final_price)
+                $('#patient_debts').val(final_price)
+                $('#discount option:first').prop('selected', true);
+
+                $('#sessions_num').val(i)
+                $('#priceBefore').val(final_price)
             });
-            
-            $('#discount').on('change', function() {   
+
+            $('#discount').on('change', function() {
                 let price = $('#price').attr("value-3")
-                let price_after = price - (price * $(this).val()/100)
-                $('#price').html(price_after);   
+                let discount = $(this).val()
+                let price_after = price - (price * discount / 100)
+                $('#price').html(price_after);
                 $('#patient_debts').val(price_after)
+
+                $('#dis_count').val(discount)
+                $('#priceAfter').val(price_after)
+            });
+
+            $('#flexSwitchCheckDefault').change(function() {
+                $('#append').toggleClass("hid");
             });
         </script>
-        
     @endpush
 @endsection

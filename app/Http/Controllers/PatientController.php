@@ -87,7 +87,6 @@ class PatientController extends Controller
         if(auth()->user()->is_admin == 1 or auth()->user()->id == $patient->user_id)
         {
             $data = $request->validated();
-            $data['user_id'] = auth()->user()->id;
             $patient->update($data);
             return redirect()->route('patient.index')->with('message','Patient updated successfully');
         }

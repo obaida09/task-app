@@ -29,13 +29,16 @@
                                 <div class="input-group input-group-outline mb-3">
                                     <select class="form-control" name="category_id" id="sub_category"></select>
                                 </div>
+                                @error('category_id')
+                                    <div style="color: rgba(255, 0, 0, 0.692)" class="form-text">{{ $message }}</div>
+                                @enderror
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-12">
                                 <label>Pathological Case</label>
                                 <div class="input-group input-group-outline mb-3">
-                                    <textarea name="content" rows="4" class="form-control"></textarea>
+                                    <textarea name="content" rows="4" class="form-control">{{ old('content') }}</textarea>
                                 </div>
                                 @error('content')
                                     <div style="color: rgba(255, 0, 0, 0.692)" class="form-text">{{ $message }}</div>
@@ -46,7 +49,7 @@
                             <div class="col-md-12">
                                 <label class="">Key Words</label>
                                 <div class="input-group input-group-outline mb-3">
-                                    <textarea name="key_word" rows="4" class="form-control"></textarea>
+                                    <textarea name="key_word" rows="4" class="form-control">{{ old('key_word') }}</textarea>
                                 </div>
                                 @error('key_word')
                                     <div style="color: rgba(255, 0, 0, 0.692)" class="form-text">{{ $message }}</div>

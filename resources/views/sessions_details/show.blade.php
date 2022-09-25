@@ -18,13 +18,14 @@
                         <div class="col-md-6 float-start px-5">
                             <p><span class="text-dark fw-bold">Session Created At </span> :
                                 {{ $session_details->created_at->toFormattedDateString() }}</p>
+                            <a class="btn btn-primary mt-3 py-2 px-3" href="{{ route('session_details_pdf', $session_details->id) }}" target="_blank" class="text-dark fw-bold">print <i class="fa-solid fa-file-pdf ml-2"></i></a>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </div>  
 
-        <div class="row mt-3">
+        <div class="row mt-3">  
             <div class="col-12">
                 <div class="card my-4">
                     <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">

@@ -29,6 +29,7 @@ class SessionController extends Controller
 
     public function store(StoreSessionRequest $request)
     {
+    // dd($request->all());
         foreach ($request->date_time as $item) {
             $data = [
                 'date_time'      => $item,
@@ -36,8 +37,24 @@ class SessionController extends Controller
                 'session_status' => $request->session_status,
                 'payment_status' => $request->payment_status,
             ];
-            $id = Session::create($data);
-            Patient::where('id' , $id->patient_id)->update(['patient_debts' => $request->patient_debts]);
+            $session = Session::create($data);
+            $patient = Patient::where('id' , $session->patient_id)->first();
+            $patient->update(['patient_debts' => $request->patient_debts]);
+        }
+        if($request->is_print == 'on') {
+            $data = [
+                'healer_name'    => $patient->user()->first()->name,
+                'session_price'  => $patient->user()->first()->session_price ,
+                'patient_name'   => $patient->name,
+                'patient_mobile' => $patient->mobile,
+                'date'           => Carbon::now()->format('Y/m/d'),
+                'sessions_num'   => $request->sessions_num,
+                'priceBefore'    => $request->priceBefore,
+                'discount'       => $request->discount,
+                'priceAfter'     => $request->priceAfter,
+                'notes'          => $request->notes,
+            ];
+            return view('sessions.pdf', compact('data'));
         }
         return redirect()->route('session.index')->with('message','Session created successfully');
     }
@@ -70,7 +87,7 @@ class SessionController extends Controller
     public function update(UpdateSessionRequest $request, Session $session)
     {
         if(auth()->user()->is_admin == 1 or auth()->user()->id == $session->patient()->first()->user_id)
-        {        
+        {
             $session->update($request->validated());
             return redirect()->route('session.index')->with('message','Session updated successfully');
         }

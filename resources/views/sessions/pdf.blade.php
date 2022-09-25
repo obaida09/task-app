@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>{{ $session_details->patient->name }}</title>
+    <title>{{ $data['patient_name'] }}</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700;900&display=swap" rel="stylesheet">
@@ -154,7 +154,7 @@
         .content {
             font-family: 'Kalam', cursive;
             position: relative;
-            height: 620px;
+            height: 406px;
             font-size: 21px;
             line-height: 1.5;
             color: #666;
@@ -172,6 +172,7 @@
         /* footer styles */
         .footer {
             position: relative;
+            height: 90px;
         }
 
         .footer hr {
@@ -194,8 +195,6 @@
 </head>
 
 <body>
-
-
     <div class="m2-auto">
         <div class="rag px-5 py-3">
             <div class="wave">
@@ -208,38 +207,50 @@
                     <path d="M0,0 C150,250 430,0 500,200 L500,00 L0,0 Z" style="stroke: none; fill:#1877f3;"></path>
                 </svg>
             </div>
-            <div class="head row mt-5 pt-2">
+            <div class="head row mt-5 pt-5">
                 <div class="col-7 logo"><img src="{{ asset('img/logo.png') }}" alt=""></div>
                 <div class="col-5 name mt-5 Montserrat text-center"><span class="dr">DR.
-                    </span>{{ $session_details->patient->user()->first()->name }}</div>
+                    </span>{{ $data['healer_name'] }}</div>
             </div>
-            <div class="section mt-4">
+            <div class="hr">
+
+                <span>Invoice</span>
+            </div>
+            <div class="section my-5">
                 <div class="row">
                     <div class="col-7"><span class="Montserrat ls">Name: </span><span
-                            class="kalam mx-1 dotted">{{ $session_details->patient->name }}</span></div>
-                    <div class="col-5"><span class="Montserrat ls">Age: </span><span
-                            class="kalam mx-1 dotted">{{ $session_details->patient->age }}</span></div>
+                            class="kalam mx-1 px-1 dotted">{{ $data['patient_name'] }}</span></div>
+                    <div class="col-5"><span class="Montserrat ls">Moblie: </span><span
+                            class="kalam mx-1 px-1 dotted">{{ $data['patient_mobile'] }}</span></div>
                 </div>
                 <div class="row mt-4">
-                    <div class="col-7"><span class="Montserrat ls">Moblie: </span><span
-                            class="kalam mx-1 dotted">{{ $session_details->patient->mobile }}</span></div>
+                    <div class="col-7"><span class="Montserrat ls">Session Price: </span><span
+                            class="kalam mx-1 dotted">{{ $data['session_price'] }}</span></div>
+                    <div class="col-5"><span class="Montserrat ls">Session's: </span><span
+                            class="kalam mx-1 px-2 dotted">{{ $data['sessions_num'] }}</span></div>
+
+                </div>
+                <div class="row mt-4">
+                    <div class="col-7"><span class="Montserrat ls">Total Price: </span><span
+                            class="kalam mx-1 dotted">{{ $data['priceBefore'] }} / {{ $data['discount'] }}% =
+                            {{ $data['priceAfter'] }} IQD</span></div>
                     <div class="col-5"><span class="Montserrat ls">Date: </span><span
-                            class="kalam mx-1 dotted">{{ $date_time }}</span></div>
+                            class="kalam mx-1 dotted">{{ $data['date'] }}</span></div>
                 </div>
             </div>
             <div class="hr">
-                {{-- <hr> --}}
-                <span>Session Notes</span>
+
+                <span>Notes</span>
             </div>
             <div class="content mt-4 pt-1 px-4">
-                {{ $session_details->session_notes }}
+                {{ $data['notes'] }}
                 <div>
                     <img class="w-10" src="{{ asset('img/MHI.png') }}" alt="">
                 </div>
             </div>
             <div class="footer">
                 <hr>
-                <h3>Meta Healty System</h3>
+                <h3 class="pt-3">Meta Healty System</h3>
             </div>
             <div class="wave wave3">
                 <svg viewBox="0 0 500 200" preserveAspectRatio="xMinYMin meet">
@@ -251,15 +262,13 @@
                     <path d="M0,0 C150,250 430,0 500,200 L500,00 L0,0 Z" style="stroke: none; fill:#1877f3;"></path>
                 </svg>
             </div>
-            {{-- <a type="button" onclick="myPrint()">Print <i class="fa-regular fa-file-pdf"></i></a> --}}
         </div>
     </div>
-
     <script>
         window.onload = function() {
             window.print();
             setTimeout(function() {
-                document.location.href = '{{ route('session_details.show', $session_details->id) }}';
+                document.location.href = '{{ route('session.index') }}';
             }, 10);
         };
     </script>

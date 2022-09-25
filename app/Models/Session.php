@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Session extends Model
 {
     use HasFactory;
+    use \Znck\Eloquent\Traits\BelongsToThrough;
     
     protected $guarded = [];
     
@@ -17,6 +18,11 @@ class Session extends Model
             return Session::first();
         }
         return auth()->user()->sessions();
+    }
+    
+    public function user()
+    {
+        return $this->belongsToThrough(User::class, Patient::class);
     }
     
     public function patient()

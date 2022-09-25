@@ -55,32 +55,9 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name'                    => 'nullable',
-            'age'                     => 'nullable',
-            'side_dominance'          => 'nullable',
-            'sex'                     => 'nullable',
-            'email'                   => 'nullable|email|unique:users',
-            'password'                => 'nullable',
-            'mobile'                  => 'nullable|min:8',
-            'treatments'              => 'nullable',
-            'symptom'                 => 'nullable',
-            'function'                => 'nullable',
-            'emotions_plan'           => 'nullable',
-            'connected_beliefs'       => 'nullable',
-            'meta_meaning'            => 'nullable',
-            'udin_moment'             => 'nullable',
-            'vakogs'                  => 'nullable',
-            'symptoms'                => 'nullable',
-            'regeneration_trigger'    => 'nullable',
-            'regeneration_symptoms_a' => 'nullable',
-            'healing_symptoms'        => 'nullable',
-            'regeneration_symptoms_b' => 'nullable',
-            'meta_practice'           => 'nullable',
-            'action'                  => 'nullable',
-            'follow_up'               => 'nullable',
-            'information'             => 'nullable',
-            'associations'            => 'nullable',
-            'status'                  => 'nullable',
+            'name'     => 'required',
+            'email'    => 'required|email|unique:users',
+            'password' => 'required',
         ]);
     }
 

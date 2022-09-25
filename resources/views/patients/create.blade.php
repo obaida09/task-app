@@ -15,13 +15,19 @@
                             <div class="col-md-6">
                                 <label class="">Name</label>
                                 <div class="input-group input-group-outline mb-3">
-                                    <input type="text" name="name" class="form-control">
+                                    <input type="text" required name="name" value="{{ old('name') }}" class="form-control">
+                                    @error('name')
+                                        <div style="color: rgba(255, 0, 0, 0.692)" class="form-text">{{ $message }}</div>
+                                    @enderror
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <label class="">Age</label>
                                 <div class="input-group input-group-outline mb-3">
-                                    <input type="text" name="age" class="form-control">
+                                    <input type="text" required name="age" value="{{ old('age') }}" class="form-control">
+                                    @error('age')
+                                        <div style="color: rgba(255, 0, 0, 0.692)" class="form-text">{{ $message }}</div>
+                                    @enderror
                                 </div>
                             </div>
                         </div>
@@ -29,13 +35,20 @@
                             <div class="col-md-6">
                                 <label class="">Address</label>
                                 <div class="input-group input-group-outline mb-3">
-                                    <input type="text" name="address" class="form-control">
+                                    <input type="text" required name="address" value="{{ old('address') }}" class="form-control">
+                                    @error('address')
+                                        <br>
+                                        <div style="color: rgba(255, 0, 0, 0.692)" class="form-text">{{ $message }}</div>
+                                    @enderror
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <label class="">Mobile</label>
                                 <div class="input-group input-group-outline mb-3">
-                                    <input type="text" name="mobile" class="form-control">
+                                    <input type="text" required name="mobile" value="{{ old('mobile') }}" class="form-control">
+                                    @error('mobile')
+                                        <div style="color: rgba(255, 0, 0, 0.692)" class="form-text">{{ $message }}</div>
+                                    @enderror
                                 </div>
                             </div>
                         </div>
@@ -43,7 +56,7 @@
                             <div class="col-md-6">
                                 <label class="">Sex</label>
                                 <div class="input-group input-group-outline mb-3">
-                                    <select class="form-control" name="sex" id="exampleFormControlSelect1">
+                                    <select class="form-control" name="sex" value="{{ old('sex') }}">
                                         <option value="male">Male</option>
                                         <option value="famle">Famle</option>
                                     </select>
@@ -55,7 +68,7 @@
                             <div class="col-md-6">
                                 <label class="">Domination</label>
                                 <div class="input-group input-group-outline mb-3">
-                                    <select class="form-control" name="domination" id="exampleFormControlSelect1">
+                                    <select class="form-control" name="domination" value="{{ old('domination') }}">
                                         <option value="left">Left</option>
                                         <option value="right">Right</option>
                                     </select>

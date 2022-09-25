@@ -49,6 +49,9 @@ class UpdatePatientRequest extends FormRequest
             'follow_up'               => 'nullable',
             'information'             => 'nullable',
             'associations'            => 'nullable',
+            'offer'                   => 'nullable',
+            'shock_moment'            => 'nullable',
+            'tretment'                => 'nullable',
         ];
     }
 }

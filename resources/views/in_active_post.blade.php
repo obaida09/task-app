@@ -28,7 +28,7 @@
                                             class="text-primary">{{ $item->patient->name }}</small> </div>
                                 </div>
                                 <div class="d-flex flex-row mt-4 px-3 ellipsis"> 
-                                <small class="mx-2">{{ $item->posted_at }}</small> 
+                                <small class="mx-2">{{ str_replace('-', '/', strtok($item->posted_at, ' ')) }}</small> 
                                 @if (auth()->user()->is_admin == 1)
                                     <a href="{{ route('accept_post_communtiy', $item->id) }}" class="pr-2"><i class="fa-solid fa-check"></i></a>
                                 @endif

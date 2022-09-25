@@ -46,11 +46,11 @@ class HomeController extends Controller
             $session_count           = Session::count();
             $session_lastWeek        = Session::whereBetween('created_at', [$lastWeek, $today])->count();
             
-            if(Session::your_sessions() != null) {
-                $session_today           = Session::your_sessions()->whereDate('date_time', $today)->count();
-                $session_nextWeek        = Session::your_sessions()->whereBetween('date_time', [$today, $nextWeek])->count();
-                $session_nextTowWeek     = Session::your_sessions()->whereBetween('date_time', [$today, $nextTowWeek])->count();
-                $session_nextMonth       = Session::your_sessions()->whereBetween('date_time', [$today, $nextMonth])->count();
+            if(auth()->user()->sessions() != null) {
+                $session_today           = auth()->user()->sessions()->whereDate('date_time', $today)->count();
+                $session_nextWeek        = auth()->user()->sessions()->whereBetween('date_time', [$today, $nextWeek])->count();
+                $session_nextTowWeek     = auth()->user()->sessions()->whereBetween('date_time', [$today, $nextTowWeek])->count();
+                $session_nextMonth       = auth()->user()->sessions()->whereBetween('date_time', [$today, $nextMonth])->count();
             }
             $pathological_case_count = PathologicalCase::count();
             $post_count              = SessionDetails::where('accept', '1')->where('marital_status', 'public')->count();
@@ -60,27 +60,30 @@ class HomeController extends Controller
         {
             $patient_count        = Patient::your_patients()->count();
             $patient_lastWeek     = Patient::your_patients()->whereBetween('created_at', [$lastWeek, $today])->count();
-            $session_not_attended = Session::your_sessions()->where('session_status', 'not_attended')->count();
-            $session_attended     = Session::your_sessions()->where('session_status', 'attended')->count();
-            $session_pending      = Session::your_sessions()->where('session_status', 'pending')->count();   
+            $session_not_attended = auth()->user()->sessions()->where('session_status', 'not_attended')->count();
+            $session_attended     = auth()->user()->sessions()->where('session_status', 'attended')->count();
+            $session_pending      = auth()->user()->sessions()->where('session_status', 'pending')->count();   
             
-            if(Session::your_sessions() != null) {
-                $session_today           = Session::your_sessions()->whereDate('date_time', $today)->count();
-                $session_nextWeek        = Session::your_sessions()->whereBetween('date_time', [$today, $nextWeek])->count();
-                $session_nextTowWeek     = Session::your_sessions()->whereBetween('date_time', [$today, $nextTowWeek])->count();
-                $session_nextMonth       = Session::your_sessions()->whereBetween('date_time', [$today, $nextMonth])->count();
+            if(auth()->user()->sessions() != null) {
+                $session_today           = auth()->user()->sessions()->whereDate('date_time', $today)->count();
+                $session_nextWeek        = auth()->user()->sessions()->whereBetween('date_time', [$today, $nextWeek])->count();
+                $session_nextTowWeek     = auth()->user()->sessions()->whereBetween('date_time', [$today, $nextTowWeek])->count();
+                $session_nextMonth       = auth()->user()->sessions()->whereBetween('date_time', [$today, $nextMonth])->count();
             }
         }
         return view('home', get_defined_vars());
     }
     
     public function session_count($time)
-    {
+    {    
         $today = Carbon::today();
         if($today == $time) {
-            $session_today = Session::your_sessions()->whereDate('date_time', $time)->paginate(10);
+            $session = auth()->user()->sessions()->whereDate('date_time', $time)->paginate(10);
+        }else{
+            $session = auth()->user()->sessions()->whereBetween('date_time', [$today, $time])->paginate(10);
         }
-        $session = Session::your_sessions()->whereBetween('date_time', [$today, $time])->paginate(10);
+        $time  = str_replace('-', '/', strtok($time, ' '));
+        $today = str_replace('-', '/', strtok($today, ' '));
         return view('get_session', compact('session', 'today', 'time'));
     }
     
@@ -106,7 +109,7 @@ class HomeController extends Controller
         $owner['id']      = $owner_user->id; 
         $owner['name']    = $owner_user->name; 
         $owner['email']   = $owner_user->email;
-        $owner['message'] = 'Your Post has been removed from admin';
+        $owner['message'] = 'Your Post has been removed by admin';
         $owner_user->notify(new HealerNotfy($owner));
         
         return redirect()->back()->with(['message' => 'Post delete Successfully']);

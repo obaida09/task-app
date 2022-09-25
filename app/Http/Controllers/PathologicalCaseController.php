@@ -35,7 +35,7 @@ class PathologicalCaseController extends Controller
     }
 
 
-    public function show(PathologialCase $pathologicalCase)
+    public function show(PathologicalCase $pathologicalCase)
     {
         return view('pathological_cases.show', compact('pathologicalCase'));
     }

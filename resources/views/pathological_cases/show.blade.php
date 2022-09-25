@@ -12,7 +12,6 @@
                                     class="font-weight-bold fs-3">{{ $pathologicalCase->category()->first()->name }}</span> 
                             </div>
                         </div>
-
                     </div>
                     <p class="text-justify ml-3 me-5 mt-4 mb-5 fs-5">{{ $pathologicalCase->content }}</p> 
                 </div>

@@ -168,6 +168,7 @@ return [
          
         // Meneses\LaravelMpdf\LaravelMpdfServiceProvider::class,
         Yajra\DataTables\DataTablesServiceProvider::class,
+        LaravelDaily\Invoices\InvoiceServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -233,6 +234,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         // 'PDF' => Meneses\LaravelMpdf\Facades\LaravelMpdf::class
+        'Invoice' => LaravelDaily\Invoices\Facades\Invoice::class
     ],
 
 ];

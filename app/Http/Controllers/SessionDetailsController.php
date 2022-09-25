@@ -10,7 +10,9 @@ use App\DataTables\SessionsDetailsDatatable;
 use App\Http\Requests\StoreSessionDetailsRequest;
 use App\Http\Requests\UpdateSessionDetailsRequest;
 use Carbon\Carbon;
-use Barryvdh\DomPDF\Facade\Pdf;
+use LaravelDaily\Invoices\Invoice;
+use LaravelDaily\Invoices\Classes\Buyer;
+use LaravelDaily\Invoices\Classes\InvoiceItem;
 
 class SessionDetailsController extends Controller
 {
@@ -120,17 +122,11 @@ class SessionDetailsController extends Controller
         return redirect('session_details');
     }
     
-    public function pdf()
+    public function pdf($id)
     {
-        // $session_details = SessionDetailsFiles::whereId($id)->with('patient', 'session');
-        
-        $data = [
-            'foo' => 'bar'
-          ];
-          $pdf = Pdf::loadView('sessions_details.pdf', $data);
-          return $pdf->download('document.pdf');
-        
-        return view('sessions_details.pdf');
+        $session_details = SessionDetails::whereId($id)->with('patient', 'session')->first();
+        $date_time = str_replace('-', '/', strtok($session_details->session['date_time'], ' '));
+        return view('sessions_details.pdf', compact('session_details', 'date_time'));
     }
     
     public function remove_file($id)

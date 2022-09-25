@@ -57,12 +57,12 @@ class SessionsDetailsDatatable extends DataTable
                     ->columns($this->getColumns())
                     ->minifiedAjax()
                     ->dom('Bfrtip')
-                    ->orderBy(1)
+                    ->orderBy(4)
                     ->parameters([
                         'dom' => 'Blfrtip',
                         'responsive' => true,
                         'autoWidth' => false,
-                        'lengthMenu' => [[10, 25, -1], [10, 25, 'All Record']],
+                        'lengthMenu' => [[10, 25, 50], [10, 25, 50]],
                         'buttons' => ['excel', 'csv', 'pdf', 'reset'],
                     ]);
     }

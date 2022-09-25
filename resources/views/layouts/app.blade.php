@@ -29,12 +29,6 @@
     <link href="{{ asset('css/edit.css') }}" rel="stylesheet">
     <!-- CSS Files -->
     <link id="pagestyle" href="{{ asset('assets/css/material-dashboard.css') }}" rel="stylesheet" />
-
-    <!-- Custom Js -->
-    {{-- <script src="{{ asset('js/app.js') }}"></script> --}}
-
-
-
 </head>
 
 <body class="g-sidenav-show bg-gray-200">
