@@ -209,12 +209,12 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                         <div class="form-check form-switch mt-3 px-5">
                             <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" name="is_print">
                             <label class="form-check-label" for="flexSwitchCheckDefault">Print Invoice</label>
                         </div>
-                        
+
                         <div class="row mt-3">
                             <div id="append" class="col-md-12 hid">
                                 <label>Invoice Notes</label>
@@ -233,9 +233,14 @@
                         <input type="hidden" id="dis_count" name="discount" value="0">
                         <input type="hidden" id="priceAfter" name="priceAfter"
                             value="{{ auth()->user()->session_price }}">
-                        
+
                         <div class="form-group pt-4">
-                            <button type="submit" class="btn btn-primary">Add Session</button>
+                            @if (auth()->user()->session_price == 0)
+                                <h5>Please Enter your session's price <a class="text-info"
+                                        href="{{ route('healer.edit', auth()->user()->id) }}">here</a></h5>
+                            @else
+                                <button type="submit" class="btn btn-primary">Add Session</button>
+                            @endif
                         </div>
                     </form>
                 </div>

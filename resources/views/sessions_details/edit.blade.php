@@ -48,7 +48,7 @@
                             <div class="col-md-6">
                                 <label>Upload Files</label>
                                 <div class="input-group input-group-outline mb-3">
-                                    <input type="file" name="files[]" class="form-control" multiple>
+                                    <input type="file" name="files[]" class="form-control" accept="application/pdf,application/image/x-png,image/gif,image/jpeg" multiple>
                                 </div>
                                 @error('files')
                                     <div style="color: rgba(255, 0, 0, 0.692)" class="form-text">{{ $message }}</div>
@@ -100,7 +100,7 @@
             </div>
         </div>
     </div>
-    
+
     <div class="row mt-3">
         <div class="col-12">
             <div class="card my-4">
@@ -112,17 +112,28 @@
                 <div class="card-body px-0 pb-2">
                     <div class="px-4 py-3">
                         @forelse ($session_details->sessionDetailsFiles as $file)
-                            @if (strpos($file->name, '.pdf') == false)
-                                <div class="float-start show_img col-md-3 px-2 mb-4">
-                                    <a href="{{ route('remove_file', $file->id) }}">
-                                        <div class="deletee"><i class="fa-regular fa-trash-can"></i></div>
-                                    </a>
-                                    <img id="session_img"
-                                        onclick="addImag('{{ asset('assets/files/session_details/' . $file->name) }}')"
-                                        src="{{ asset('assets/files/session_details/' . $file->name) }}"
-                                        alt="{{ $file->name }}">
+                            <div class="float-start col-md-3 px-2 mb-4">
+                                <div class="mx-2 show_img">
+                                    @if (strpos($file->name, '.pdf') == false)
+                                        <a href="{{ route('remove_file', $file->id) }}">
+                                            <div class="deletee"><i class="fa-regular fa-trash-can"></i></div>
+                                        </a>
+                                        <img id="session_img"
+                                            onclick="addImag('{{ asset('assets/files/session_details/' . $file->name) }}')"
+                                            src="{{ asset('assets/files/session_details/' . $file->name) }}"
+                                            alt="{{ $file->name }}">
+                                    @else
+                                        <a href="{{ route('remove_file', $file->id) }}">
+                                            <div class="deletee"><i class="fa-regular fa-trash-can"></i></div>
+                                        </a>
+                                        <a href="{{ asset('assets/files/session_details/' . $file->name) }}"
+                                            target="_blank" class="btn btn-pdf px-2 pt-4">
+                                            <span class="span-pdf px-2 py-2">{{ preg_replace('/[0-9]+/', '', $file->name) }}</span>
+                                            <span class="pdf-icon  mt-3" style="background-image: url('{{ asset('img/pdf-logo.png') }}')"></span>
+                                        </a>
+                                    @endif
                                 </div>
-                            @endif
+                            </div>
                         @empty
                             <div class="p-3">No File in this Session</div>
                         @endforelse
@@ -133,7 +144,7 @@
     </div>
 
     @push('js')
-        <script>        
+        <script>
             function addImag(src) {
                 console.log(src);
                 $(".full_screen").empty();
@@ -145,7 +156,7 @@
             };
 
             function removeImag() {
-                $(".full_screen").addClass('hid'); 
+                $(".full_screen").addClass('hid');
                 console.log('asdf')
             };
         </script>

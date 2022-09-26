@@ -28,7 +28,7 @@
                             <div class="col-md-6">
                                 <label>Upload Files</label>
                                 <div class="input-group input-group-outline mb-3">
-                                    <input type="file" name="files[]" class="form-control" multiple>
+                                    <input type="file" name="files[]" class="form-control" accept="application/pdf,application/image/x-png,image/gif,image/jpeg" multiple>
                                 </div>
                                 @error('files')
                                     <div style="color: rgba(255, 0, 0, 0.692)" class="form-text">{{ $message }}</div>

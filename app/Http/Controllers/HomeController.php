@@ -89,20 +89,20 @@ class HomeController extends Controller
     
     public function communtiy()
     {
-        $session_details = SessionDetails::where('marital_status', 'public')->whereAccept(1)->with('session', 'patient.user')->paginate(20);
+        $session_details = SessionDetails::where('marital_status', 'public')->whereAccept(1)->with('session', 'patient.user')->orderBy('posted_at', 'desc')->paginate(20);
         return view('communtiy', compact('session_details')) ;
     }
     
     public function inActive()
     {
-        $session_details = SessionDetails::where('marital_status', 'public')->whereAccept(0)->with('session', 'patient.user')->get();
+        $session_details = SessionDetails::where('marital_status', 'public')->whereAccept(0)->with('session', 'patient.user')->orderBy('posted_at', 'desc')->get();
         return view('in_active_post', compact('session_details')) ;
     }
     
     public function remove_from_communtiy($id)
     {
         $sessionDetails = SessionDetails::whereId($id)->first();
-        $sessionDetails->update(array('accept' => false));
+        $sessionDetails->update(array('marital_status' => 'private'));
         
         // Send Notification to Healer
         $owner_user = $sessionDetails->patient()->first()->user()->first();
@@ -118,14 +118,14 @@ class HomeController extends Controller
     public function accept_post_communtiy($id)
     {
         $sessionDetails = SessionDetails::whereId($id)->first();
-        $sessionDetails->update(array('accept' => true));
+        $sessionDetails->update(['accept' => true, 'posted_at' => Carbon::now()]);
         
         // Send Notification to Healers           
         $owner_user = $sessionDetails->patient()->first()->user()->first();
         $owner['id']      = $owner_user->id; 
         $owner['name']    = $owner_user->name; 
         $owner['email']   = $owner_user->email;
-        $owner['message'] = 'new pathological case in communtiy';
+        $owner['message'] = 'new Post in communtiy';
         
         $healers = User::where('id', '!=', $owner['id'] )->get();
         Notification::send($healers, new HealerNotfy($owner));

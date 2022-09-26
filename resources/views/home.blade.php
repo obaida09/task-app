@@ -77,7 +77,7 @@
                     </div>
                     <hr class="dark horizontal my-0">
                     <div class="card-footer p-3">
-                        <p class="mb-0"><span class="text-success text-sm font-weight-bolder">+5% </span>than yesterday
+                        <p class="mb-0"><span class="text-success text-sm font-weight-bolder"> .</span>
                         </p>
                     </div>
                 </div>
@@ -99,8 +99,7 @@
                     </div>
                     <hr class="dark horizontal my-0">
                     <div class="card-footer p-3">
-                        <p class="mb-0"><span class="text-success text-sm font-weight-bolder">{{ $healer_lastWeek }}
-                            </span>than last week
+                        <p class="mb-0"><span class="text-success text-sm font-weight-bolder"> .</span>
                         </p>
                     </div>
                 </div>
@@ -119,8 +118,7 @@
                     </div>
                     <hr class="dark horizontal my-0">
                     <div class="card-footer p-3">
-                        <p class="mb-0"><span class="text-success text-sm font-weight-bolder">{{ $healer_lastWeek }}
-                            </span>than last week
+                        <p class="mb-0"><span class="text-success text-sm font-weight-bolder"> .</span>
                         </p>
                     </div>
                 </div>
@@ -139,8 +137,7 @@
                     </div>
                     <hr class="dark horizontal my-0">
                     <div class="card-footer p-3">
-                        <p class="mb-0"><span class="text-success text-sm font-weight-bolder">{{ $healer_lastWeek }}
-                            </span>than last week
+                        <p class="mb-0"><span class="text-success text-sm font-weight-bolder"> .</span>
                         </p>
                     </div>
                 </div>
@@ -159,8 +156,7 @@
                     </div>
                     <hr class="dark horizontal my-0">
                     <div class="card-footer p-3">
-                        <p class="mb-0"><span class="text-success text-sm font-weight-bolder">{{ $healer_lastWeek }}
-                            </span>than last week
+                        <p class="mb-0"><span class="text-success text-sm font-weight-bolder"> .</span>
                         </p>
                     </div>
                 </div>
@@ -182,7 +178,7 @@
                     </div>
                     <hr class="dark horizontal my-0">
                     <div class="card-footer p-3">
-                        <p class="mb-0"><span class="text-success text-sm font-weight-bolder">{{ $patient_lastWeek }}%
+                        <p class="mb-0"><span class="text-success text-sm font-weight-bolder">{{ $patient_lastWeek }}
                             </span>than
                             last week
                         </p>
@@ -203,7 +199,7 @@
                     </div>
                     <hr class="dark horizontal my-0">
                     <div class="card-footer p-3">
-                        <p class="mb-0"><span class="text-success text-sm font-weight-bolder">+3% </span>than last month
+                        <p class="mb-0"><span class="text-success text-sm font-weight-bolder"> .</span>
                         </p>
                     </div>
                 </div>
@@ -222,7 +218,7 @@
                     </div>
                     <hr class="dark horizontal my-0">
                     <div class="card-footer p-3">
-                        <p class="mb-0"><span class="text-danger text-sm font-weight-bolder">-2%</span> than yesterday
+                        <p class="mb-0"><span class="text-success text-sm font-weight-bolder"> .</span>
                         </p>
                     </div>
                 </div>
@@ -241,7 +237,7 @@
                     </div>
                     <hr class="dark horizontal my-0">
                     <div class="card-footer p-3">
-                        <p class="mb-0"><span class="text-success text-sm font-weight-bolder">+5% </span>than yesterday
+                        <p class="mb-0"><span class="text-success text-sm font-weight-bolder"> .</span>
                         </p>
                     </div>
                 </div>

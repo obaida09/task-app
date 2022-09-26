@@ -62,8 +62,7 @@
                                 <label class="">Passowrd</label>
                                 <div class="input-group input-group-outline mb-3">
                                     <input id="password" type="password"
-                                        class="form-control @error('password') is-invalid @enderror" name="password"
-                                        autocomplete="current-password">
+                                        class="form-control @error('password') is-invalid @enderror" name="password">
                                         @error('password')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
@@ -75,7 +74,7 @@
                                 <label class="">Confirm Passowrd</label>
                                 <div class="input-group input-group-outline mb-3">
                                     <input id="password-confirm" type="password" class="form-control"
-                                        name="password_confirmation" autocomplete="new-password">
+                                        name="password_confirmation">
                                 </div>
                             </div>
                         </div>
@@ -84,7 +83,12 @@
                                 <label class="">Session Price</label>
                                 <div class="input-group input-group-outline mb-3">
                                     <input type="text" value="{{ old('session_price', $healer->session_price) }}"
-                                        class="form-control" name="session_price" autocomplete="new-password">
+                                        class="form-control" name="session_price">
+                                        @error('session_price')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
                                 </div>
                             </div>
                         </div>

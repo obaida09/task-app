@@ -24,10 +24,10 @@ class StoreHealerRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'                    => 'required',
-            'email'                   => 'required|email|unique:users',
-            'password'                => 'required|min:8',
-            'status'                  => 'required' 
+            'name'     => 'required|max:50',
+            'email'    => 'required|email|unique:users',
+            'password' => 'required|min:8|max:25|confirmed',
+            'status'   => 'required' 
         ];
     }
 }

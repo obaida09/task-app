@@ -58,7 +58,7 @@
                                         <td>
                                             <span class="badge badge-dot me-4">
                                                 <i class="bg-info"></i>
-                                                <span class="text-dark text-xs">{{ $item->session_notes }}</span>
+                                                <span class="text-dark text-xs">{{ substr($item->session_notes, 0, 50) }}</span>
                                             </span>
                                         </td>
                                         <td class="align-middle text-center">
